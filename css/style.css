@@ -948,14 +948,17 @@ img { max-width: 100%; display: block; }
 
 /* Hero intro (runs on load, not scroll) */
 .hero-title, .hero-sub, .hero-content .btn,
-.nail-hero-title, .nail-hero-bottom-row, .nail-hero-content .btn {
+.nail-hero-title, .nail-hero-bottom-row, .nail-hero-content .btn,
+.spa-title, .spa-sub, .spa-hero-desc, .spa-btn,
+.lash-hero-desc {
   opacity: 0;
   transform: translateY(24px);
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
 }
-.hero-title, .nail-hero-title { animation-delay: .15s; }
-.hero-bottom-row, .nail-hero-bottom-row { animation-delay: .35s; }
-.hero-content .btn, .nail-hero-content .btn { animation-delay: .5s; }
+.hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
+.hero-bottom-row, .nail-hero-bottom-row, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
+.spa-hero-desc { animation-delay: .45s; }
+.hero-content .btn, .nail-hero-content .btn, .spa-btn { animation-delay: .6s; }
 @keyframes heroIn {
   to { opacity: 1; transform: translateY(0); }
 }
