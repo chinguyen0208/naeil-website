@@ -1,9 +1,9 @@
 /* =====================================================
-   NAEIL — Homepage
+   NAEIL â€” Homepage
    Tokens
    ===================================================== */
 /* =====================================================
-   NAEIL — Homepage
+   NAEIL â€” Homepage
    Fonts
    ===================================================== */
 @font-face {
@@ -557,7 +557,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE — Tablet
+   RESPONSIVE â€” Tablet
    ===================================================== */
 @media (max-width: 1024px) {
   .services-grid { gap: 28px; }
@@ -572,7 +572,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE — Mobile (nav collapse)
+   RESPONSIVE â€” Mobile (nav collapse)
    ===================================================== */
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
@@ -608,7 +608,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE — Hero
+   NAIL PAGE â€” Hero
    ===================================================== */
 .nail-hero .hero-media img { object-position: center 40%; }
 
@@ -654,7 +654,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE — What Goes On Your Nail (services)
+   NAIL PAGE â€” What Goes On Your Nail (services)
    ===================================================== */
 .nail-services {
   display: flex;
@@ -753,7 +753,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE — The Naeil Standard
+   NAIL PAGE â€” The Naeil Standard
    ===================================================== */
 .standard-section {
   display: grid;
@@ -837,7 +837,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   SLIDING CAROUSEL (Rhode-style) — always-on horizontal
+   SLIDING CAROUSEL (Rhode-style) â€” always-on horizontal
    scroll for card rows, with prev/next arrow buttons
    ===================================================== */
 .carousel-wrap {
@@ -917,7 +917,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ANIMATIONS — scroll reveal, hover motion, hero intro
+   ANIMATIONS â€” scroll reveal, hover motion, hero intro
    ===================================================== */
 .reveal {
   opacity: 0;
@@ -1015,7 +1015,9 @@ img { max-width: 100%; display: block; }
   text-align: center;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.5vw, 42px);
+  font-size: clamp(32px, 5.5vw, 64px);
+  line-height: 1.56;
+  letter-spacing: 1.28px;
   color: var(--ink-mid);
   margin: 0 0 20px;
 }
@@ -1146,26 +1148,26 @@ img { max-width: 100%; display: block; }
   margin: 60px auto 0;
   flex-wrap: wrap;
 }
-.process-step { flex: 1; min-width: 200px; max-width: 260px; }
+.process-step { flex: 1; min-width: 200px; max-width: 260px; text-align: center; }
 .process-img { height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
 .process-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
-.process-num-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.process-num { font-family: var(--font-display); font-size: 22px; color: var(--ink-mid); }
+.process-num-row { display: flex; align-items: center; margin-bottom: 16px; }
+.process-num { font-family: var(--font-display); font-size: 22px; color: var(--ink-mid); padding: 0 14px; }
 .process-line { flex: 1; height: 1px; background: rgba(0,0,0,0.3); }
-.process-line.last { background: transparent; }
+.process-line.is-hidden { background: transparent; }
 .process-step h4 {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 400;
   color: var(--ink-mid);
-  text-align: left;
+  text-align: center;
   margin: 0 0 12px;
 }
 .process-step p {
   font-family: var(--font-display);
   font-size: 14px;
   color: var(--ink-soft);
-  text-align: left;
+  text-align: center;
   line-height: 1.5;
   margin: 0;
 }
