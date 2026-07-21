@@ -291,6 +291,7 @@ img { max-width: 100%; display: block; }
 /* =====================================================
    SERVICES
    ===================================================== */
+
 .services {
   display: flex;
   flex-direction: column;
@@ -298,9 +299,10 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 30px;
   min-height: 809px;
-  padding: 30px 80px 50px 80px;
+  padding: 90px 80px 100px;
   background: rgba(240, 231, 224, 0.44);
 }
+
 
 .services-grid {
   display: flex;
