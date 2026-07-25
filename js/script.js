@@ -77,7 +77,7 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
   }
 
   function updateState() {
-    const overflowing = track.scrollWidth > track.clientWidth + 4;
+    const overflowing = track.scrollWidth > track.clientWidth + 20;
     wrap.classList.toggle('has-overflow', overflowing);
     const atStart = track.scrollLeft <= 4;
     const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
