@@ -283,9 +283,8 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   letter-spacing: 1px;
   color: #FFF;
-  padding-bottom: 28px;
+  padding-bottom: 60px;
 }
-
 }
 
 /* =====================================================
@@ -299,7 +298,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 30px;
   min-height: 809px;
-  padding: 100px 80px 100px 80px;
+  padding: 160px 80px 140px 80px;
   background: rgba(240, 231, 224, 0.44);
 }
 
