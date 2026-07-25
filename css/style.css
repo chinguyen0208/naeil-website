@@ -889,7 +889,6 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) {
   .services-grid,
   .product-grid { gap: 40px; }
-  .carousel-arrow { display: none !important; }
 }
 
 /* =====================================================
