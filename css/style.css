@@ -299,8 +299,12 @@ img { max-width: 100%; display: block; }
   gap: 50px;
   padding: 80px;
   background: rgba(240, 231, 224, 0.44);
+  
 }
-
+.services .services-grid {
+  gap: 60px;   /* trước: 70px */
+}
+c
 .service-card {
   display: flex;
   width: 357.33px;
