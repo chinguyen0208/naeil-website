@@ -854,6 +854,7 @@ img { max-width: 100%; display: block; }
   -ms-overflow-style: none;
   padding: 4px 64px 16px;
 }
+.services-grid,
 .product-grid { gap: 70px; }
 .services-grid::-webkit-scrollbar,
 .product-grid::-webkit-scrollbar { display: none; }
