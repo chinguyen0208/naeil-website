@@ -1,9 +1,9 @@
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Tokens
    ===================================================== */
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Fonts
    ===================================================== */
 @font-face {
@@ -285,7 +285,6 @@ img { max-width: 100%; display: block; }
   color: #FFF;
   padding-bottom: 60px;
 }
-}
 
 /* =====================================================
    SERVICES
@@ -296,13 +295,11 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  min-height: 809px;
-  padding: 160px 80px 140px 80px;
+  align-self: stretch;
+  gap: 50px;
+  padding: 80px;
   background: rgba(240, 231, 224, 0.44);
 }
-
-
 
 .service-card {
   display: flex;
@@ -550,22 +547,17 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE â€” Tablet
+   RESPONSIVE — Tablet
    ===================================================== */
 @media (max-width: 1024px) {
-  .services-grid { gap: 28px; }
   .philosophy { grid-template-columns: 1fr; }
   .philosophy-img { min-height: 380px; }
   .philosophy-content { padding: 64px var(--gutter); max-width: none; }
   .footer-links { grid-template-columns: repeat(3, minmax(110px, 1fr)); gap: 32px 24px; max-width: none; }
 }
 
-@media (max-width: 860px) {
-  .services-grid { }
-}
-
 /* =====================================================
-   RESPONSIVE â€” Mobile (nav collapse)
+   RESPONSIVE — Mobile (nav collapse)
    ===================================================== */
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
@@ -601,7 +593,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” Hero
+   NAIL PAGE — Hero
    ===================================================== */
 .nail-hero .hero-media img { object-position: center 40%; }
 
@@ -647,7 +639,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” What Goes On Your Nail (services)
+   NAIL PAGE — What Goes On Your Nail (services)
    ===================================================== */
 .nail-services {
   display: flex;
@@ -683,15 +675,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
   letter-spacing: 2.4px;
   margin: 0;
-}
-
-.product-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  gap: 70px;
-  flex-wrap: wrap;
 }
 
 .product-card {
@@ -746,7 +729,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” The Naeil Standard
+   NAIL PAGE — The Naeil Standard
    ===================================================== */
 .standard-section {
   display: grid;
@@ -830,8 +813,9 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   SLIDING CAROUSEL (Rhode-style) â€” always-on horizontal
-   scroll for card rows, with prev/next arrow buttons
+   SERVICE / PRODUCT GRIDS — shared wrapping layout
+   (used by homepage "Our Services", nail "What Goes On
+   Your Nail", and head spa "Our Headspa Services")
    ===================================================== */
 .carousel-wrap {
   position: relative;
@@ -842,34 +826,12 @@ img { max-width: 100%; display: block; }
 .services-grid,
 .product-grid {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
-  gap: 48px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 4px 64px 16px;
-}
-.services-grid,
-.product-grid { gap: 70px; }
-.services-grid::-webkit-scrollbar,
-.product-grid::-webkit-scrollbar { display: none; }
-
-/* Only left-align (so the row can scroll) once it actually overflows;
-   otherwise keep the cards centered in the viewport. */
-.carousel-wrap.has-overflow .services-grid,
-.carousel-wrap.has-overflow .product-grid {
-  justify-content: flex-start;
-}
-
-.service-card,
-.product-card {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
+  align-items: center;
+  align-content: center;
+  align-self: stretch;
+  gap: 70px;
 }
 
 .carousel-arrow {
@@ -905,12 +867,13 @@ img { max-width: 100%; display: block; }
   .carousel-arrow { width: 42px; height: 42px; }
 }
 @media (max-width: 720px) {
+  .services-grid,
   .product-grid { gap: 40px; }
   .carousel-arrow { display: none !important; }
 }
 
 /* =====================================================
-   ANIMATIONS â€” scroll reveal, hover motion, hero intro
+   ANIMATIONS — scroll reveal, hover motion, hero intro
    ===================================================== */
 .reveal {
   opacity: 0;
