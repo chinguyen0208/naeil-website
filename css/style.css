@@ -1440,3 +1440,4 @@ img { max-width: 100%; display: block; }
   .spa-step { flex: 0 0 auto; width: 100%; max-width: 260px; }
   .spa-icon-line { display: none; }
 }
+.lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
