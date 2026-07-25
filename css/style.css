@@ -656,7 +656,7 @@ img { max-width: 100%; display: block; }
   color: var(--ink-soft);
   text-align: center;
   font-family: var(--font-display);
-  font-size: 64px;
+  font-size: clamp(28px, 7vw, 64px);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -666,7 +666,7 @@ img { max-width: 100%; display: block; }
 }
 
 .spa-services .eyebrow.center {
-  font-size: 64px;
+  font-size: clamp(28px, 7vw, 64px);
   margin: 0 0 40px;
 }
 
