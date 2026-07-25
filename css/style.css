@@ -302,14 +302,7 @@ img { max-width: 100%; display: block; }
   background: rgba(240, 231, 224, 0.44);
 }
 
-.services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 48px;
-  max-width: var(--container);
-  margin: 0 auto;
-}
+
 
 .service-card {
   display: flex;
