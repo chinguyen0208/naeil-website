@@ -846,7 +846,6 @@ img { max-width: 100%; display: block; }
   max-width: var(--container);
   margin: 0 auto;
 }
-
 .services-grid,
 .product-grid {
   display: flex;
@@ -860,7 +859,7 @@ img { max-width: 100%; display: block; }
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 4px clamp(8px, 2vw, 24px) 16px;
+  padding: 4px 64px 16px;
 }
 .product-grid { gap: 70px; }
 .services-grid::-webkit-scrollbar,
