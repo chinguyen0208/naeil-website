@@ -375,6 +375,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   gap: 50px;
   max-width: 620px;
+  justify-self: center;
   background: rgba(255,255,255,0);
 }
 
