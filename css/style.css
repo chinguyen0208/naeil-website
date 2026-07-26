@@ -966,7 +966,8 @@ img { max-width: 100%; display: block; }
 /* =====================================================
    LASH PAGE
    ===================================================== */
-.lash-hero .hero-media img { object-position: center 30%; }
+..lash-hero .hero-media img { object-position: center 30%; }
+.lash-hero .hero-bottom-row .btn { margin-left: auto; }
 .lash-title {
   color: var(--blue);
   font-family: var(--font-condensed);
