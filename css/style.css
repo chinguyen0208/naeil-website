@@ -1142,16 +1142,18 @@ img { max-width: 100%; display: block; }
 .process-step { flex: 1; min-width: 200px; max-width: 260px; text-align: center; }
 
 .process-img {
-  width: 140px;
-  height: 140px;
+  width: 168px;
+  height: 168px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 24px;
-  padding: 20px;
-  background: var(--tan);
-  border-radius: 12px;
   box-sizing: border-box;
+}
+.process-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .process-num-row { display: flex; align-items: center; margin-bottom: 16px; }
