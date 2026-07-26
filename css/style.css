@@ -967,7 +967,17 @@ img { max-width: 100%; display: block; }
    LASH PAGE
    ===================================================== */
 ..lash-hero .hero-media img { object-position: center 30%; }
+
 .lash-hero .hero-bottom-row .btn { margin-left: auto; }
+
+
+@media (max-width: 720px) {
+  .lash-title { text-align: left; white-space: normal; }
+  .lash-sub { text-align: left; }
+  .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
+  .lash-hero .hero-bottom-row .btn { margin-left: 0; }
+}
+
 .lash-title {
   color: var(--blue);
   font-family: var(--font-condensed);
