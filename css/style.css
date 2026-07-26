@@ -448,7 +448,6 @@ img { max-width: 100%; display: block; }
   max-width: var(--container);
   margin: 0 auto;
   padding: clamp(48px, 7vw, 72px) clamp(24px, 6vw, 80px);
-  border-bottom: 1px solid rgba(0,0,0,0.18);
   box-sizing: border-box;
 }
 
@@ -548,6 +547,7 @@ img { max-width: 100%; display: block; }
   font-size: 15px;
   font-weight: 500;
   line-height: 150%;
+  border-top: 1px solid rgba(0,0,0,0.18);
 }
 
 /* =====================================================
