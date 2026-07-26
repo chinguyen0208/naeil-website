@@ -451,7 +451,6 @@ img { max-width: 100%; display: block; }
   max-width: var(--container);
   margin: 0 auto;
   padding: clamp(48px, 7vw, 72px) clamp(24px, 6vw, 80px);
-  border-bottom: 1px solid rgba(0,0,0,0.18);
   box-sizing: border-box;
 }
 
@@ -473,6 +472,7 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   letter-spacing: clamp(2px, 0.5vw, 5px);
   margin: 0;
+  margin-right: calc(clamp(2px, 0.5vw, 5px) * -1);
 }
 
 .social-icons {
@@ -550,6 +550,7 @@ img { max-width: 100%; display: block; }
   font-size: 15px;
   font-weight: 500;
   line-height: 150%;
+  border-top: 1px solid rgba(0,0,0,0.18);
 }
 
 /* =====================================================
@@ -1357,6 +1358,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: .02em;
 }
 .spa-btn:hover { background: var(--blue); color: #FFF; }
+
+@media (max-width: 720px) {
+  .spa-hero-content { align-items: flex-start; text-align: left; }
+  .spa-title, .spa-sub, .spa-hero-desc { text-align: left; }
+}
 
 /* ---- Our Headspa Services ---- */
 .spa-services {
