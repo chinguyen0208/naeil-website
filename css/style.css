@@ -297,7 +297,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   align-self: stretch;
   gap: 40px;
-  padding: 60px 80px 70px;
+  padding: 60px clamp(24px, 6vw, 80px) 70px;
   background: rgba(240, 231, 224, 0.44);
 }
 
@@ -656,7 +656,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 80px;
+  padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 80px);
   background: rgba(240, 231, 224, 0.44);
 }
 
@@ -756,7 +756,7 @@ img { max-width: 100%; display: block; }
   align-items: flex-start;
   justify-content: center;
   gap: 50px;
-  padding: 80px;
+  padding: clamp(40px, 6vw, 80px);
   box-sizing: border-box;
 }
 
@@ -844,7 +844,7 @@ img { max-width: 100%; display: block; }
   flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
-  gap: 70px;
+  gap: clamp(24px, 5vw, 70px);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -1366,7 +1366,7 @@ img { max-width: 100%; display: block; }
   gap: 40px;
   min-height: 809px;
   justify-content: center;
-  padding: 60px 80px 50px;
+  padding: 60px clamp(24px, 6vw, 80px) 50px;
   background: rgba(240, 231, 224, 0.44);
 }
 
@@ -1387,8 +1387,8 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 56px;
-  padding: 80px;
+  gap: clamp(28px, 5vw, 56px);
+  padding: clamp(40px, 6vw, 80px);
   background: #E5DDD8;
 }
 .spa-expect-content {
