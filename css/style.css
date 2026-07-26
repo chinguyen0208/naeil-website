@@ -1437,7 +1437,7 @@ img { max-width: 100%; display: block; }
   text-align: center;
   box-sizing: border-box;
 }
-.spa-step-icon-row { display: flex; align-items: center; width: 100%; }
+.spa-step-icon-row { display: flex; align-items: center; justify-content: center; width: 100%; }
 .spa-icon-line { flex: 0 0 52px; width: 52px; height: 1px; background: rgba(0,0,0,0.3); }
 .spa-icon-line.is-hidden { background: transparent; }
 .spa-icon-circle {
