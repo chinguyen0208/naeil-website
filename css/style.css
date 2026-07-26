@@ -1158,7 +1158,12 @@ img { max-width: 100%; display: block; }
 .ba-slider.is-dragging { box-shadow: 0 30px 76px rgba(0,0,0,0.2); }
 
 .lash-process {
-  padding: 100px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 56px);
+  padding: clamp(40px, 6vw, 80px);
   background: var(--cream);
   text-align: center;
 }
@@ -1482,7 +1487,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 1100px) {
-  .spa-expect { flex-direction: column; }
+  .spa-expect, .lash-process { flex-direction: column; }
 }
 @media (max-width: 720px) {
   .spa-services, .spa-expect { padding: 60px 32px; }
