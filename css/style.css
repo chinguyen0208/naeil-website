@@ -374,8 +374,8 @@ img { max-width: 100%; display: block; }
   align-items: flex-start;
   justify-content: center;
   gap: 50px;
-  max-width: 620px;
-  justify-self: center;
+  align-self: stretch;
+  justify-self: stretch;
   background: rgba(255,255,255,0);
 }
 
@@ -392,6 +392,7 @@ img { max-width: 100%; display: block; }
 }
 
 .philosophy-title {
+  align-self: stretch;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 47px;
@@ -400,6 +401,7 @@ img { max-width: 100%; display: block; }
   color: #414141;
   margin: 0;
 }
+
 .philosophy-title .consious {
   font-family: 'Crimson Text', serif;
   font-style: italic;
