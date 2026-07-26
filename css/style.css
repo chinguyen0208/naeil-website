@@ -973,6 +973,8 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   font-size: clamp(32px, 4vw, 55px);
   letter-spacing: 5.5px;
+  white-space: normal;
+  text-align: right;
 }
 
 .lash-sub {
