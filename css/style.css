@@ -1,9 +1,9 @@
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Tokens
    ===================================================== */
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Fonts
    ===================================================== */
 @font-face {
@@ -112,7 +112,7 @@ img { max-width: 100%; display: block; }
 .eyebrow.center {
   text-align: center;
   font-family: var(--font-display);
-  font-size: clamp(28px, 7vw, 54px);
+  font-size: clamp(28px, 7vw, 64px);
   font-weight: 400;
   letter-spacing: 8px;
   color: var(--ink-soft);
@@ -296,9 +296,13 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  gap: 50px;
-  padding: 80px;
+  gap: 40px;
+  padding: 60px 80px 70px;
   background: rgba(240, 231, 224, 0.44);
+}
+
+.services .services-grid {
+  gap: 60px;
 }
 
 .service-card {
@@ -401,7 +405,6 @@ img { max-width: 100%; display: block; }
   color: #414141;
   margin: 0;
 }
-
 .philosophy-title .consious {
   font-family: 'Crimson Text', serif;
   font-style: italic;
@@ -448,6 +451,7 @@ img { max-width: 100%; display: block; }
   max-width: var(--container);
   margin: 0 auto;
   padding: clamp(48px, 7vw, 72px) clamp(24px, 6vw, 80px);
+  border-bottom: 1px solid rgba(0,0,0,0.18);
   box-sizing: border-box;
 }
 
@@ -469,7 +473,6 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   letter-spacing: clamp(2px, 0.5vw, 5px);
   margin: 0;
-  margin-right: calc(clamp(2px, 0.5vw, 5px) * -1);
 }
 
 .social-icons {
@@ -533,10 +536,24 @@ img { max-width: 100%; display: block; }
 .footer-col ul li a:hover { color: var(--ink); }
 .visit-list li { line-height: 150%; }
 
-
+.footer-bottom {
+  max-width: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 26px clamp(24px, 6vw, 80px);
+  box-sizing: border-box;
+  text-align: center;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 150%;
+}
 
 /* =====================================================
-   RESPONSIVE â€” Tablet
+   RESPONSIVE — Tablet
    ===================================================== */
 @media (max-width: 1024px) {
   .philosophy { grid-template-columns: 1fr; }
@@ -546,7 +563,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE â€” Mobile (nav collapse)
+   RESPONSIVE — Mobile (nav collapse)
    ===================================================== */
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
@@ -580,10 +597,12 @@ img { max-width: 100%; display: block; }
   .hero-title, .hero-sub { text-align: left; white-space: normal; }
   .hero-bottom-row { justify-content: flex-start; }
   .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
+  .spa-hero-content { align-items: flex-start; text-align: left; }
+  .spa-title, .spa-sub, .spa-hero-desc { text-align: left; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” Hero
+   NAIL PAGE — Hero
    ===================================================== */
 .nail-hero .hero-media img { object-position: center 40%; }
 
@@ -629,7 +648,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” What Goes On Your Nail (services)
+   NAIL PAGE — What Goes On Your Nail (services)
    ===================================================== */
 .nail-services {
   display: flex;
@@ -723,7 +742,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” The Naeil Standard
+   NAIL PAGE — The Naeil Standard
    ===================================================== */
 .standard-section {
   display: grid;
@@ -803,11 +822,13 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 720px) {
   .nail-hero-content { align-items: flex-start; }
-  .nail-hero-title { font-size: clamp(32px, 10vw, 56px); letter-spacing: 4px; }
+  .nail-hero-title { font-size: clamp(32px, 10vw, 56px); letter-spacing: 4px; text-align: left; }
+  .nail-hero-sub { text-align: left; }
+  .nail-hero-bottom-row { justify-content: flex-start; }
 }
 
 /* =====================================================
-   SERVICE / PRODUCT GRIDS â€” shared wrapping layout
+   SERVICE / PRODUCT GRIDS — shared wrapping layout
    (used by homepage "Our Services", nail "What Goes On
    Your Nail", and head spa "Our Headspa Services")
    ===================================================== */
@@ -886,7 +907,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ANIMATIONS â€” scroll reveal, hover motion, hero intro
+   ANIMATIONS — scroll reveal, hover motion, hero intro
    ===================================================== */
 .reveal {
   opacity: 0;
@@ -966,17 +987,9 @@ img { max-width: 100%; display: block; }
 /* =====================================================
    LASH PAGE
    ===================================================== */
-..lash-hero .hero-media img { object-position: center 30%; }
+.lash-hero .hero-media img { object-position: center 30%; }
 
 .lash-hero .hero-bottom-row .btn { margin-left: auto; }
-
-
-@media (max-width: 720px) {
-  .lash-title { text-align: left; white-space: normal; }
-  .lash-sub { text-align: left; }
-  .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
-  .lash-hero .hero-bottom-row .btn { margin-left: 0; }
-}
 
 .lash-title {
   color: var(--blue);
@@ -1010,6 +1023,13 @@ img { max-width: 100%; display: block; }
   line-height: normal;
   letter-spacing: -0.48px;
   margin: 0;
+}
+
+@media (max-width: 720px) {
+  .lash-title { text-align: left; white-space: normal; }
+  .lash-sub { text-align: left; }
+  .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
+  .lash-hero .hero-bottom-row .btn { margin-left: 0; }
 }
 
 .lash-eyebrow {
