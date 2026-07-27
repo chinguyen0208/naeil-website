@@ -1492,8 +1492,8 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
 }
 .lash-timeline .spa-step {
-  width: 220px;
-  flex: 0 0 220px;
+  width: 300px;
+  flex: 0 0 300px;
 }
 .spa-step-num {
   font-family: var(--font-display);
