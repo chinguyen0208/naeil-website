@@ -1167,19 +1167,6 @@ img { max-width: 100%; display: block; }
   background: var(--cream);
   text-align: center;
 }
-.lash-timeline .spa-icon-circle {
-  border: none;
-  background: transparent;
-  overflow: visible;
-  width: 90px;
-  height: 90px;
-  flex: 0 0 90px;
-}
-.lash-timeline .spa-icon-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
 .process-grid {
   display: flex;
   justify-content: center;
@@ -1308,11 +1295,6 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 900px) {
   .lash-intro, .lash-process { padding: 70px 32px; }
-  
-  @media (max-width: 900px) {
-  .lash-intro, .lash-process { padding: 70px 32px; }
-
-
   .process-grid { gap: 40px; }
   .process-step h4, .process-step p { text-align: center; }
   .ba-handle-grip { width: 38px; height: 38px; }
@@ -1483,7 +1465,19 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 .spa-icon-circle img { width: 82%; height: 82%; object-fit: contain; display: block; }
-
+.lash-timeline .spa-icon-circle {
+  border: none;
+  background: transparent;
+  overflow: visible;
+  width: 90px;
+  height: 90px;
+  flex: 0 0 90px;
+}
+.lash-timeline .spa-icon-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .spa-step-num {
   font-family: var(--font-display);
   font-size: 14px;
