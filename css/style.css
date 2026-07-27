@@ -1356,13 +1356,14 @@ img { max-width: 100%; display: block; }
   height: 40px;
   padding: 0 28px;
   border-radius: 30px;
-  background: #FFF;
-  color: var(--blue);
+  background: transparent;
+  border: 1px solid #FFF;
+  color: #FFF;
   font-family: var(--font-display);
   font-size: 14px;
   letter-spacing: .02em;
 }
-.spa-btn:hover { background: var(--blue); color: #FFF; }
+.spa-btn:hover { background: #FFF; color: var(--blue); }
 
 @media (max-width: 720px) {
   .spa-hero-content { align-items: flex-start; text-align: left; }
