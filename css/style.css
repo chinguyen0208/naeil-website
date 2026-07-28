@@ -2055,6 +2055,7 @@ img { max-width: 100%; display: block; }
   }
   .ritual-block-split .ritual-media { order: 1; }
   .ritual-block-split .ritual-text { order: 2; }
+  .ritual-block-split .ritual-line { margin-left: auto; margin-right: auto; }
 }
 
 @media (max-width: 900px) {
@@ -2077,4 +2078,3 @@ img { max-width: 100%; display: block; }
 
 @media (prefers-reduced-motion: reduce) {
   .ritual-media, .ritual-text { opacity: 1 !important; transform: none !important; transition: none !important; }
-}
