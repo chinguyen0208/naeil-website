@@ -1170,8 +1170,8 @@ img { max-width: 100%; display: block; }
 .lash-process .spa-expect-content {
   align-items: flex-start;
   text-align: left;
-  width: auto;
-  max-width: 340px;
+  width: clamp(220px, 22vw, 340px);
+  max-width: 100%;
   padding: 0;
 }
 
@@ -1482,9 +1482,9 @@ img { max-width: 100%; display: block; }
   border: none;
   background: transparent;
   overflow: visible;
-  width: 180px;
-  height: 180px;
-  flex: 0 0 180px;
+  width: clamp(120px, 12vw, 180px);
+  height: clamp(120px, 12vw, 180px);
+  flex: 0 0 auto;
 }
 .lash-timeline .spa-icon-circle img {
   width: 100%;
@@ -1492,12 +1492,12 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
 }
 .lash-timeline .spa-step {
-  width: 300px;
-  flex: 0 0 300px;
+  width: clamp(200px, 20vw, 300px);
+  flex: 0 0 clamp(200px, 20vw, 300px);
 }
 .lash-timeline .spa-icon-line {
-  flex: 0 0 60px;
-  width: 60px;
+  flex: 1 1 auto;
+  width: auto;
 }
 .lash-timeline .spa-step-desc {
   max-width: 190px;
