@@ -1159,13 +1159,14 @@ img { max-width: 100%; display: block; }
 
 .lash-process {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  align-content: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: clamp(32px, 5vw, 64px);
+  gap: clamp(48px, 8vw, 100px);
   max-width: var(--container);
   margin: 0 auto;
-  padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
+  padding: 0 clamp(24px, 6vw, 80px) 30px;
   background: var(--cream);
 }
 .lash-process-heading {
@@ -1173,9 +1174,10 @@ img { max-width: 100%; display: block; }
   width: clamp(220px, 26vw, 346px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-start;
   gap: 20px;
+  padding-top: 70px;
 }
 .lash-process-label {
   align-self: stretch;
