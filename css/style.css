@@ -1,9 +1,9 @@
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Tokens
    ===================================================== */
 /* =====================================================
-   NAEIL â€” Homepage
+   NAEIL — Homepage
    Fonts
    ===================================================== */
 @font-face {
@@ -554,7 +554,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE â€” Tablet
+   RESPONSIVE — Tablet
    ===================================================== */
 @media (max-width: 1024px) {
   .philosophy { grid-template-columns: 1fr; }
@@ -564,7 +564,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   RESPONSIVE â€” Mobile (nav collapse)
+   RESPONSIVE — Mobile (nav collapse)
    ===================================================== */
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
@@ -603,7 +603,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” Hero
+   NAIL PAGE — Hero
    ===================================================== */
 .nail-hero .hero-media img { object-position: center 40%; }
 
@@ -649,7 +649,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” What Goes On Your Nail (services)
+   NAIL PAGE — What Goes On Your Nail (services)
    ===================================================== */
 .nail-services {
   display: flex;
@@ -743,7 +743,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   NAIL PAGE â€” The Naeil Standard
+   NAIL PAGE — The Naeil Standard
    ===================================================== */
 .standard-section {
   display: grid;
@@ -829,7 +829,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   SERVICE / PRODUCT GRIDS â€” shared wrapping layout
+   SERVICE / PRODUCT GRIDS — shared wrapping layout
    (used by homepage "Our Services", nail "What Goes On
    Your Nail", and head spa "Our Headspa Services")
    ===================================================== */
@@ -908,7 +908,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ANIMATIONS â€” scroll reveal, hover motion, hero intro
+   ANIMATIONS — scroll reveal, hover motion, hero intro
    ===================================================== */
 .reveal {
   opacity: 0;
@@ -1157,7 +1157,7 @@ img { max-width: 100%; display: block; }
 .ba-slider.is-dragging .ba-handle-grip { transform: scale(1.14); }
 .ba-slider.is-dragging { box-shadow: 0 30px 76px rgba(0,0,0,0.2); }
 
-/* ---- The Process â€” feature tabs ---- */
+/* ---- The Process — feature tabs ---- */
 .lash-process {
   display: flex;
   flex-direction: column;
@@ -1709,7 +1709,7 @@ img { max-width: 100%; display: block; }
   .spa-icon-line { display: none; }
 }
 /* =====================================================
-   ABOUT PAGE â€” new tokens (additive only)
+   ABOUT PAGE — new tokens (additive only)
    ===================================================== */
 :root {
   --baby-blue: #DCEFF2;
@@ -1717,7 +1717,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Hero
+   ABOUT PAGE — Hero
    ===================================================== */
 .about-hero .hero-media img { object-position: center 40%; }
 .about-hero .hero-overlay { background: rgba(0,0,0,0.20); }
@@ -1725,15 +1725,17 @@ img { max-width: 100%; display: block; }
 .about-hero-content {
   align-items: flex-start;
   text-align: left;
+  padding-top: clamp(80px, 14vw, 200px);
 }
 
 .about-eyebrow-sm {
-  font-family: var(--font-condensed);
-  font-size: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 26px);
   font-weight: 400;
-  letter-spacing: 3px;
+  line-height: 1;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: #FFF;
   opacity: 0;
   transform: translateY(24px);
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
@@ -1743,9 +1745,9 @@ img { max-width: 100%; display: block; }
 .about-hero-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 6.5vw, 88px);
-  line-height: 1.08;
-  letter-spacing: 1px;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: 0.9375;
+  letter-spacing: 4.8px;
   color: #FFF;
   margin: 0;
   text-align: left;
@@ -1764,18 +1766,18 @@ img { max-width: 100%; display: block; }
   left: 0;
   bottom: -0.12em;
   width: 76%;
-  height: 2px;
-  background: var(--baby-blue);
-  opacity: 0.7;
+  height: 1px;
+  background: var(--white);
+  opacity: 1;
   pointer-events: none;
 }
 
 .about-hero-desc {
-  max-width: 520px;
+  max-width: 605px;
   font-family: var(--font-display);
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(16px, 1.8vw, 20px);
   line-height: 1.6;
-  letter-spacing: -0.2px;
+  letter-spacing: 2px;
   color: #FFF;
   margin: 0;
   opacity: 0;
@@ -1789,7 +1791,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Brand Philosophy
+   ABOUT PAGE — Brand Philosophy
    ===================================================== */
 .about-philosophy {
   background: var(--cream);
@@ -1864,7 +1866,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Our Values
+   ABOUT PAGE — Our Values
    ===================================================== */
 .about-values {
   position: relative;
@@ -1935,7 +1937,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Our Ritual (editorial scroll experience)
+   ABOUT PAGE — Our Ritual (editorial scroll experience)
    ===================================================== */
 .about-ritual {
   background: var(--white);
@@ -2014,7 +2016,7 @@ img { max-width: 100%; display: block; }
 }
 .ritual-text.in-view { opacity: 1; transform: translateY(0); }
 
-/* ---- Steps 01 / 03 / 05 â€” large feature photography, centered text below ---- */
+/* ---- Steps 01 / 03 / 05 — large feature photography, centered text below ---- */
 .ritual-block-feature {
   max-width: 1600px;
   padding: 0 clamp(16px, 3vw, 40px);
@@ -2031,7 +2033,7 @@ img { max-width: 100%; display: block; }
 
 .ritual-block-cinematic .ritual-media { height: auto; aspect-ratio: 16 / 9; }
 
-/* ---- Steps 02 / 04 â€” asymmetrical split layout ---- */
+/* ---- Steps 02 / 04 — asymmetrical split layout ---- */
 .ritual-block-split {
   display: flex;
   align-items: center;
@@ -2046,7 +2048,7 @@ img { max-width: 100%; display: block; }
 }
 .ritual-block-split .ritual-text { flex: 1 1 40%; }
 
-/* When the photo sits on the left, keep the copy flush to the left (Step 04 â€” Restore) */
+/* When the photo sits on the left, keep the copy flush to the left (Step 04 — Restore) */
 .ritual-block-split .ritual-media:first-child + .ritual-text {
   text-align: left;
 }
@@ -2056,7 +2058,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* Below 1024px, stack the split blocks and always show the photo first
-   (order only â€” no changes to sizing, spacing, or typography). */
+   (order only — no changes to sizing, spacing, or typography). */
 @media (max-width: 1024px) {
   .ritual-block-split {
     flex-direction: column;
