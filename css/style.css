@@ -1241,6 +1241,7 @@ img { max-width: 100%; display: block; }
   color: #454545;
   text-align: center;
   font-family: var(--font-display);
+  font-weight: 400;
   font-size: clamp(20px, 2.4vw, 30px);
   line-height: 1;
   letter-spacing: 3px;
