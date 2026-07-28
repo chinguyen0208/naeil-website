@@ -105,10 +105,29 @@
    </div>
   </div>
   </div>
-  <button class="lash-process-arrow" aria-label="Scroll to see more" type="button" onclick="document.getElementById('lashProcessScroll').scrollBy({left: 320, behavior: 'smooth'})">
+  <button class="lash-process-arrow lash-process-arrow-prev" aria-label="Scroll left" type="button" onclick="document.getElementById('lashProcessScroll').scrollBy({left: -320, behavior: 'smooth'})" style="display:none;">
+    <img src="images/icons/arrow.svg" alt="" style="transform:scaleX(-1);">
+  </button>
+  <button class="lash-process-arrow lash-process-arrow-next" aria-label="Scroll right" type="button" onclick="document.getElementById('lashProcessScroll').scrollBy({left: 320, behavior: 'smooth'})">
     <img src="images/icons/arrow.svg" alt="">
   </button>
 </section>
+<script>
+(function(){
+  var scrollEl = document.getElementById('lashProcessScroll');
+  var prevBtn = document.querySelector('.lash-process-arrow-prev');
+  var nextBtn = document.querySelector('.lash-process-arrow-next');
+  if(!scrollEl || !prevBtn || !nextBtn) return;
+  function updateArrows(){
+    var maxScroll = scrollEl.scrollWidth - scrollEl.clientWidth;
+    prevBtn.style.display = scrollEl.scrollLeft > 4 ? 'flex' : 'none';
+    nextBtn.style.display = scrollEl.scrollLeft < maxScroll - 4 ? 'flex' : 'none';
+  }
+  scrollEl.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+})();
+</script>
 
 <!-- ============ WHY WE LOVE IT ============ -->
 <section class="lash-why">
