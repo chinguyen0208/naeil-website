@@ -69,60 +69,73 @@
 
 <!-- ============ THE LASH LIFT PROCESS ============ -->
 <section class="lash-process">
-  <div class="lash-process-nav reveal">
-    <div class="lash-process-heading">
-      <span class="lash-process-label">THE PROCESS</span>
-      <h2 class="lash-process-title">From natural lashes to lasting lift.</h2>
+  <div class="lash-process-row">
+    <div class="lash-process-nav reveal">
+      <div class="lash-process-heading">
+        <span class="lash-process-label">THE PROCESS</span>
+        <h2 class="lash-process-title">From natural lashes to lasting lift.</h2>
+        <p class="lash-process-intro">A gentle, four-step ritual designed to lift, define and care for your lashes — from the inside out.</p>
+      </div>
+
+      <ul class="lash-process-steps" role="tablist">
+        <li class="lash-process-step is-active" data-step="0" role="tab" tabindex="0" aria-selected="true">
+          <span class="lash-process-step-num">01</span>
+          <span class="lash-process-step-name">Cleanse</span>
+          <span class="lash-process-step-icon">&rarr;</span>
+        </li>
+        <li class="lash-process-step" data-step="1" role="tab" tabindex="0" aria-selected="false">
+          <span class="lash-process-step-num">02</span>
+          <span class="lash-process-step-name">Lift</span>
+          <span class="lash-process-step-icon">+</span>
+        </li>
+        <li class="lash-process-step" data-step="2" role="tab" tabindex="0" aria-selected="false">
+          <span class="lash-process-step-num">03</span>
+          <span class="lash-process-step-name">Set</span>
+          <span class="lash-process-step-icon">+</span>
+        </li>
+        <li class="lash-process-step" data-step="3" role="tab" tabindex="0" aria-selected="false">
+          <span class="lash-process-step-num">04</span>
+          <span class="lash-process-step-name">Nourish</span>
+          <span class="lash-process-step-icon">+</span>
+        </li>
+      </ul>
+
+      <div class="lash-process-progress">
+        <span class="lash-process-progress-label">01</span>
+        <div class="lash-process-progress-track">
+          <div class="lash-process-progress-fill" id="lashProcessFill"></div>
+        </div>
+        <span class="lash-process-progress-label">04</span>
+      </div>
     </div>
 
-    <ul class="lash-process-steps" role="tablist">
-      <li class="lash-process-step is-active" data-step="0" role="tab" tabindex="0" aria-selected="true">
-        <span class="lash-process-step-num">01</span>
-        <span class="lash-process-step-name">Cleanse</span>
-        <span class="lash-process-step-arrow">&rarr;</span>
-      </li>
-      <li class="lash-process-step" data-step="1" role="tab" tabindex="0" aria-selected="false">
-        <span class="lash-process-step-num">02</span>
-        <span class="lash-process-step-name">Lift</span>
-        <span class="lash-process-step-arrow">&rarr;</span>
-      </li>
-      <li class="lash-process-step" data-step="2" role="tab" tabindex="0" aria-selected="false">
-        <span class="lash-process-step-num">03</span>
-        <span class="lash-process-step-name">Set</span>
-        <span class="lash-process-step-arrow">&rarr;</span>
-      </li>
-      <li class="lash-process-step" data-step="3" role="tab" tabindex="0" aria-selected="false">
-        <span class="lash-process-step-num">04</span>
-        <span class="lash-process-step-name">Nourish</span>
-        <span class="lash-process-step-arrow">&rarr;</span>
-      </li>
-    </ul>
-
-    <div class="lash-process-progress">
-      <span class="lash-process-progress-label">01</span>
-      <div class="lash-process-progress-track">
-        <div class="lash-process-progress-fill" id="lashProcessFill"></div>
+    <div class="lash-process-panel reveal" id="lashProcessPanel">
+      <div class="lash-process-panel-inner">
+        <div class="lash-process-panel-text">
+          <span class="lash-process-panel-num">01</span>
+          <h3 class="lash-process-panel-title">Cleanse</h3>
+          <div class="lash-process-panel-divider"></div>
+          <p class="lash-process-panel-desc">Purify and prepare lashes by removing oils and impurities for optimal results and better product absorption.</p>
+        </div>
+        <div class="lash-process-panel-img">
+          <img src="images/lash-page/cleanse.png" alt="Cleanse products">
+        </div>
       </div>
-      <span class="lash-process-progress-label">04</span>
     </div>
   </div>
 
-  <div class="lash-process-panel reveal">
-    <div class="lash-process-panel-inner" id="lashProcessPanel">
-      <span class="lash-process-panel-num">01</span>
-      <h3 class="lash-process-panel-title">Cleanse</h3>
-      <div class="lash-process-panel-divider"></div>
-      <p class="lash-process-panel-desc">Purify and prepare lashes for optimal results.</p>
-      <div class="lash-process-panel-img">
-        <img src="images/lash-page/cleanse.png" alt="Cleanse products">
-      </div>
+  <div class="lash-process-hint">
+    <span>Swipe to explore each step</span>
+    <div class="lash-process-hint-arrows">
+      <button class="lash-process-hint-arrow prev" id="lashProcessPrev" aria-label="Previous step" type="button">&larr;</button>
+      <button class="lash-process-hint-arrow next" id="lashProcessNext" aria-label="Next step" type="button">&rarr;</button>
     </div>
   </div>
 </section>
 <script>
 (function () {
   var steps = [
-    { num: '01', title: 'Cleanse', desc: 'Purify and prepare lashes for optimal results.', img: 'images/lash-page/cleanse.png', alt: 'Cleanse products' },
+    { num: '01', title: 'Cleanse', desc: 'Purify and prepare lashes by removing oils and impurities for optimal results and better product absorption.', img: 'images/lash-page/cleanse.png', alt: 'Cleanse products' },
     { num: '02', title: 'Lift', desc: 'Gently reshape each lash into a soft, lasting curl.', img: 'images/lash-page/lift.png', alt: 'Lift products' },
     { num: '03', title: 'Set', desc: 'Restore balance and lock in the lift with care.', img: 'images/lash-page/set.png', alt: 'Set products' },
     { num: '04', title: 'Nourish', desc: 'Strengthen and deeply nourish for healthier-looking lashes.', img: 'images/lash-page/nourish.png', alt: 'Nourish products' }
@@ -133,7 +146,10 @@
 
   var stepEls = section.querySelectorAll('.lash-process-step');
   var panel = document.getElementById('lashProcessPanel');
+  var panelInner = panel.querySelector('.lash-process-panel-inner');
   var fill = document.getElementById('lashProcessFill');
+  var prevBtn = document.getElementById('lashProcessPrev');
+  var nextBtn = document.getElementById('lashProcessNext');
   var current = 0;
   var animating = false;
 
@@ -142,32 +158,35 @@
       var active = i === index;
       el.classList.toggle('is-active', active);
       el.setAttribute('aria-selected', active ? 'true' : 'false');
+      el.querySelector('.lash-process-step-icon').textContent = active ? '→' : '+';
     });
     fill.style.width = ((index + 1) / steps.length * 100) + '%';
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === steps.length - 1;
   }
 
   function goTo(index) {
-    if (animating || index === current) return;
+    if (animating || index === current || index < 0 || index > steps.length - 1) return;
     animating = true;
     setActive(index);
 
-    panel.classList.add('is-leaving');
+    panelInner.classList.add('is-leaving');
 
     setTimeout(function () {
       var s = steps[index];
-      panel.querySelector('.lash-process-panel-num').textContent = s.num;
-      panel.querySelector('.lash-process-panel-title').textContent = s.title;
-      panel.querySelector('.lash-process-panel-desc').textContent = s.desc;
-      var img = panel.querySelector('.lash-process-panel-img img');
+      panelInner.querySelector('.lash-process-panel-num').textContent = s.num;
+      panelInner.querySelector('.lash-process-panel-title').textContent = s.title;
+      panelInner.querySelector('.lash-process-panel-desc').textContent = s.desc;
+      var img = panelInner.querySelector('.lash-process-panel-img img');
       img.src = s.img;
       img.alt = s.alt;
 
-      panel.classList.remove('is-leaving');
-      panel.classList.add('is-entering');
+      panelInner.classList.remove('is-leaving');
+      panelInner.classList.add('is-entering');
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          panel.classList.remove('is-entering');
+          panelInner.classList.remove('is-entering');
           animating = false;
         });
       });
@@ -182,6 +201,23 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); }
     });
   });
+
+  prevBtn.addEventListener('click', function () { goTo(current - 1); });
+  nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+  var touchStartX = null;
+  panel.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  panel.addEventListener('touchend', function (e) {
+    if (touchStartX === null) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+    touchStartX = null;
+  }, { passive: true });
 
   setActive(0);
 })();
