@@ -1754,6 +1754,11 @@ img { max-width: 100%; display: block; }
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
   animation-delay: .2s;
 }
+.about-hero-line {
+  display: inline-block;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 6px;
+}
 
 .about-hero-desc {
   max-width: 520px;
