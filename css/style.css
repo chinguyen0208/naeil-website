@@ -1160,20 +1160,28 @@ img { max-width: 100%; display: block; }
 /* ---- The Process — feature tabs ---- */
 .lash-process {
   display: flex;
-  align-items: flex-start;
-  gap: clamp(48px, 6vw, 110px);
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(40px, 5vw, 56px);
   max-width: var(--container);
   margin: 0 auto;
   padding: clamp(80px, 10vw, 130px) clamp(24px, 6vw, 80px);
   background: var(--cream);
 }
 
+.lash-process-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(40px, 5vw, 64px);
+  width: 100%;
+}
+
 .lash-process-nav {
   flex: 0 0 auto;
-  width: clamp(240px, 28vw, 380px);
+  width: clamp(240px, 26vw, 340px);
   display: flex;
   flex-direction: column;
-  gap: clamp(40px, 5vw, 56px);
+  gap: clamp(32px, 4vw, 44px);
 }
 
 .lash-process-heading {
@@ -1200,6 +1208,15 @@ img { max-width: 100%; display: block; }
   letter-spacing: 3px;
   margin: 0;
 }
+.lash-process-intro {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: var(--ink-soft);
+  max-width: 320px;
+  margin: 0;
+}
 
 .lash-process-steps {
   list-style: none;
@@ -1214,17 +1231,15 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 22px 18px;
+  padding: 20px 16px;
   border-bottom: 1px solid rgba(0,0,0,0.12);
-  border-radius: 3px;
   cursor: pointer;
-  transition: background-color .3s ease, padding-left .3s ease, border-color .3s ease;
+  transition: background-color .3s ease, padding-left .3s ease;
 }
-.lash-process-step:hover { background: rgba(0,0,0,0.03); }
+.lash-process-step:hover:not(.is-active) { background: rgba(0,0,0,0.03); }
 .lash-process-step.is-active {
   background: var(--tan);
-  border: 1px solid rgba(0,0,0,0.08);
-  padding-left: 22px;
+  padding-left: 20px;
 }
 .lash-process-step-num {
   flex: 0 0 auto;
@@ -1244,22 +1259,19 @@ img { max-width: 100%; display: block; }
   color: var(--ink-soft);
   transition: color .3s ease;
 }
-.lash-process-step-arrow {
+.lash-process-step-icon {
   flex: 0 0 auto;
+  width: 20px;
+  text-align: center;
   font-family: var(--font-display);
   font-size: 16px;
-  color: var(--ink-mid);
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity .3s ease, transform .3s ease;
+  font-weight: 400;
+  color: var(--icon-gray);
+  transition: color .3s ease;
 }
 .lash-process-step.is-active .lash-process-step-num,
-.lash-process-step.is-active .lash-process-step-name { color: var(--ink-mid); }
-.lash-process-step.is-active .lash-process-step-arrow,
-.lash-process-step:hover .lash-process-step-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
+.lash-process-step.is-active .lash-process-step-name,
+.lash-process-step.is-active .lash-process-step-icon { color: var(--ink-mid); }
 
 .lash-process-progress {
   display: flex;
@@ -1290,15 +1302,17 @@ img { max-width: 100%; display: block; }
 .lash-process-panel {
   flex: 1 1 auto;
   min-width: 0;
-  display: flex;
-  align-items: center;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #FBF8F5;
+  overflow: hidden;
 }
 .lash-process-panel-inner {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 26px;
-  max-width: 560px;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(36px, 5vw, 64px);
   opacity: 1;
   transform: translateY(0);
   transition: opacity .4s ease-in-out, transform .4s ease-in-out;
@@ -1306,6 +1320,15 @@ img { max-width: 100%; display: block; }
 .lash-process-panel-inner.is-leaving { opacity: 0; transform: translateY(-14px); }
 .lash-process-panel-inner.is-entering { opacity: 0; transform: translateY(18px); }
 
+.lash-process-panel-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 340px;
+}
 .lash-process-panel-num {
   font-family: var(--font-display);
   font-size: 14px;
@@ -1331,40 +1354,73 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
   letter-spacing: 0.4px;
   color: var(--ink-soft);
-  max-width: 420px;
   margin: 0;
 }
 .lash-process-panel-img {
-  width: 100%;
-  max-width: 420px;
+  flex: 0 0 auto;
+  width: clamp(200px, 28vw, 320px);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
 }
 .lash-process-panel-img img {
-  width: 78%;
-  height: 78%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
+.lash-process-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.lash-process-hint span {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+.lash-process-hint-arrows {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.lash-process-hint-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink-mid);
+  padding: 4px 6px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.lash-process-hint-arrow:hover:not(:disabled) { transform: translateX(3px); }
+.lash-process-hint-arrow.prev:hover:not(:disabled) { transform: translateX(-3px); }
+.lash-process-hint-arrow:disabled { opacity: .3; cursor: default; }
+
 @media (max-width: 1280px) {
-  .lash-process { gap: clamp(36px, 5vw, 70px); }
+  .lash-process-row { gap: clamp(32px, 4vw, 56px); }
 }
 
 @media (max-width: 1024px) {
-  .lash-process { flex-direction: column; gap: 48px; }
+  .lash-process-row { flex-direction: column; gap: 40px; }
   .lash-process-nav { width: 100%; }
   .lash-process-panel { width: 100%; }
-  .lash-process-panel-inner { max-width: none; }
-  .lash-process-panel-img { max-width: 360px; margin: 0 auto; }
-  .lash-process-panel-desc { max-width: none; }
+  .lash-process-panel-inner { flex-direction: column; align-items: flex-start; }
+  .lash-process-panel-text { max-width: none; }
+  .lash-process-panel-img { width: 100%; max-width: 280px; align-self: center; }
 }
 
 @media (max-width: 720px) {
-  .lash-process-step { padding: 18px 12px; }
-  .lash-process-panel-img { max-width: 260px; }
+  .lash-process-step { padding: 16px 12px; }
+  .lash-process-panel-inner { padding: 32px 24px; }
 }
 
 .lash-why {
