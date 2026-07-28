@@ -1755,9 +1755,19 @@ img { max-width: 100%; display: block; }
   animation-delay: .2s;
 }
 .about-hero-line {
+  position: relative;
   display: inline-block;
-  border-bottom: 2px solid var(--blue);
-  padding-bottom: 6px;
+}
+.about-hero-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.12em;
+  width: 76%;
+  height: 2px;
+  background: var(--baby-blue);
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .about-hero-desc {
@@ -2035,6 +2045,15 @@ img { max-width: 100%; display: block; }
   aspect-ratio: 4 / 5;
 }
 .ritual-block-split .ritual-text { flex: 1 1 40%; }
+
+/* When the photo sits on the left, keep the copy flush to the left (Step 04 — Restore) */
+.ritual-block-split .ritual-media:first-child + .ritual-text {
+  text-align: left;
+}
+.ritual-block-split .ritual-media:first-child + .ritual-text .ritual-line {
+  margin-left: 0;
+  margin-right: auto;
+}
 
 @media (max-width: 900px) {
   .ritual-block-feature .ritual-media { height: auto; aspect-ratio: 4 / 5; }
