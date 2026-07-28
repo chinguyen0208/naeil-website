@@ -2065,6 +2065,7 @@ img { max-width: 100%; display: block; }
   }
   .ritual-block-split .ritual-media,
   .ritual-block-split .ritual-text {
+    flex: none;
     width: 100%;
   }
   .ritual-block-split .ritual-media { order: 1; }
