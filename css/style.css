@@ -1709,7 +1709,7 @@ img { max-width: 100%; display: block; }
   .spa-icon-line { display: none; }
 }
 /* =====================================================
-   ABOUT PAGE â€” new tokens (additive only)
+   ABOUT PAGE — new tokens (additive only)
    ===================================================== */
 :root {
   --baby-blue: #DCEFF2;
@@ -1717,7 +1717,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Hero
+   ABOUT PAGE — Hero
    ===================================================== */
 .about-hero .hero-media img { object-position: center 40%; }
 .about-hero .hero-overlay { background: rgba(0,0,0,0.20); }
@@ -1774,7 +1774,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Brand Philosophy
+   ABOUT PAGE — Brand Philosophy
    ===================================================== */
 .about-philosophy {
   background: var(--cream);
@@ -1849,7 +1849,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Our Values
+   ABOUT PAGE — Our Values
    ===================================================== */
 .about-values {
   position: relative;
@@ -1920,16 +1920,18 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
-   ABOUT PAGE â€” Our Ritual
+   ABOUT PAGE — Our Ritual (editorial scroll experience)
    ===================================================== */
 .about-ritual {
   background: var(--white);
-  padding: clamp(80px, 10vw, 130px) clamp(24px, 6vw, 80px);
+  padding: clamp(80px, 10vw, 130px) 0;
   text-align: center;
+  overflow: hidden;
 }
 .about-ritual-inner {
   max-width: var(--container);
   margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 80px);
 }
 .about-ritual-label {
   display: block;
@@ -1948,44 +1950,105 @@ img { max-width: 100%; display: block; }
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: var(--ink-mid);
-  margin: 0 0 clamp(48px, 6vw, 72px);
-}
-
-.about-ritual-steps {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(16px, 2vw, 22px);
-}
-.about-ritual-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.about-ritual-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-mid);
-}
-.about-ritual-icon svg { width: 100%; height: 100%; }
-.about-ritual-name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--ink-mid);
-}
-.about-ritual-arrow {
-  font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--icon-gray);
-  line-height: 1;
+  margin: 0;
 }
 
 @media (max-width: 720px) {
   .about-ritual-title { font-size: clamp(24px, 6vw, 32px); }
+}
+
+/* ---- shared ritual block behaviour ---- */
+.ritual-block {
+  position: relative;
+  margin: clamp(72px, 10vw, 140px) auto 0;
+}
+.ritual-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  letter-spacing: 1px;
+  color: var(--ink-mid);
+  margin: 0 0 12px;
+}
+.ritual-line {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  color: var(--ink-soft);
+  max-width: 360px;
+  margin: 0;
+}
+
+/* image fades + gently scales in first, text follows a beat later */
+.ritual-media {
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.1s cubic-bezier(.16,.8,.24,1), transform 1.4s cubic-bezier(.16,.8,.24,1);
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--cream);
+}
+.ritual-media.in-view { opacity: 1; transform: scale(1); }
+.ritual-media img { display: block; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+
+.ritual-text {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s cubic-bezier(.16,.8,.24,1) .22s, transform .9s cubic-bezier(.16,.8,.24,1) .22s;
+}
+.ritual-text.in-view { opacity: 1; transform: translateY(0); }
+
+/* ---- Steps 01 / 03 / 05 — large feature photography, centered text below ---- */
+.ritual-block-feature {
+  max-width: 1600px;
+  padding: 0 clamp(16px, 3vw, 40px);
+  text-align: center;
+}
+.ritual-block-feature .ritual-media {
+  width: 100%;
+  height: clamp(64vh, 80vw, 85vh);
+}
+.ritual-block-feature .ritual-text { margin-top: clamp(32px, 4vw, 48px); }
+.ritual-block-feature .ritual-line { margin-left: auto; margin-right: auto; }
+
+.ritual-block-3 .ritual-media { height: clamp(56vh, 68vw, 76vh); }
+
+.ritual-block-cinematic .ritual-media { height: auto; aspect-ratio: 16 / 9; }
+
+/* ---- Steps 02 / 04 — asymmetrical split layout ---- */
+.ritual-block-split {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 96px);
+  max-width: var(--container);
+  padding: 0 clamp(24px, 6vw, 80px);
+}
+.ritual-block-split .ritual-media {
+  flex: 1 1 55%;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+}
+.ritual-block-split .ritual-text { flex: 1 1 40%; }
+
+@media (max-width: 900px) {
+  .ritual-block-feature .ritual-media { height: auto; aspect-ratio: 4 / 5; }
+  .ritual-block-cinematic .ritual-media { aspect-ratio: 4 / 5; }
+}
+
+@media (max-width: 720px) {
+  .ritual-block { margin-top: clamp(56px, 12vw, 88px); }
+  .ritual-block-split {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 24px;
+  }
+  .ritual-block-split .ritual-media,
+  .ritual-block-split .ritual-text { flex: none; width: 100%; }
+  .ritual-block-split .ritual-line { margin-left: auto; margin-right: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ritual-media, .ritual-text { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
