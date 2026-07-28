@@ -1209,7 +1209,7 @@ img { max-width: 100%; display: block; }
 .lash-process-arrow img { width: 13px; height: 8px; opacity: .85; }
 .lash-process-arrow:hover { background: rgba(255,255,255,0.65); transform: translateY(-50%) scale(1.06); }
 .lash-process-arrow-prev { left: clamp(8px, 2vw, 24px); }
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .lash-process {
     flex-direction: column;
     align-items: stretch;
