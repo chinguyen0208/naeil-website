@@ -1227,11 +1227,13 @@ img { max-width: 100%; display: block; }
 }
 
 .lash-why {
+  background: var(--tan);
+  padding: clamp(80px, 10vw, 130px) clamp(24px, 6vw, 80px);
+}
+.lash-why-inner {
   display: flex;
   gap: clamp(48px, 7vw, 110px);
   align-items: flex-start;
-  padding: clamp(80px, 10vw, 130px) clamp(24px, 6vw, 80px);
-  background: var(--tan);
   max-width: var(--container);
   margin: 0 auto;
 }
@@ -1312,7 +1314,8 @@ img { max-width: 100%; display: block; }
   .process-step h4, .process-step p { text-align: center; }
   .ba-handle-grip { width: 38px; height: 38px; }
   .ba-tag { font-size: 10px; padding: 6px 14px; bottom: 14px; }
-  .lash-why { flex-direction: column; gap: 44px; padding: 70px 32px; }
+  .lash-why { padding: 70px 32px; }
+  .lash-why-inner { flex-direction: column; gap: 44px; }
   .why-intro { position: static; flex: none; }
 }
 @media (max-width: 560px) {
