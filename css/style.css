@@ -1177,6 +1177,10 @@ img { max-width: 100%; display: block; }
 }
 .lash-process-scroll::-webkit-scrollbar { display: none; }
 .lash-process-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
   position: absolute;
   top: 50%;
   right: clamp(8px, 2vw, 24px);
