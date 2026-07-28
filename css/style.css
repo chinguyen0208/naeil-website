@@ -1755,9 +1755,19 @@ img { max-width: 100%; display: block; }
   animation-delay: .2s;
 }
 .about-hero-line {
+  position: relative;
   display: inline-block;
-  border-bottom: 2px solid var(--blue);
-  padding-bottom: 6px;
+}
+.about-hero-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.12em;
+  width: 76%;
+  height: 2px;
+  background: var(--baby-blue);
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .about-hero-desc {
