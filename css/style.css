@@ -2608,22 +2608,23 @@ img { max-width: 100%; display: block; }
 /* ---- Section 04 — Final CTA ---- */
 .visit-cta {
   background: var(--cream);
-  padding: clamp(36px, 4.5vw, 54px) clamp(24px, 6vw, 100px) clamp(48px, 6vw, 80px);
+  padding: clamp(36px, 4.5vw, 54px) 0 clamp(48px, 6vw, 80px);
 }
 .visit-cta-card {
-  max-width: var(--container);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   background: var(--tan);
-  border-radius: 36px;
+  border-radius: 0;
   overflow: hidden;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
   gap: clamp(20px, 2.4vw, 28px);
-  padding: clamp(14px, 2vw, 18px) clamp(32px, 4vw, 48px);
+  padding: clamp(14px, 2vw, 18px) clamp(24px, 6vw, 100px);
 }
 .visit-cta-media {
-  flex: 0 1 230px;
+  justify-self: start;
   width: 230px;
   min-width: 0;
   aspect-ratio: 2 / 1;
@@ -2633,8 +2634,9 @@ img { max-width: 100%; display: block; }
 .visit-cta-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .visit-cta-text {
-  flex: 0 1 420px;
+  justify-self: center;
   min-width: 0;
+  max-width: 420px;
   text-align: left;
 }
 .visit-cta-title {
@@ -2654,11 +2656,11 @@ img { max-width: 100%; display: block; }
 }
 
 .visit-cta-actions {
-  flex: 0 1 320px;
+  justify-self: end;
   min-width: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 .visit-cta-btn {
   width: auto;
@@ -2671,13 +2673,13 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 900px) {
   .visit-cta-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: clamp(28px, 5vw, 40px);
+    grid-template-columns: 1fr;
+    justify-items: flex-start;
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 6vw, 64px);
   }
-  .visit-cta-media { width: 100%; flex: none; aspect-ratio: 16 / 9; }
-  .visit-cta-text { flex: none; width: 100%; }
-  .visit-cta-actions { flex: none; width: 100%; justify-content: flex-start; }
+  .visit-cta-media { justify-self: start; width: 100%; aspect-ratio: 16 / 9; }
+  .visit-cta-text { justify-self: start; max-width: none; }
+  .visit-cta-actions { justify-self: start; justify-content: flex-start; }
 }
 
 /* ---- Shared parallax for large Visit-page photography ---- */
