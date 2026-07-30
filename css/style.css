@@ -244,8 +244,8 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background-color: #B6CFD2;
-  -webkit-mask-image: url("images/icons/logo.svg");
-  mask-image: url("images/icons/logo.svg");
+  -webkit-mask-image: url("../images/icons/logo.svg");
+  mask-image: url("../images/icons/logo.svg");
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -2757,7 +2757,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.15;
   letter-spacing: 0.2px;
   color: var(--ink-mid);
-  max-width: 400px;
+  max-width: 460px;
   margin: 0 0 14px;
 }
 .visit-cta-copy {
@@ -2770,7 +2770,7 @@ img { max-width: 100%; display: block; }
 }
 .visit-cta-btn {
   width: fit-content;
-  height: 58px;
+  height: 40px;
   padding: 0 32px;
   border-width: 1px;
   gap: 10px;
