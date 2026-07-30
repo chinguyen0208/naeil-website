@@ -1920,6 +1920,20 @@ img { max-width: 100%; display: block; }
   background: rgba(0,0,0,0.35);
 }
 
+.about-values-label {
+  position: absolute;
+  top: clamp(16px, 2.4vw, 26px);
+  left: clamp(24px, 6vw, 80px);
+  z-index: 2;
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
 .about-values-inner {
   position: relative;
   z-index: 2;
