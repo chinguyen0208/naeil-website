@@ -1994,13 +1994,13 @@ img { max-width: 100%; display: block; }
    ===================================================== */
 .about-ritual {
   background: var(--white);
-  padding: clamp(80px, 10vw, 130px) 0;
+  padding: clamp(64px, 8vw, 100px) 0 clamp(56px, 7vw, 90px);
   text-align: center;
   overflow: hidden;
 }
 .about-ritual-inner {
   max-width: var(--container);
-  margin: 0 auto;
+  margin: 0 auto clamp(48px, 6vw, 64px);
   padding: 0 clamp(24px, 6vw, 80px);
 }
 .about-ritual-label {
@@ -2027,64 +2027,92 @@ img { max-width: 100%; display: block; }
   .about-ritual-title { font-size: clamp(24px, 6vw, 32px); }
 }
 
-/* ---- shared ritual block behaviour ---- */
-.ritual-block {
-  position: relative;
-  margin: clamp(72px, 10vw, 140px) auto 0;
+/* ---- Ritual timeline — five steps in a single horizontal row ---- */
+.ritual-timeline-scroll {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 80px);
 }
-.ritual-name {
+.ritual-timeline-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(8px, 2vw, 24px);
+}
+.ritual-timeline-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 28px;
+  height: 1px;
+  background: var(--line);
+  z-index: 0;
+}
+.ritual-step {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.ritual-step-icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ritual-step-icon svg { width: 22px; height: 22px; display: block; }
+.ritual-step-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+}
+.ritual-step-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
-  letter-spacing: 1px;
+  font-size: clamp(18px, 1.6vw, 22px);
+  letter-spacing: 0.3px;
   color: var(--ink-mid);
-  margin: 0 0 12px;
+  margin: 0;
 }
-.ritual-line {
+.ritual-step-desc {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 14px;
   line-height: 1.6;
-  letter-spacing: 0.2px;
   color: var(--ink-soft);
-  max-width: 360px;
+  max-width: 200px;
   margin: 0;
 }
 
-/* image fades + gently scales in first, text follows a beat later */
-.ritual-media {
-  opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1.1s cubic-bezier(.16,.8,.24,1), transform 1.4s cubic-bezier(.16,.8,.24,1);
-  overflow: hidden;
-  border-radius: 4px;
-  background: var(--cream);
+@media (max-width: 900px) {
+  .ritual-timeline-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+  }
+  .ritual-timeline-row {
+    width: max-content;
+    justify-content: flex-start;
+  }
+  .ritual-step {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+  }
 }
-.ritual-media.in-view { opacity: 1; transform: scale(1); }
-.ritual-media img { display: block; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 
-.ritual-text {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .9s cubic-bezier(.16,.8,.24,1) .22s, transform .9s cubic-bezier(.16,.8,.24,1) .22s;
-}
-.ritual-text.in-view { opacity: 1; transform: translateY(0); }
-
-/* ---- Steps 01 / 03 / 05 — large feature photography, centered text below ---- */
-.ritual-block-feature {
-  max-width: 1600px;
-  padding: 0 clamp(16px, 3vw, 40px);
-  text-align: center;
-}
-.ritual-block-feature .ritual-media {
-  width: 100%;
-  height: clamp(64vh, 80vw, 85vh);
-}
-.ritual-block-feature .ritual-text { margin-top: clamp(32px, 4vw, 48px); }
-.ritual-block-feature .ritual-line { margin-left: auto; margin-right: auto; }
-
-.ritual-block-cinematic .ritual-media { height: auto; aspect-ratio: 16 / 9; }
-
-/* ---- Step 05 — WhatsApp CTA ---- */
+/* ---- Step 05 — WhatsApp CTA (reused by the Final CTA section) ---- */
 .ritual-cta-whatsapp {
   box-sizing: border-box;
   display: flex;
@@ -2166,68 +2194,6 @@ img { max-width: 100%; display: block; }
     max-width: none;
     width: calc(100% - 48px);
   }
-}
-
-/* ---- Steps 02 / 04 — asymmetrical split layout ---- */
-.ritual-block-split {
-  display: flex;
-  align-items: center;
-  gap: clamp(40px, 6vw, 96px);
-  max-width: var(--container);
-  padding: 0 clamp(24px, 6vw, 80px);
-}
-.ritual-block-split .ritual-media {
-  flex: 1 1 55%;
-  min-width: 0;
-  aspect-ratio: 4 / 5;
-}
-.ritual-block-split .ritual-text { flex: 1 1 40%; }
-
-/* When the photo sits on the left, keep the copy flush to the left (Step 04 — Restore) */
-.ritual-block-split .ritual-media:first-child + .ritual-text {
-  text-align: left;
-}
-.ritual-block-split .ritual-media:first-child + .ritual-text .ritual-line {
-  margin-left: 0;
-  margin-right: auto;
-}
-
-/* Below 1024px, stack the split blocks and always show the photo first
-   (order only — no changes to sizing, spacing, or typography). */
-@media (max-width: 1024px) {
-  .ritual-block-split {
-    flex-direction: column;
-  }
-  .ritual-block-split .ritual-media,
-  .ritual-block-split .ritual-text {
-    flex: none;
-    width: 100%;
-  }
-  .ritual-block-split .ritual-media { order: 1; }
-  .ritual-block-split .ritual-text { order: 2; }
-  .ritual-block-split .ritual-line { margin-left: auto; margin-right: auto; }
-}
-
-@media (max-width: 900px) {
-  .ritual-block-feature .ritual-media { height: auto; aspect-ratio: 4 / 5; }
-  .ritual-block-cinematic .ritual-media { aspect-ratio: 4 / 5; }
-}
-
-@media (max-width: 720px) {
-  .ritual-block { margin-top: clamp(56px, 12vw, 88px); }
-  .ritual-block-split {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-    gap: 24px;
-  }
-  .ritual-block-split .ritual-media,
-  .ritual-block-split .ritual-text { flex: none; width: 100%; }
-  .ritual-block-split .ritual-line { margin-left: auto; margin-right: auto; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ritual-media, .ritual-text { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 /* =====================================================
