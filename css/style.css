@@ -999,6 +999,13 @@ img { max-width: 100%; display: block; }
    LASH PAGE
    ===================================================== */
 .lash-hero .hero-media img { object-position: center 30%; }
+.lash-hero-btn {
+  width: auto;
+  min-width: 231px;
+  padding: 0 32px;
+  gap: 10px;
+  white-space: nowrap;
+}
 
 .lash-hero .hero-bottom-row .btn { margin-left: auto; }
 
@@ -1737,6 +1744,13 @@ img { max-width: 100%; display: block; }
   text-align: left;
   padding-top: clamp(80px, 14vw, 200px);
 }
+.about-hero-content .btn {
+  width: auto;
+  min-width: 231px;
+  padding: 0 32px;
+  gap: 10px;
+  white-space: nowrap;
+}
 
 .about-eyebrow-sm {
   font-family: var(--font-display);
@@ -1823,6 +1837,17 @@ img { max-width: 100%; display: block; }
   margin-right: 8px;
 }
 .btn-icon svg { width: 16px; height: 16px; flex-shrink: 0; display: block; }
+
+/* ---- Shared "Book your appointment" arrow — one consistent design for
+   every booking button across the site (nav, hero, footer CTAs). ---- */
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 2px;
+  transition: transform .25s ease;
+}
+.btn:hover .btn-arrow { transform: translateX(3px); }
 
 /* =====================================================
    ABOUT PAGE — Brand Philosophy
@@ -2326,7 +2351,15 @@ img { max-width: 100%; display: block; }
   color: var(--ink-soft);
   margin: 0;
 }
-.about-final-cta-btn { margin: 8px auto 0; }
+.about-final-cta-btn {
+  margin: 8px auto 0;
+  width: auto;
+  height: 48px;
+  padding: 0 28px;
+  gap: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+}
 
 /* =====================================================================
    VISIT PAGE — a hospitality-led page distinct from About.
@@ -2402,11 +2435,6 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   gap: 10px;
   white-space: nowrap;
-}
-.visit-hero-btn-arrow {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 2px;
 }
 
 @media (max-width: 720px) {
