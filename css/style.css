@@ -204,29 +204,50 @@ img { max-width: 100%; display: block; }
 .navbar {
   position: absolute;
   top: 0; left: 0; right: 0;
-  z-index: 5;
-  display: flex;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   height: 129px;
   box-sizing: border-box;
   padding: 10px var(--gutter);
+  background: transparent;
+  transition: background-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
 }
+
+/* ---- Sticky state — activated via JS once the hero has scrolled out of view ---- */
+.navbar.is-fixed {
+  position: fixed;
+  background: rgba(248,244,241,0.94);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.navbar.is-fixed .logo-img { filter: brightness(0); }
+.navbar.is-fixed .nav-links a { color: var(--ink); opacity: .82; }
+.navbar.is-fixed .nav-links a:hover,
+.navbar.is-fixed .nav-links a.active { opacity: 1; border-bottom-color: rgba(0,0,0,0.6); }
+.navbar.is-fixed .nav-toggle span { background: var(--ink); }
+.navbar.is-fixed .nav-book-btn { border-color: rgba(0,0,0,0.35); color: var(--ink); }
+.navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
 .logo-img {
   height: 26px;
   width: auto;
   display: block;
+  transition: filter .3s ease;
 }
 
 .nav-links {
+  grid-column: 2;
+  justify-self: center;
   display: flex;
   gap: 40px;
   font-family: var(--font-display);
   font-size: 15px;
   letter-spacing: .02em;
 }
-.nav-links a { opacity: .92; transition: opacity .2s ease; }
+.nav-links a { opacity: .92; transition: opacity .2s ease, color .3s ease; }
 .nav-links a:hover, .nav-links a.active { opacity: 1; border-bottom: 1px solid rgba(255,255,255,0.7); padding-bottom: 4px; }
 
 .nav-toggle {
@@ -238,7 +259,42 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   z-index: 6;
 }
-.nav-toggle span { width: 26px; height: 2px; background: var(--white); display: block; }
+.nav-toggle span { width: 26px; height: 2px; background: var(--white); display: block; transition: background-color .3s ease; }
+
+/* ---- "Book →" nav CTA — hidden on load, fades in once the hero scrolls
+   out of view. Stays in the DOM/layout at all times so the header never
+   shifts width when it appears (opacity + transform only). ---- */
+.nav-book-btn {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 26px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.7);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .5s cubic-bezier(.16,.8,.24,1), transform .5s cubic-bezier(.16,.8,.24,1), background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.nav-book-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.nav-book-btn:hover { background: rgba(255,255,255,0.14); }
+.nav-book-btn .btn-arrow { transition: transform .25s ease; }
+.nav-book-btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* Mobile-menu fallback entry — always reachable inside the offcanvas
+   menu regardless of scroll position, so booking access is never lost
+   on small screens. Hidden on desktop. */
+.nav-book-mobile { display: none; }
 
 .hero-content {
   position: relative;
@@ -595,6 +651,34 @@ img { max-width: 100%; display: block; }
   }
   .nav-links.open { transform: translateX(0); }
   .navbar { padding: 24px var(--gutter) 0; }
+  .nav-book-btn { height: 42px; padding: 0 20px; font-size: 13px; }
+
+  /* Always-available Book entry inside the offcanvas menu, independent
+     of scroll position — ensures booking access is never lost on mobile. */
+  .nav-book-mobile {
+    display: block;
+    margin-top: 8px;
+  }
+  .nav-book-mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: .02em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .nav-book-mobile-btn:hover { background: rgba(255,255,255,0.14); }
+  .nav-book-mobile-btn .btn-arrow { transition: transform .25s ease; }
+  .nav-book-mobile-btn:hover .btn-arrow { transform: translateX(3px); }
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
   .footer-links {
@@ -1799,31 +1883,6 @@ img { max-width: 100%; display: block; }
   .about-hero-title { font-size: clamp(34px, 10vw, 56px); }
 }
 
-/* ---- Nav WhatsApp pill (About page only) ---- */
-.nav-wa-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 32px;
-  padding: 0 16px;
-  border-radius: 30px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: #FFF;
-  font-family: var(--font-display);
-  font-size: 13px;
-  letter-spacing: 0.2px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background .2s ease, border-color .2s ease;
-}
-.nav-wa-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.7); }
-.nav-wa-btn svg { width: 15px; height: 15px; flex-shrink: 0; display: block; }
-.nav-wa-btn-arrow, .nav-wa-btn span:last-child { flex-shrink: 0; }
-@media (max-width: 900px) {
-  .nav-wa-btn { display: none; }
-}
-
 /* ---- Hero button icon (reused on .btn.btn-light) ---- */
 .btn-icon {
   width: 16px;
@@ -2711,3 +2770,145 @@ img { max-width: 100%; display: block; }
    footer) shares the exact same left/right edge on the Visit page,
    without affecting the shared footer on any other page. ---- */
 .page-visit .footer-top { padding-left: clamp(24px, 6vw, 100px); padding-right: clamp(24px, 6vw, 100px); }
+
+/* =====================================================
+   BOOKING MODAL — WhatsApp / Zalo / Phone
+   Triggered by .nav-book-btn / .nav-book-mobile-btn, identical on
+   every page. Not a page link — opens this overlay instead.
+   ===================================================== */
+body.modal-open { overflow: hidden; }
+
+.booking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+.booking-modal-overlay.is-open { opacity: 1; visibility: visible; }
+
+.booking-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 48px 40px 40px;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  transition: transform .4s cubic-bezier(.16,.8,.24,1), opacity .4s ease;
+}
+.booking-modal-overlay.is-open .booking-modal { transform: translateY(0) scale(1); opacity: 1; }
+
+.booking-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.15);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.booking-modal-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.booking-modal-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.booking-modal-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  letter-spacing: .5px;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.booking-modal-sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+}
+
+.booking-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.booking-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: transparent;
+  text-align: left;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.booking-option:hover { background: var(--ink); border-color: var(--ink); }
+.booking-option:hover .booking-option-text strong,
+.booking-option:hover .booking-option-text small,
+.booking-option:hover .booking-option-arrow { color: var(--cream); }
+.booking-option:hover .booking-option-icon { filter: invert(1) brightness(2); }
+
+.booking-option-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.booking-option-icon svg, .booking-option-icon img { width: 100%; height: 100%; display: block; }
+
+.booking-option-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.booking-option-text strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  transition: color .25s ease;
+}
+.booking-option-text small {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+  transition: color .25s ease;
+}
+.booking-option-arrow {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink-soft);
+  transition: color .25s ease, transform .25s ease;
+}
+.booking-option:hover .booking-option-arrow { transform: translateX(3px); }
+
+@media (max-width: 480px) {
+  .booking-modal { padding: 40px 26px 32px; border-radius: 20px; }
+}

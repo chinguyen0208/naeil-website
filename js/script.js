@@ -101,6 +101,74 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
   updateState();
 });
 
+// Sticky nav + "Book →" fade-in, triggered once the hero has scrolled
+// out of view. Keeps only one primary booking CTA on screen at a time:
+// the hero's own CTA above the fold, then the nav Book button after.
+document.querySelectorAll('header.hero').forEach(function (hero) {
+  var navbar = hero.querySelector('.navbar');
+  var bookBtn = navbar ? navbar.querySelector('.nav-book-btn') : null;
+  if (!navbar) return;
+
+  function setScrolledState(scrolledPastHero) {
+    navbar.classList.toggle('is-fixed', scrolledPastHero);
+    if (bookBtn) bookBtn.classList.toggle('is-visible', scrolledPastHero);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        setScrolledState(!entry.isIntersecting);
+      });
+    }, { rootMargin: '-380px 0px 0px 0px', threshold: 0 });
+    observer.observe(hero);
+  } else {
+    // Fallback for browsers without IntersectionObserver support.
+    var ticking = false;
+    function checkScroll() {
+      setScrolledState(window.scrollY > 400);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(checkScroll); ticking = true; }
+    }, { passive: true });
+    checkScroll();
+  }
+});
+
+// Booking options modal (WhatsApp / Zalo / Phone) — opened by the nav
+// "Book →" button and its mobile-menu counterpart. Not a page link.
+(function () {
+  var overlay = document.getElementById('bookingModalOverlay');
+  if (!overlay) return;
+
+  var closeBtn = document.getElementById('bookingModalClose');
+  var triggers = document.querySelectorAll('[data-book-trigger]');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    // Close the mobile offcanvas menu, if open, so it doesn't sit behind the modal.
+    if (navLinks) navLinks.classList.remove('open');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  triggers.forEach(function (el) { el.addEventListener('click', openModal); });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+})();
+
 // Scroll-reveal animation
 const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
 if ('IntersectionObserver' in window && revealTargets.length) {
