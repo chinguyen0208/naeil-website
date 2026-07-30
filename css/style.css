@@ -2438,11 +2438,12 @@ img { max-width: 100%; display: block; }
 .visit-info-address {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 3.6vw, 46px);
-  line-height: 1.25;
+  font-size: clamp(30px, 2.8vw, 40px);
+  line-height: 1.2;
   letter-spacing: 0.2px;
   color: var(--ink-mid);
-  margin: 32px 0 20px;
+  margin: 32px 0 36px;
+  white-space: nowrap;
 }
 .visit-info-directions {
   display: inline-flex;
@@ -2491,8 +2492,8 @@ img { max-width: 100%; display: block; }
 
 /* Image — a small editorial accent, set slightly lower for optical balance */
 .visit-info-img {
-  flex: 0 0 300px;
-  width: 300px;
+  flex: 0 0 280px;
+  width: 280px;
   min-width: 0;
   aspect-ratio: 1 / 1;
   border-radius: 32px;
@@ -2504,12 +2505,14 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 1024px) {
   .visit-info-location, .visit-info-hours { flex: 1 1 260px; }
-  .visit-info-img { flex: 0 0 240px; width: 240px; margin-top: 0; }
+  .visit-info-address { white-space: normal; }
+  .visit-info-img { flex: 0 0 220px; width: 220px; margin-top: 0; }
 }
 @media (max-width: 900px) {
   .visit-info-inner { flex-direction: column; gap: 48px; }
   .visit-info-location, .visit-info-hours { flex: none; width: 100%; }
-  .visit-info-img { width: 100%; max-width: 280px; margin-top: 0; }
+  .visit-info-address { white-space: normal; }
+  .visit-info-img { width: 100%; max-width: 260px; margin-top: 0; }
 }
 
 /* ---- Section 03 — Map ---- */
