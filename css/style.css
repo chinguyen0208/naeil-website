@@ -2389,7 +2389,13 @@ img { max-width: 100%; display: block; }
   max-width: 380px;
   margin: 0;
 }
-.visit-hero-content .btn { margin-top: 8px; }
+.visit-hero-content .btn {
+  margin-top: 8px;
+  width: auto;
+  min-width: 231px;
+  padding: 0 32px;
+  white-space: nowrap;
+}
 
 @media (max-width: 720px) {
   .visit-hero-title { font-size: clamp(36px, 11vw, 56px); }
