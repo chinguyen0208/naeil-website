@@ -2753,20 +2753,20 @@ img { max-width: 100%; display: block; }
 .visit-cta-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(48px, 4vw, 64px);
-  line-height: 1.08;
+  font-size: clamp(30px, 2.4vw, 40px);
+  line-height: 1.15;
   letter-spacing: 0.2px;
   color: var(--ink-mid);
-  max-width: 520px;
-  margin: 0 0 20px;
+  max-width: 400px;
+  margin: 0 0 14px;
 }
 .visit-cta-copy {
   font-family: var(--font-display);
-  font-size: 24px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--ink-soft);
   opacity: 0.8;
-  margin: 0 0 40px;
+  margin: 0 0 28px;
 }
 .visit-cta-btn {
   width: fit-content;
