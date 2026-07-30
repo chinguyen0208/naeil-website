@@ -742,7 +742,7 @@ img { max-width: 100%; display: block; }
 }
 .nail-hero-title {
   align-self: stretch;
-  color: #C2DDEA;
+  color: var(--blue);
   font-family: var(--font-condensed);
   font-weight: 400;
   font-size: clamp(40px, 6.5vw, 96px);
