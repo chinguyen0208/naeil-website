@@ -2324,7 +2324,6 @@ img { max-width: 100%; display: block; }
   flex: 0 0 clamp(260px, 30vw, 380px);
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 .about-space-label {
   font-family: var(--font-condensed);
@@ -2341,34 +2340,26 @@ img { max-width: 100%; display: block; }
   line-height: 1.2;
   letter-spacing: 0.3px;
   color: var(--ink-mid);
-  margin: 0;
+  margin: 36px 0 0;
 }
 .about-space-copy {
   font-family: var(--font-display);
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 360px;
-  margin: 0;
-}
-.about-space-rule {
-  display: block;
-  width: 56px;
-  height: 1px;
-  background: var(--line);
+  max-width: 400px;
+  margin: 52px 0 0;
 }
 .about-space-cta {
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
-  margin-top: 8px;
+  margin-top: 60px;
 }
 .about-space-link {
   align-self: flex-start;
   justify-content: flex-start;
   font-size: 16px;
-  color: var(--ink-soft);
+  color: #CBE6E9;
 }
-.about-space-link:hover { border-color: var(--ink-soft); }
+.about-space-link:hover { border-color: #CBE6E9; }
 
 .about-space-gallery {
   flex: 1 1 auto;
