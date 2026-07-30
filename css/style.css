@@ -48,7 +48,7 @@
   --ink-soft:     #616161;
   --icon-gray:    #828282;
   --line:         rgba(0,0,0,0.12);
-  --blue:         #B6CFD2;
+  --blue:         #CBE6E9;
   --blue-deep:    #8FB3D6;
   --white:        #FFFFFF;
 
@@ -237,13 +237,13 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
 }
 /* Recolored logo shown only once the nav is scrolled/fixed — uses the
-   logo file as a CSS mask so the tint is an exact color match (#B6CFD2)
+   logo file as a CSS mask so the tint is an exact color match (#CBE6E9)
    rather than an approximated filter. */
 .logo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: #B6CFD2;
+  background-color: #CBE6E9;
   -webkit-mask-image: url("../images/icons/logo.svg");
   mask-image: url("../images/icons/logo.svg");
   -webkit-mask-size: contain;
@@ -557,7 +557,7 @@ img { max-width: 100%; display: block; }
 }
 
 .brand-script {
-  color: #B6CFD2;
+  color: #CBE6E9;
   text-align: center;
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 50px);
