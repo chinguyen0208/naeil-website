@@ -2275,7 +2275,24 @@ img { max-width: 100%; display: block; }
   max-width: 360px;
   margin: 0;
 }
-.about-space-link { margin-top: 4px; }
+.about-space-rule {
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: var(--line);
+}
+.about-space-cta {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-top: 8px;
+}
+.about-space-link {
+  align-self: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+.about-space-link:hover { border-color: var(--ink-soft); }
 
 .about-space-gallery {
   flex: 1 1 auto;
