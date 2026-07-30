@@ -13,6 +13,11 @@
 
 <!-- ============ SECTION 01 — HERO ============ -->
 <header class="hero visit-hero">
+  <div class="hero-media">
+    <img src="images/visit-page/hero-visit.jpg" alt="Warm, sunlit interior of the Naeil studio">
+  </div>
+  <div class="visit-hero-scrim"></div>
+
   <nav class="navbar">
     <a href="/" class="logo">
       <img src="images/icons/logo.svg" alt="Maeil" class="logo-img">
@@ -38,14 +43,11 @@
     </a>
   </nav>
 
-  <div class="visit-hero-split">
+  <div class="visit-hero-inner">
     <div class="visit-hero-content">
       <h1 class="visit-hero-title">Visit Us</h1>
       <p class="visit-hero-desc">We'd love to welcome you to NAEIL Nail Bar.</p>
       <a href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer" class="btn btn-light" aria-label="Book an appointment via WhatsApp">Book Appointment</a>
-    </div>
-    <div class="visit-hero-media visit-parallax">
-      <img src="images/visit-page/hero-visit.jpg" alt="Warm, sunlit interior of the Naeil studio" loading="lazy">
     </div>
   </div>
 </header>
@@ -186,13 +188,13 @@
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
 
-  var layers = document.querySelectorAll('.visit-parallax img');
+  var layers = document.querySelectorAll('.visit-hero .hero-media img, .visit-parallax img');
   if (!layers.length) return;
 
   var ticking = false;
   function update() {
     layers.forEach(function (img) {
-      var rect = img.closest('.visit-parallax').getBoundingClientRect();
+      var rect = img.closest('.visit-hero, .visit-parallax').getBoundingClientRect();
       var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
       var shift = (progress - 0.5) * 16;
       img.style.transform = 'translateY(' + shift.toFixed(1) + 'px) scale(1.06)';
