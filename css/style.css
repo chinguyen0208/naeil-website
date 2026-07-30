@@ -1061,7 +1061,7 @@ img { max-width: 100%; display: block; }
 /* Hero intro (runs on load, not scroll) */
 .hero-title, .hero-sub, .hero-content .btn,
 .nail-hero-title, .nail-hero-bottom-row, .nail-hero-content .btn,
-.spa-title, .spa-sub, .spa-hero-desc, .spa-btn,
+.spa-title, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
 .lash-hero-desc {
   opacity: 0;
   transform: translateY(24px);
@@ -1070,7 +1070,7 @@ img { max-width: 100%; display: block; }
 .hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
 .hero-bottom-row, .nail-hero-bottom-row, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
 .spa-hero-desc { animation-delay: .45s; }
-.hero-content .btn, .nail-hero-content .btn, .spa-btn { animation-delay: .6s; }
+.hero-content .btn, .nail-hero-content .btn, .spa-hero-content .btn { animation-delay: .6s; }
 @keyframes heroIn {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -1690,20 +1690,6 @@ img { max-width: 100%; display: block; }
   color: #FFF;
   margin: 0;
 }
-.spa-btn {
-  width: 231px;
-  height: 40px;
-  padding: 0 28px;
-  border-radius: 30px;
-  background: transparent;
-  border: 1px solid #FFF;
-  color: #FFF;
-  font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: .02em;
-}
-.spa-btn:hover { background: #FFF; color: var(--blue); }
-
 @media (max-width: 720px) {
   .spa-hero-content { align-items: flex-start; text-align: left; }
   .spa-title, .spa-sub, .spa-hero-desc { text-align: left; }
