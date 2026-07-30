@@ -223,7 +223,8 @@ img { max-width: 100%; display: block; }
   -webkit-backdrop-filter: blur(14px) saturate(180%);
   box-shadow: 0 1px 0 rgba(0,0,0,0.06);
 }
-.navbar.is-fixed .logo-img { filter: brightness(0); }
+.navbar.is-fixed .logo-img { opacity: 0; }
+.navbar.is-fixed .logo::after { opacity: 1; }
 .navbar.is-fixed .nav-links a { color: var(--ink); opacity: .82; }
 .navbar.is-fixed .nav-links a:hover,
 .navbar.is-fixed .nav-links a.active { opacity: 1; border-bottom-color: rgba(0,0,0,0.6); }
@@ -231,11 +232,36 @@ img { max-width: 100%; display: block; }
 .navbar.is-fixed .nav-book-btn { border-color: rgba(0,0,0,0.35); color: var(--ink); }
 .navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
+.logo {
+  position: relative;
+  display: inline-flex;
+}
+/* Recolored logo shown only once the nav is scrolled/fixed — uses the
+   logo file as a CSS mask so the tint is an exact color match (#B6CFD2)
+   rather than an approximated filter. */
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #B6CFD2;
+  -webkit-mask-image: url("images/icons/logo.svg");
+  mask-image: url("images/icons/logo.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
 .logo-img {
   height: 26px;
   width: auto;
   display: block;
-  transition: filter .3s ease;
+  transition: opacity .3s ease;
 }
 
 .nav-links {
