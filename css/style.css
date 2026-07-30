@@ -2575,7 +2575,7 @@ img { max-width: 100%; display: block; }
 .visit-info-address {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, 2.8vw, 40px);
+  font-size: clamp(29px, 2.8vw, 39px);
   line-height: 1.2;
   letter-spacing: 0.2px;
   color: var(--ink-mid);
