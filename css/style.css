@@ -71,6 +71,38 @@
   --gutter-wide: clamp(24px, 6vw, 100px);
 }
 
+/* =====================================================
+   VIETNAMESE FONT OVERRIDE — the brand's EN/ZH fonts
+   (Cormorant Garamond for --font-display; Oswald/Jost were
+   never actually loaded for --font-condensed/--font-body,
+   which silently fell back to the browser's default sans)
+   render Vietnamese diacritics unreliably. js/i18n.js sets
+   data-locale="vi" on <html> whenever Vietnamese is active
+   (see applyLocale in i18n.js), so this block only takes
+   effect for Vietnamese — English and Chinese keep the
+   original fonts untouched. Replacements were chosen to
+   preserve the same visual character while guaranteeing
+   correct Vietnamese rendering:
+     - Playfair Display in place of Cormorant Garamond: same
+       elegant high-contrast transitional serif family, full
+       Vietnamese glyph coverage, extremely widely used in
+       Vietnamese editorial/beauty branding.
+     - Oswald in place of Bagoss Condensed: a confirmed
+       Vietnamese-safe condensed sans with a similar tall,
+       narrow character to the original.
+     - Be Vietnam Pro in place of Futura/Jost: a geometric
+       neo-grotesk designed and hand-tuned by a Vietnamese
+       type foundry specifically for clean Vietnamese
+       diacritics, same minimal/utility role as Futura/Jost.
+   All three are loaded via the existing Google Fonts <link>
+   in <head> (added alongside the current families, nothing
+   removed). ===================================================== */
+html[data-locale="vi"] {
+  --font-display: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-condensed: 'Oswald', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
