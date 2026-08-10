@@ -940,6 +940,40 @@ img { max-width: 100%; display: block; }
 }
 
 /* =====================================================
+   SHARED HERO RESPONSIVE SYSTEM — Small desktop
+   (1024–1280px: below the point where the fluid clamp() hero type
+   comfortably fills a wide frame, but above the <1024px breakpoint
+   where the nav/layout already switches to its mobile treatment.
+   1280px reuses the project's existing "before cramped" convention,
+   see .lash-process-row above.)
+
+   Reference / golden standard: the Lash hero. Its description
+   (.lash-hero-desc) already carries `max-width: 661px`, and About's
+   (.about-hero-desc) carries `max-width: 605px` — both keep their
+   text column narrow and editorial no matter how much horizontal
+   room the hero has. Visit's hero (.visit-hero-content / -desc) is
+   narrower still (480px / 380px). Those three are already correct
+   at this range and are NOT touched here.
+
+   Nail and Head Spa are the two pages that drift from that standard:
+   - Nail's title (.nail-hero-title) uses align-self:stretch with no
+     max-width at all, so its box is free to grow to the full hero
+     width instead of a controlled column.
+   - Head Spa's description (.spa-hero-desc) does have a max-width,
+     but at 1104px it's roughly double the width used everywhere
+     else, so it never actually engages in this range and the text
+     reads as a wide block rather than a narrow column.
+
+   Fix: bring both in line with the ~600–660px column already used
+   by Lash/About, scoped to this band only. Large desktop (>=1280px)
+   and mobile (<1024px) are untouched.
+   ===================================================== */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .nail-hero-title { max-width: 640px; }
+  .spa-hero-desc { max-width: 620px; }
+}
+
+/* =====================================================
    NAIL PAGE — Hero
    ===================================================== */
 .nail-hero .hero-media img { object-position: center 40%; }
