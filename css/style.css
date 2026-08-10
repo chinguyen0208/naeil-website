@@ -951,13 +951,17 @@ img { max-width: 100%; display: block; }
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* Bottom-anchored to match the Home/Lash hero reference pattern
+     (.hero-content uses justify-content: flex-end). Was previously
+     "center" + flex:1, which vertically centered the text instead of
+     anchoring it to the lower third — an inconsistency vs. every
+     other hero on the site. */
+  justify-content: flex-end;
   align-items: flex-start;
   gap: 30px;
   /* Left edge (where the text starts) inset 50px more than the
      navbar's own horizontal padding — see note above .navbar. */
   padding: clamp(120px, 20vw, 268px) 130px clamp(40px, 6vw, 100px) 130px;
-  flex: 1;
 }
 .nail-hero-title {
   align-self: stretch;
