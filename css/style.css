@@ -391,7 +391,13 @@ img { max-width: 100%; display: block; }
   .navbar-right { justify-self: end; }
   .nav-toggle { display: none; }
   .nav-book-btn { display: inline-flex; }
-  .lang-switcher { display: flex; }
+  /* .lang-switcher's desktop display:flex override lives next to its
+     own base rule below (in the LANGUAGE SWITCHER section) — NOT here.
+     Putting it here would place an equal-specificity override BEFORE
+     the unconditional base rule that also sets `display`, and the
+     later, unconditional rule would win the cascade regardless of
+     this media query (same bug class fixed twice earlier on
+     .nail-hero-content / .spa-hero-content — see notes there). */
 }
 
 /* =====================================================
@@ -416,6 +422,9 @@ img { max-width: 100%; display: block; }
   display: none;
   position: relative;
   margin-right: 12px;
+}
+@media (min-width: 1024px) {
+  .lang-switcher { display: flex; }
 }
 
 .lang-switcher-trigger {
