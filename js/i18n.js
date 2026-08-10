@@ -14,7 +14,7 @@
   var STORAGE_KEY = 'naeil_locale';
   var DEFAULT_LOCALE = 'en';
   var LOCALES = ['en', 'vi', 'zh'];
-  var LOCALE_LABEL = { en: 'EN', vi: 'VI', zh: 'ZH' };
+  var LOCALE_LABEL = { en: 'EN', vi: 'VI', zh: '中文' };
 
   // -------------------------------------------------------------------
   // Translation dictionary — keys are grouped by where they live on the
