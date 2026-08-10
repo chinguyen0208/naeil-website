@@ -925,19 +925,16 @@ img { max-width: 100%; display: block; }
      tier too (nav = 50px here, so hero = 100px). */
   .hero-content { padding-right: 100px; }
 
-  /* Leading (logo-side) edge — reuses .hero-content's own left-padding
-     formula (clamp(24px, 12vw, 200px)) instead of the flat "nav+50"
-     value above. Lash/Home already use this formula unconditionally
-     for their left side, and at this tier it lands close to the
-     navbar/logo's own left edge — confirmed as the correct reference
-     composition. Nail/Head Spa/About/Visit previously used a flat
-     100px here, which sat noticeably further right than the logo;
-     matching the shared formula keeps every hero's leading edge
-     visually aligned with the logo at narrow widths. */
-  .nail-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
-  .spa-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
-  .about-hero-content { padding-left: clamp(24px, 12vw, 200px); }
-  .visit-hero-inner { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+  /* Leading (logo-side) edge for Nail/Head Spa/About/Visit — reuses
+     .hero-content's own left-padding formula (clamp(24px, 12vw, 200px))
+     instead of the flat "nav+50" value above, matching Lash/Home's
+     already-correct alignment with the logo at narrow widths.
+     NOTE: this override now lives next to each page's own hero-content
+     base rule (.nail-hero-content, .spa-hero-content, .about-hero-content,
+     .visit-hero-inner) instead of here — a rule with equal specificity
+     placed here would lose the cascade to that later, unconditional
+     base rule and silently do nothing. Left as a pointer so the
+     pattern isn't reintroduced here by mistake. */
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
   .footer-links {
@@ -1006,6 +1003,15 @@ img { max-width: 100%; display: block; }
   /* Left edge (where the text starts) inset 50px more than the
      navbar's own horizontal padding — see note above .navbar. */
   padding: clamp(120px, 20vw, 268px) 130px clamp(40px, 6vw, 100px) 130px;
+}
+/* Narrow-mobile override MUST come after the base rule above — same
+   selector/specificity, so source order decides, and this needs to
+   win. (An earlier attempt placed this same override inside the
+   shared @media block near the top of the file; because that block
+   sits BEFORE this base rule in source order, the base rule's fixed
+   130px silently won the cascade and the override never rendered.) */
+@media (max-width: 720px) {
+  .nail-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
 }
 .nail-hero-title {
   align-self: stretch;
@@ -1932,6 +1938,11 @@ img { max-width: 100%; display: block; }
      padding — see note above .navbar. */
   padding: clamp(90px, 18vw, 134px) 130px clamp(60px, 12vw, 150px);
 }
+/* Must come after the base rule above — see the note on
+   .nail-hero-content's identical override for why. */
+@media (max-width: 720px) {
+  .spa-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+}
 .spa-title {
   color: #F3F3F3;
   font-family: var(--font-condensed);
@@ -2117,6 +2128,11 @@ img { max-width: 100%; display: block; }
      is the one that needs to track the navbar, inset 50px more than
      the navbar's own horizontal padding (see note above .navbar). */
   padding-left: 130px;
+}
+/* Must come after the base rule above — see the note on
+   .nail-hero-content's identical override for why. */
+@media (max-width: 720px) {
+  .about-hero-content { padding-left: clamp(24px, 12vw, 200px); }
 }
 .about-hero-content .btn {
   width: auto;
@@ -2733,6 +2749,11 @@ img { max-width: 100%; display: block; }
      padding — see note above .navbar. */
   padding: 0 130px;
   box-sizing: border-box;
+}
+/* Must come after the base rule above — see the note on
+   .nail-hero-content's identical override for why. */
+@media (max-width: 720px) {
+  .visit-hero-inner { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
 }
 .visit-hero-content {
   max-width: 480px;
