@@ -136,6 +136,13 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   padding: 0 28px;
   border-radius: 30px;
+  /* Reset the native <button> UA-stylesheet border. Most .btn CTAs are
+     <a> tags (no default border), but .visit-hero-btn is a <button>
+     (it also opens the shared booking modal via data-book-trigger),
+     so without this reset it shows a stray grey outline that isn't
+     part of the design. .btn-outline / .btn-ink set their own border
+     afterward and still win, so this doesn't affect them. */
+  border: none;
   font-family: var(--font-display);
   font-size: 14px;
   letter-spacing: .02em;
