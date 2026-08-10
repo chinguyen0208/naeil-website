@@ -2656,17 +2656,6 @@ img { max-width: 100%; display: block; }
   max-width: 400px;
   margin: 52px 0 0;
 }
-.about-space-cta {
-  margin-top: 60px;
-}
-.about-space-link {
-  align-self: flex-start;
-  justify-content: flex-start;
-  font-size: 16px;
-  color: #CBE6E9;
-}
-.about-space-link:hover { border-color: #CBE6E9; }
-
 .about-space-gallery {
   flex: 1 1 auto;
   min-width: 0;
