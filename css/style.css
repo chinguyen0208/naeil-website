@@ -191,17 +191,16 @@ img { max-width: 100%; display: block; }
 /* =====================================================
    HERO
    ===================================================== */
-/* Hero shares the exact same horizontal container as the navbar
-   (max-width: var(--container), centered) so the two are never
-   misaligned. Below 1440px this is a no-op (the container is already
-   narrower than that), so nothing changes on mobile/tablet/the primary
-   1440px desktop frame — the difference only shows on very wide
-   monitors (>1440px), where the hero image (via .hero-media's
-   width:100%/height:100%/object-fit:cover) now fills this same capped,
-   centered box instead of bleeding past the nav's own boundary. Every
-   page's hero (.nail-hero, .lash-hero, .spa-hero, .about-hero,
-   .visit-hero) extends this rule, so the fix applies everywhere at
-   once rather than per page. */
+/* Hero is intentionally full-bleed/full-viewport-width at every screen
+   size — it must NOT be capped to var(--container), or wide monitors
+   show empty page background down both sides of the image (regressed
+   this once already: capping .hero to match the navbar's max-width
+   looked correct in theory but broke the full-bleed hero on wide
+   screens in practice — reverted). The navbar overlaying it keeps its
+   own max-width:var(--container) centering for its CONTENT (logo,
+   links, CTA), which is the correct place for that inset — the
+   photograph itself should always fill the full width of the browser,
+   responsively, at any viewport. */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -210,8 +209,6 @@ img { max-width: 100%; display: block; }
   justify-content: flex-end;
   overflow: hidden;
   color: var(--white);
-  max-width: var(--container);
-  margin: 0 auto;
 }
 
 .hero-media { position: absolute; inset: 0; z-index: 0; }
