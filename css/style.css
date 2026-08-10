@@ -391,7 +391,132 @@ img { max-width: 100%; display: block; }
   .navbar-right { justify-self: end; }
   .nav-toggle { display: none; }
   .nav-book-btn { display: inline-flex; }
+  .lang-switcher { display: flex; }
 }
+
+/* =====================================================
+   LANGUAGE SWITCHER — sits inside .navbar-right, directly
+   before the Book CTA (desktop only; mobile uses the
+   "Language" group added inside the mega-menu drawer below
+   instead). Purely additive: does not alter any existing
+   header/nav rule, and reuses only existing tokens
+   (--font-body, --cream, --cream-deep, --ink, --ink-mid,
+   --ink-soft, --white) — no new colors or radii introduced.
+
+   Note on spacing: .navbar-right already applies gap:18px
+   between its children (see the base .navbar-right rule
+   above). Adding this extra 12px margin-right brings the
+   switcher-to-CTA gap to ~30px. The switcher's gap to the
+   end of the inline nav-links list is governed by the
+   existing 1fr/auto/1fr centered-nav grid and will vary
+   with viewport width — left untouched deliberately, per
+   the instruction not to restructure the existing header.
+   ===================================================== */
+.lang-switcher {
+  display: none;
+  position: relative;
+  margin-right: 12px;
+}
+
+.lang-switcher-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--white);
+  opacity: .85;
+  transition: opacity .25s ease, color .25s ease;
+}
+.lang-switcher-trigger:hover { opacity: 1; }
+.navbar.is-fixed .lang-switcher-trigger { color: var(--ink); }
+
+.lang-switcher-chevron {
+  font-size: 10px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+.lang-switcher.is-open .lang-switcher-chevron { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 136px;
+  background: var(--cream);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+  z-index: 10;
+}
+.lang-switcher.is-open .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 10px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  text-align: left;
+  transition: background-color .2s ease, color .2s ease;
+}
+.lang-dropdown-option:hover { background: var(--cream-deep); color: var(--ink); }
+.lang-dropdown-option .lang-check { opacity: 0; font-size: 12px; color: var(--ink); }
+.lang-dropdown-option.is-selected { color: var(--ink); font-weight: 500; }
+.lang-dropdown-option.is-selected .lang-check { opacity: 1; }
+
+/* ---- Mobile: "Language" group inside the mega-menu drawer, styled to
+   match the existing Services/Explore groups (.mega-menu-group-label
+   is reused as-is for the "Language" heading). ---- */
+.mega-menu-lang-options {
+  display: flex;
+  flex-direction: column;
+}
+.mega-menu-lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  padding: 13px 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-align: left;
+  transition: color .2s ease;
+}
+.mega-menu-lang-options .mega-menu-lang-option:last-child { border-bottom: none; }
+.mega-menu-lang-option .lang-check { opacity: 0; font-size: 13px; color: var(--ink); }
+.mega-menu-lang-option.is-selected { color: var(--ink); font-weight: 500; }
+.mega-menu-lang-option.is-selected .lang-check { opacity: 1; }
 
 /* =====================================================
    MEGA MENU — opened by the hamburger, in the spirit of

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/i18n.js"></script>
 </head>
 <body class="page-visit">
 
@@ -24,16 +25,36 @@
       <img src="images/icons/logo.svg" alt="Maeil" class="logo-img">
     </a>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="nail.html">Nail</a></li>
-      <li><a href="head-spa.html">Hair</a></li>
-      <li><a href="lash.html">Lash</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="visit.html">Visit</a></li>
+      <li><a href="/" data-i18n="nav.home">Home</a></li>
+      <li><a href="nail.html" data-i18n="nav.nail">Nail</a></li>
+      <li><a href="head-spa.html" data-i18n="nav.hair">Hair</a></li>
+      <li><a href="lash.html" data-i18n="nav.lash">Lash</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About</a></li>
+      <li><a href="visit.html" data-i18n="nav.visit">Visit</a></li>
     </ul>
     <div class="navbar-right">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <span class="lang-switcher-label">EN</span>
+          <span class="lang-switcher-chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="lang-dropdown" role="listbox" aria-label="Select language">
+          <button type="button" class="lang-dropdown-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
       <button type="button" class="nav-book-btn" data-book-trigger aria-label="Open booking options">
-        Book an appointment
+        <span data-i18n="nav.book">Book an appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="megaMenuOverlay">
@@ -44,10 +65,10 @@
 
   <div class="visit-hero-inner">
     <div class="visit-hero-content">
-      <h1 class="visit-hero-title">Visit Us</h1>
-      <p class="visit-hero-desc">We'd love to welcome you to NAEIL Nail Bar.</p>
+      <h1 class="visit-hero-title" data-i18n="visit.hero.title">Visit Us</h1>
+      <p class="visit-hero-desc" data-i18n="visit.hero.desc">We'd love to welcome you to NAEIL Nail Bar.</p>
       <button type="button" class="btn btn-light visit-hero-btn" data-book-trigger aria-label="Open booking options">
-        Book your appointment
+        <span data-i18n="visit.hero.cta">Book your appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
     </div>
@@ -58,28 +79,28 @@
 <section class="visit-info">
   <div class="visit-info-inner">
     <div class="visit-info-col visit-info-location reveal">
-      <span class="visit-info-label">Location</span>
-      <p class="visit-info-address">52 Nguyen Thai Hoc, Ba Dinh,<br>Hanoi, Vietnam</p>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=52+Nguyen+Thai+Hoc,+Ba+Dinh,+Hanoi,+Vietnam" target="_blank" rel="noopener noreferrer" class="visit-info-directions">Get Directions <span aria-hidden="true">&rarr;</span></a>
+      <span class="visit-info-label" data-i18n="visit.info.location">Location</span>
+      <p class="visit-info-address"><span data-i18n="visit.info.address1">52 Nguyen Thai Hoc, Ba Dinh,</span><br><span data-i18n="visit.info.address2">Hanoi, Vietnam</span></p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=52+Nguyen+Thai+Hoc,+Ba+Dinh,+Hanoi,+Vietnam" target="_blank" rel="noopener noreferrer" class="visit-info-directions"><span data-i18n="visit.info.directions">Get Directions</span> <span aria-hidden="true">&rarr;</span></a>
     </div>
 
     <div class="visit-info-col visit-info-hours reveal">
-      <span class="visit-info-label">Opening Hours</span>
+      <span class="visit-info-label" data-i18n="visit.info.hours">Opening Hours</span>
       <div class="visit-hours-table">
         <div class="visit-hours-row">
-          <span class="visit-hours-day">Mon–Fri</span>
+          <span class="visit-hours-day" data-i18n="visit.info.monfri">Mon–Fri</span>
           <span class="visit-hours-time">10:00–20:00</span>
         </div>
         <div class="visit-hours-row">
-          <span class="visit-hours-day">Sat–Sun</span>
+          <span class="visit-hours-day" data-i18n="visit.info.satsun">Sat–Sun</span>
           <span class="visit-hours-time">09:00–20:00</span>
         </div>
         <div class="visit-hours-row">
-          <span class="visit-hours-day">Public Holiday</span>
+          <span class="visit-hours-day" data-i18n="visit.info.publicholiday">Public Holiday</span>
           <span class="visit-hours-time">09:00–18:00</span>
         </div>
       </div>
-      <p class="visit-info-note">Open daily. Walk-ins welcome.</p>
+      <p class="visit-info-note" data-i18n="visit.info.note">Open daily. Walk-ins welcome.</p>
     </div>
 
     <div class="visit-info-img reveal">
@@ -102,8 +123,8 @@
     </div>
 
     <div class="visit-find-text reveal">
-      <h2 class="visit-find-title">A calm space,<br>right in the city.</h2>
-      <p class="visit-find-copy">Tucked along a tree-lined street near the Temple of Literature, the studio sits within an easy, unhurried walk from the Old Quarter.</p>
+      <h2 class="visit-find-title"><span data-i18n="visit.find.title1">A calm space,</span><br><span data-i18n="visit.find.title2">right in the city.</span></h2>
+      <p class="visit-find-copy" data-i18n="visit.find.copy">Tucked along a tree-lined street near the Temple of Literature, the studio sits within an easy, unhurried walk from the Old Quarter.</p>
       <p class="visit-find-parking">
         <span class="visit-parking-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +132,7 @@
             <path d="M10 8h2.4a2 2 0 1 1 0 4H10v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
-        Street parking available, with a nearby parking lot just steps away.
+        <span data-i18n="visit.find.parking">Street parking available, with a nearby parking lot just steps away.</span>
       </p>
     </div>
   </div>
@@ -124,9 +145,9 @@
       <img src="images/visit-page/detail-visit.jpg" alt="Editorial detail at the Naeil studio" loading="lazy">
     </div>
     <div class="visit-cta-text">
-      <h2 class="visit-cta-title">We can't wait to welcome you.</h2>
-      <p class="visit-cta-copy">Your moment of care awaits.</p>
-      <button type="button" class="btn btn-outline visit-cta-btn" data-book-trigger aria-label="Open booking options">Book your appointment <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
+      <h2 class="visit-cta-title" data-i18n="visit.finalcta.title">We can't wait to welcome you.</h2>
+      <p class="visit-cta-copy" data-i18n="visit.finalcta.copy">Your moment of care awaits.</p>
+      <button type="button" class="btn btn-outline visit-cta-btn" data-book-trigger aria-label="Open booking options"><span data-i18n="visit.finalcta.btn">Book your appointment</span> <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
     </div>
   </div>
 </section>
@@ -135,7 +156,7 @@
 <footer class="site-footer" id="footer">
   <div class="footer-top">
     <div class="footer-brand reveal">
-      <p class="brand-script">naeil nail bar</p>
+      <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
       <div class="social-icons">
         <a href="#" aria-label="Facebook"><img src="images/icons/facebook.svg" alt=""></a>
         <a href="#" aria-label="TikTok"><img src="images/icons/tiktok.svg" alt=""></a>
@@ -146,38 +167,38 @@
 
     <div class="footer-links">
     <div class="footer-col">
-      <h4>Services</h4>
+      <h4 data-i18n="footer.services">Services</h4>
       <ul>
-        <li><a href="nail.html">Nail</a></li>
-        <li><a href="lash.html">Lash</a></li>
-        <li><a href="head-spa.html">Head Spa</a></li>
-        <li><a href="#">Rituals</a></li>
-        <li><a href="#">Gift Cards</a></li>
+        <li><a href="nail.html" data-i18n="footer.nail">Nail</a></li>
+        <li><a href="lash.html" data-i18n="footer.lash">Lash</a></li>
+        <li><a href="head-spa.html" data-i18n="footer.headspa">Head Spa</a></li>
+        <li><a href="#" data-i18n="footer.rituals">Rituals</a></li>
+        <li><a href="#" data-i18n="footer.giftcards">Gift Cards</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4>About</h4>
+      <h4 data-i18n="footer.about">About</h4>
       <ul>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Get in Touch</a></li>
+        <li><a href="about.html" data-i18n="footer.aboutlink2">About us</a></li>
+        <li><a href="#" data-i18n="footer.careers">Careers</a></li>
+        <li><a href="#" data-i18n="footer.getintouch">Get in Touch</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4>Visit</h4>
+      <h4 data-i18n="footer.visit">Visit</h4>
       <ul class="visit-list">
-        <li>52 Nguyen Thai Hoc, Ba Dinh, Hanoi</li>
+        <li data-i18n="footer.address">52 Nguyen Thai Hoc, Ba Dinh, Hanoi</li>
         <li>+84 888 104 166</li>
-        <li>Open daily, 10am – 8pm</li>
+        <li data-i18n="footer.hours">Open daily, 10am – 8pm</li>
       </ul>
     </div>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 NAEIL. All rights reserved.</p>
+    <p data-i18n="footer.copyright">© 2026 NAEIL. All rights reserved.</p>
   </div>
 </footer>
 
@@ -192,59 +213,76 @@
     </div>
     <nav class="mega-menu-list">
       <div class="mega-menu-group">
-        <span class="mega-menu-group-label">Services</span>
+        <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Nail</span>
-              <span class="mega-menu-item-desc">Precision gel &amp; lacquer artistry</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Hair</span>
-              <span class="mega-menu-item-desc">Restorative head spa rituals</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Lash</span>
-              <span class="mega-menu-item-desc">Korean lash lift &amp; tint</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
       <div class="mega-menu-group">
-        <span class="mega-menu-group-label">Explore</span>
+        <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">About</span>
-              <span class="mega-menu-item-desc">Our philosophy &amp; ritual</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item active">
             <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Visit</span>
-              <span class="mega-menu-item-desc">Location &amp; opening hours</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
+      <div class="mega-menu-group mega-menu-lang">
+        <span class="mega-menu-group-label" data-i18n="lang.label">Language</span>
+        <div class="mega-menu-lang-options">
+          <button type="button" class="mega-menu-lang-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
     </nav>
     <div class="mega-menu-bottom">
       <button type="button" class="mega-menu-book-btn" data-book-trigger>
-        Book your appointment
+        <span data-i18n="megamenu.book">Book your appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
     </div>
@@ -255,37 +293,37 @@
 <div class="booking-modal-overlay" id="bookingModalOverlay" aria-hidden="true">
   <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
     <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
-    <span class="booking-modal-eyebrow">Get in touch</span>
-    <h3 id="bookingModalTitle" class="booking-modal-title">Book your appointment</h3>
-    <p class="booking-modal-sub">Choose how you'd like to reach us.</p>
+    <span class="booking-modal-eyebrow" data-i18n="booking.eyebrow">Get in touch</span>
+    <h3 id="bookingModalTitle" class="booking-modal-title" data-i18n="booking.title">Book your appointment</h3>
+    <p class="booking-modal-sub" data-i18n="booking.sub">Choose how you'd like to reach us.</p>
     <div class="booking-modal-options">
       <a class="booking-option" href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/whatsapp.svg" alt=""></span>
-        <span class="booking-option-text"><strong>WhatsApp</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.whatsapp">WhatsApp</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://zalo.me/0888104166" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.7 1.5 5.1 3.9 6.7-.2.9-.7 2.4-1 3.2-.1.3.2.6.5.5 1.5-.6 3-1.4 3.6-1.8.9.2 2 .3 3 .3 5.5 0 10-3.8 10-8.5S17.5 3 12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
         </span>
-        <span class="booking-option-text"><strong>Zalo</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.zalo">Zalo</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="tel:+84888104166">
         <span class="booking-option-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h3.5l1.5 4.5-2 1.5a11 11 0 0 0 6 6l1.5-2L19 15.5V19a1 1 0 0 1-1 1C10.5 20 4 13.5 4 6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
         </span>
-        <span class="booking-option-text"><strong>Phone</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.phone">Phone</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://www.instagram.com/naeilnailbar/" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/instagram.svg" alt=""></span>
-        <span class="booking-option-text"><strong>Instagram</strong><small>@naeilnailbar</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.instagram">Instagram</strong><small>@naeilnailbar</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://www.facebook.com/profile.php?id=61591534436233" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/facebook.svg" alt=""></span>
-        <span class="booking-option-text"><strong>Facebook</strong><small>NAEIL Nail Bar</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.facebook">Facebook</strong><small>NAEIL Nail Bar</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/i18n.js"></script>
 </head>
 <body>
 
@@ -24,16 +25,36 @@
       <img src="images/icons/logo.svg" alt="Maeil" class="logo-img">
     </a>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="nail.html">Nail</a></li>
-      <li><a href="head-spa.html">Hair</a></li>
-      <li><a href="lash.html">Lash</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="visit.html">Visit</a></li>
+      <li><a href="/" data-i18n="nav.home">Home</a></li>
+      <li><a href="nail.html" data-i18n="nav.nail">Nail</a></li>
+      <li><a href="head-spa.html" data-i18n="nav.hair">Hair</a></li>
+      <li><a href="lash.html" data-i18n="nav.lash">Lash</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About</a></li>
+      <li><a href="visit.html" data-i18n="nav.visit">Visit</a></li>
     </ul>
     <div class="navbar-right">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <span class="lang-switcher-label">EN</span>
+          <span class="lang-switcher-chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="lang-dropdown" role="listbox" aria-label="Select language">
+          <button type="button" class="lang-dropdown-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
       <button type="button" class="nav-book-btn" data-book-trigger aria-label="Open booking options">
-        Book an appointment
+        <span data-i18n="nav.book">Book an appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="megaMenuOverlay">
@@ -43,31 +64,31 @@
   </nav>
 
   <div class="hero-content about-hero-content">
-    <span class="about-eyebrow-sm">ABOUT NAEIL</span>
-    <h1 class="about-hero-title"><span class="about-hero-line">Less effort.</span><br><span class="about-hero-line">More present.</span></h1>
-    <p class="about-hero-desc">NAEIL is a modern beauty studio offering exceptional beauty experiences. Thoughtfully crafted rituals for those who appreciate precision, comfort and calm.</p>
+    <span class="about-eyebrow-sm" data-i18n="about.hero.eyebrow">ABOUT NAEIL</span>
+    <h1 class="about-hero-title"><span class="about-hero-line" data-i18n="about.hero.line1">Less effort.</span><br><span class="about-hero-line" data-i18n="about.hero.line2">More present.</span></h1>
+    <p class="about-hero-desc" data-i18n="about.hero.desc">NAEIL is a modern beauty studio offering exceptional beauty experiences. Thoughtfully crafted rituals for those who appreciate precision, comfort and calm.</p>
     <a href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer" class="btn btn-light" aria-label="Book your appointment via WhatsApp">
-      Book your appointment
+      <span data-i18n="about.hero.cta">Book your appointment</span>
       <span class="btn-arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
 
-  <div class="scroll-hint">scroll to discover</div>
+  <div class="scroll-hint" data-i18n="home.hero.scroll">scroll to discover</div>
 </header>
 
 <!-- ============ BRAND PHILOSOPHY ============ -->
 <section class="about-philosophy">
   <div class="about-philosophy-inner">
     <div class="about-philosophy-text reveal">
-      <p class="about-quote">We believe beauty should never feel rushed.</p>
-      <p class="about-philosophy-copy">Every ritual at NAEIL is designed to create a moment of stillness through thoughtful techniques, clean products and intentional care.</p>
+      <p class="about-quote" data-i18n="about.philosophy.quote">We believe beauty should never feel rushed.</p>
+      <p class="about-philosophy-copy" data-i18n="about.philosophy.copy">Every ritual at NAEIL is designed to create a moment of stillness through thoughtful techniques, clean products and intentional care.</p>
     </div>
 
     <div class="about-philosophy-media reveal">
       <div class="about-philosophy-img">
         <img src="images/about-page/philosophy-tools.jpg" alt="Minimal manicure tools resting on a natural stone tray in soft sunlight" loading="lazy">
       </div>
-      <span class="about-vertical-text">Thoughtful care.<br>In every detail.</span>
+      <span class="about-vertical-text"><span data-i18n="about.philosophy.vertical1">Thoughtful care.</span><br><span data-i18n="about.philosophy.vertical2">In every detail.</span></span>
     </div>
   </div>
 </section>
@@ -80,23 +101,23 @@
   <div class="about-values-overlay"></div>
 
   <div class="about-values-inner reveal-stagger">
-    <span class="about-values-label reveal">OUR VALUES</span>
+    <span class="about-values-label reveal" data-i18n="about.values.label">OUR VALUES</span>
     <div class="about-value reveal-item">
       <span class="about-value-num">01</span>
-      <h3 class="about-value-title">Precision</h3>
-      <p class="about-value-desc">Every detail matters. From the way we work to the products we choose.</p>
+      <h3 class="about-value-title" data-i18n="about.values.precision.title">Precision</h3>
+      <p class="about-value-desc" data-i18n="about.values.precision.copy">Every detail matters. From the way we work to the products we choose.</p>
     </div>
     <span class="about-value-divider"></span>
     <div class="about-value reveal-item">
       <span class="about-value-num">02</span>
-      <h3 class="about-value-title">Comfort</h3>
-      <p class="about-value-desc">Designed for complete ease and relaxation. A luxurious get away.</p>
+      <h3 class="about-value-title" data-i18n="about.values.comfort.title">Comfort</h3>
+      <p class="about-value-desc" data-i18n="about.values.comfort.copy">Designed for complete ease and relaxation. A luxurious get away.</p>
     </div>
     <span class="about-value-divider"></span>
     <div class="about-value reveal-item">
       <span class="about-value-num">03</span>
-      <h3 class="about-value-title">Presence</h3>
-      <p class="about-value-desc">A ritual that allows you to slow down and be fully in the moment.</p>
+      <h3 class="about-value-title" data-i18n="about.values.presence.title">Presence</h3>
+      <p class="about-value-desc" data-i18n="about.values.presence.copy">A ritual that allows you to slow down and be fully in the moment.</p>
     </div>
   </div>
 </section>
@@ -104,8 +125,8 @@
 <!-- ============ OUR RITUAL ============ -->
 <section class="about-ritual">
   <div class="about-ritual-inner">
-    <span class="about-ritual-label reveal">OUR RITUAL</span>
-    <h2 class="about-ritual-title reveal">A quiet rhythm, from arrival to ease.</h2>
+    <span class="about-ritual-label reveal" data-i18n="about.ritual.label">OUR RITUAL</span>
+    <h2 class="about-ritual-title reveal" data-i18n="about.ritual.title">A quiet rhythm, from arrival to ease.</h2>
   </div>
 
   <div class="ritual-timeline-scroll">
@@ -120,8 +141,8 @@
           </svg>
         </span>
         <span class="ritual-step-num">01</span>
-        <h3 class="ritual-step-title">Walk In</h3>
-        <p class="ritual-step-desc">Leave the outside world at the door.</p>
+        <h3 class="ritual-step-title" data-i18n="about.ritual.walkin.title">Walk In</h3>
+        <p class="ritual-step-desc" data-i18n="about.ritual.walkin.copy">Leave the outside world at the door.</p>
       </div>
 
       <div class="ritual-step reveal-item">
@@ -132,8 +153,8 @@
           </svg>
         </span>
         <span class="ritual-step-num">02</span>
-        <h3 class="ritual-step-title">Pause</h3>
-        <p class="ritual-step-desc">Take a breath. Settle in.</p>
+        <h3 class="ritual-step-title" data-i18n="about.ritual.pause.title">Pause</h3>
+        <p class="ritual-step-desc" data-i18n="about.ritual.pause.copy">Take a breath. Settle in.</p>
       </div>
 
       <div class="ritual-step reveal-item">
@@ -144,8 +165,8 @@
           </svg>
         </span>
         <span class="ritual-step-num">03</span>
-        <h3 class="ritual-step-title">Reset</h3>
-        <p class="ritual-step-desc">We care for every detail.</p>
+        <h3 class="ritual-step-title" data-i18n="about.ritual.reset.title">Reset</h3>
+        <p class="ritual-step-desc" data-i18n="about.ritual.reset.copy">We care for every detail.</p>
       </div>
 
       <div class="ritual-step reveal-item">
@@ -155,8 +176,8 @@
           </svg>
         </span>
         <span class="ritual-step-num">04</span>
-        <h3 class="ritual-step-title">Restore</h3>
-        <p class="ritual-step-desc">Feel lighter, inside out.</p>
+        <h3 class="ritual-step-title" data-i18n="about.ritual.restore.title">Restore</h3>
+        <p class="ritual-step-desc" data-i18n="about.ritual.restore.copy">Feel lighter, inside out.</p>
       </div>
 
       <div class="ritual-step reveal-item">
@@ -166,8 +187,8 @@
           </svg>
         </span>
         <span class="ritual-step-num">05</span>
-        <h3 class="ritual-step-title">Leave Lighter</h3>
-        <p class="ritual-step-desc">Carry the calm with you.</p>
+        <h3 class="ritual-step-title" data-i18n="about.ritual.leavelighter.title">Leave Lighter</h3>
+        <p class="ritual-step-desc" data-i18n="about.ritual.leavelighter.copy">Carry the calm with you.</p>
       </div>
     </div>
   </div>
@@ -177,9 +198,9 @@
 <section class="about-space">
   <div class="about-space-inner">
     <div class="about-space-text reveal">
-      <span class="about-space-label">OUR SPACE</span>
-      <h2 class="about-space-title">A place designed<br>to slow you down.</h2>
-      <p class="about-space-copy">Soft light, natural textures and intentional design — created to help you feel at ease from the moment you arrive.</p>
+      <span class="about-space-label" data-i18n="about.space.label">OUR SPACE</span>
+      <h2 class="about-space-title"><span data-i18n="about.space.title1">A place designed</span><br><span data-i18n="about.space.title2">to slow you down.</span></h2>
+      <p class="about-space-copy" data-i18n="about.space.copy">Soft light, natural textures and intentional design — created to help you feel at ease from the moment you arrive.</p>
     </div>
 
     <div class="about-space-gallery reveal">
@@ -201,10 +222,10 @@
 <!-- ============ FINAL CTA ============ -->
 <section class="about-final-cta">
   <div class="about-final-cta-inner reveal">
-    <h2 class="about-final-cta-title">Leave lighter.<br>Carry the calm with you.</h2>
-    <p class="about-final-cta-copy">Whether it's your first visit or your fiftieth, we'll be here.</p>
+    <h2 class="about-final-cta-title"><span data-i18n="about.finalcta.title1">Leave lighter.</span><br><span data-i18n="about.finalcta.title2">Carry the calm with you.</span></h2>
+    <p class="about-final-cta-copy" data-i18n="about.finalcta.copy">Whether it's your first visit or your fiftieth, we'll be here.</p>
     <a href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer" class="btn btn-outline about-final-cta-btn" aria-label="Book your appointment via WhatsApp">
-      Book your appointment
+      <span data-i18n="about.finalcta.btn">Book your appointment</span>
       <span class="btn-arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
@@ -214,7 +235,7 @@
 <footer class="site-footer" id="footer">
   <div class="footer-top">
     <div class="footer-brand reveal">
-      <p class="brand-script">naeil nail bar</p>
+      <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
       <div class="social-icons">
         <a href="#" aria-label="Facebook"><img src="images/icons/facebook.svg" alt=""></a>
         <a href="#" aria-label="TikTok"><img src="images/icons/tiktok.svg" alt=""></a>
@@ -225,38 +246,38 @@
 
     <div class="footer-links">
     <div class="footer-col">
-      <h4>Services</h4>
+      <h4 data-i18n="footer.services">Services</h4>
       <ul>
-        <li><a href="nail.html">Nail</a></li>
-        <li><a href="lash.html">Lash</a></li>
-        <li><a href="head-spa.html">Head Spa</a></li>
-        <li><a href="#">Rituals</a></li>
-        <li><a href="#">Gift Cards</a></li>
+        <li><a href="nail.html" data-i18n="footer.nail">Nail</a></li>
+        <li><a href="lash.html" data-i18n="footer.lash">Lash</a></li>
+        <li><a href="head-spa.html" data-i18n="footer.headspa">Head Spa</a></li>
+        <li><a href="#" data-i18n="footer.rituals">Rituals</a></li>
+        <li><a href="#" data-i18n="footer.giftcards">Gift Cards</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4>About</h4>
+      <h4 data-i18n="footer.about">About</h4>
       <ul>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Get in Touch</a></li>
+        <li><a href="about.html" data-i18n="footer.aboutlink2">About us</a></li>
+        <li><a href="#" data-i18n="footer.careers">Careers</a></li>
+        <li><a href="#" data-i18n="footer.getintouch">Get in Touch</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4>Visit</h4>
+      <h4 data-i18n="footer.visit">Visit</h4>
       <ul class="visit-list">
-        <li>52 Nguyen Thai Hoc, Ba Dinh, Hanoi</li>
+        <li data-i18n="footer.address">52 Nguyen Thai Hoc, Ba Dinh, Hanoi</li>
         <li>+84 888 104 166</li>
-        <li>Open daily, 10am – 8pm</li>
+        <li data-i18n="footer.hours">Open daily, 10am – 8pm</li>
       </ul>
     </div>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 NAEIL. All rights reserved.</p>
+    <p data-i18n="footer.copyright">© 2026 NAEIL. All rights reserved.</p>
   </div>
 </footer>
 
@@ -271,59 +292,76 @@
     </div>
     <nav class="mega-menu-list">
       <div class="mega-menu-group">
-        <span class="mega-menu-group-label">Services</span>
+        <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Nail</span>
-              <span class="mega-menu-item-desc">Precision gel &amp; lacquer artistry</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Hair</span>
-              <span class="mega-menu-item-desc">Restorative head spa rituals</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Lash</span>
-              <span class="mega-menu-item-desc">Korean lash lift &amp; tint</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
       <div class="mega-menu-group">
-        <span class="mega-menu-group-label">Explore</span>
+        <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item active">
             <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">About</span>
-              <span class="mega-menu-item-desc">Our philosophy &amp; ritual</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item">
             <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
             <span class="mega-menu-item-text">
-              <span class="mega-menu-item-title">Visit</span>
-              <span class="mega-menu-item-desc">Location &amp; opening hours</span>
+              <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
+      <div class="mega-menu-group mega-menu-lang">
+        <span class="mega-menu-group-label" data-i18n="lang.label">Language</span>
+        <div class="mega-menu-lang-options">
+          <button type="button" class="mega-menu-lang-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
     </nav>
     <div class="mega-menu-bottom">
       <button type="button" class="mega-menu-book-btn" data-book-trigger>
-        Book your appointment
+        <span data-i18n="megamenu.book">Book your appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
     </div>
@@ -334,37 +372,37 @@
 <div class="booking-modal-overlay" id="bookingModalOverlay" aria-hidden="true">
   <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
     <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
-    <span class="booking-modal-eyebrow">Get in touch</span>
-    <h3 id="bookingModalTitle" class="booking-modal-title">Book your appointment</h3>
-    <p class="booking-modal-sub">Choose how you'd like to reach us.</p>
+    <span class="booking-modal-eyebrow" data-i18n="booking.eyebrow">Get in touch</span>
+    <h3 id="bookingModalTitle" class="booking-modal-title" data-i18n="booking.title">Book your appointment</h3>
+    <p class="booking-modal-sub" data-i18n="booking.sub">Choose how you'd like to reach us.</p>
     <div class="booking-modal-options">
       <a class="booking-option" href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/whatsapp.svg" alt=""></span>
-        <span class="booking-option-text"><strong>WhatsApp</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.whatsapp">WhatsApp</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://zalo.me/0888104166" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.7 1.5 5.1 3.9 6.7-.2.9-.7 2.4-1 3.2-.1.3.2.6.5.5 1.5-.6 3-1.4 3.6-1.8.9.2 2 .3 3 .3 5.5 0 10-3.8 10-8.5S17.5 3 12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
         </span>
-        <span class="booking-option-text"><strong>Zalo</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.zalo">Zalo</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="tel:+84888104166">
         <span class="booking-option-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h3.5l1.5 4.5-2 1.5a11 11 0 0 0 6 6l1.5-2L19 15.5V19a1 1 0 0 1-1 1C10.5 20 4 13.5 4 6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
         </span>
-        <span class="booking-option-text"><strong>Phone</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.phone">Phone</strong><small>+84 888 104 166</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://www.instagram.com/naeilnailbar/" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/instagram.svg" alt=""></span>
-        <span class="booking-option-text"><strong>Instagram</strong><small>@naeilnailbar</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.instagram">Instagram</strong><small>@naeilnailbar</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
       <a class="booking-option" href="https://www.facebook.com/profile.php?id=61591534436233" target="_blank" rel="noopener noreferrer">
         <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/facebook.svg" alt=""></span>
-        <span class="booking-option-text"><strong>Facebook</strong><small>NAEIL Nail Bar</small></span>
+        <span class="booking-option-text"><strong data-i18n="booking.facebook">Facebook</strong><small>NAEIL Nail Bar</small></span>
         <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
