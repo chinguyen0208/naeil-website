@@ -201,9 +201,11 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.2) 100%);
 }
 
-/* Two-part layout — logo stays in its familiar top-left spot, while
-   the Book CTA and the hamburger (which opens the mega-menu) sit
-   together as a right-hand cluster. */
+/* Mobile default (<1024px): logo left, hamburger-only cluster right —
+   opens the mega-menu drawer. At desktop (>=1024px) this switches to a
+   three-part layout — logo / centered inline links / Book CTA — with
+   the hamburger and drawer disabled entirely; see the
+   min-width:1024px block further down. */
 .navbar {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -239,6 +241,8 @@ img { max-width: 100%; display: block; }
 .navbar.is-fixed .nav-toggle span { background: var(--ink); }
 .navbar.is-fixed .nav-book-btn { border-color: rgba(0,0,0,0.35); color: var(--ink); }
 .navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.navbar.is-fixed .nav-links a { color: var(--ink); opacity: .7; }
+.navbar.is-fixed .nav-links a:hover { opacity: 1; }
 
 .logo {
   position: relative;
@@ -272,10 +276,8 @@ img { max-width: 100%; display: block; }
   transition: opacity .3s ease;
 }
 
-/* Hamburger — always visible (not just on mobile) and opens the
-   full mega-menu drawer, in the spirit of rhodeskin.com's nav. Sits
-   in the right-hand cluster next to the Book CTA; the logo keeps its
-   familiar top-left spot. */
+/* Hamburger — mobile-only (<1024px) trigger for the mega-menu drawer.
+   Hidden entirely at desktop widths, where inline links replace it. */
 .nav-toggle {
   display: flex;
   flex-direction: column;
@@ -287,11 +289,23 @@ img { max-width: 100%; display: block; }
 }
 .nav-toggle span { width: 26px; height: 2px; background: var(--white); display: block; transition: background-color .3s ease; }
 
-/* ---- "Book →" nav CTA — hidden on load, fades in once the hero scrolls
-   out of view. Stays in the DOM/layout at all times so the header never
-   shifts width when it appears (opacity + transform only). ---- */
+/* Desktop-only inline nav links (Home/Nail/Hair/Lash/About/Visit) —
+   hidden by default (mobile uses the hamburger + drawer instead) and
+   shown/centered in the min-width:1024px block below. */
+.nav-links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- "Book an appointment →" nav CTA. Hidden on mobile (<1024px) —
+   the mobile top bar shows only the logo + hamburger, with booking
+   handled by the hero CTA and the drawer's own Book row. At desktop
+   it becomes a persistent, always-visible outlined pill overlaying
+   the hero, per the min-width:1024px block below. ---- */
 .nav-book-btn {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 8px;
   height: 44px;
@@ -305,15 +319,49 @@ img { max-width: 100%; display: block; }
   letter-spacing: .02em;
   white-space: nowrap;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition: opacity .5s cubic-bezier(.16,.8,.24,1), transform .5s cubic-bezier(.16,.8,.24,1), background-color .25s ease, border-color .25s ease, color .25s ease;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
 }
-.nav-book-btn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .nav-book-btn:hover { background: rgba(255,255,255,0.14); }
 .nav-book-btn .btn-arrow { transition: transform .25s ease; }
 .nav-book-btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* =====================================================
+   DESKTOP NAVIGATION (>=1024px) — transparent bar overlaying the hero:
+   logo left, inline links centered, outlined Book CTA right. Below this
+   breakpoint the mobile logo + hamburger (opening the mega-menu drawer
+   below) is used instead — the two never appear at the same time.
+   ===================================================== */
+@media (min-width: 1024px) {
+  .navbar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 24px;
+  }
+  .logo { justify-self: start; }
+
+  .nav-links {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 2.2vw, 40px);
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .03em;
+    color: var(--white);
+    text-decoration: none;
+    opacity: .9;
+    transition: opacity .25s ease, color .25s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .navbar-right { justify-self: end; }
+  .nav-toggle { display: none; }
+  .nav-book-btn { display: inline-flex; }
+}
 
 /* =====================================================
    MEGA MENU — opened by the hamburger, in the spirit of
@@ -827,7 +875,6 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) {
   .navbar { padding: 24px var(--gutter) 0; }
   .navbar-right { gap: 14px; }
-  .nav-book-btn { height: 42px; padding: 0 20px; font-size: 13px; }
   .mega-menu { max-width: none; padding: 24px var(--gutter) 32px; }
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
