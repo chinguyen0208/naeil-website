@@ -568,7 +568,11 @@ img { max-width: 100%; display: block; }
   justify-content: flex-end;
   align-items: flex-end;
   gap: 30px;
-  padding: clamp(120px, 20vw, 300px) var(--gutter-wide) clamp(40px, 6vw, 100px) clamp(24px, 12vw, 200px);
+  /* Right edge (where the text/CTA sit, closest to the nav's own
+     right-side controls) is inset 50px more than the navbar's own
+     horizontal padding, at every tier — see the shared note above
+     .navbar and the <720px override below. */
+  padding: clamp(120px, 20vw, 300px) 130px clamp(40px, 6vw, 100px) clamp(24px, 12vw, 200px);
 }
 .hero-title {
   align-self: stretch;
@@ -910,9 +914,20 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 720px) {
-  .navbar { padding: 24px var(--gutter) 0; }
+  /* Minimum 50px horizontal inset, on every page, at every width — the
+     shared --gutter token floors at 24px on narrow phones, which is
+     below that minimum, so the nav uses its own raised floor here. */
+  .navbar { padding: 24px clamp(50px, 6vw, 80px) 0; }
   .navbar-right { gap: 14px; }
   .mega-menu { max-width: none; padding: 24px var(--gutter) 32px; }
+
+  /* Hero text/CTA box stays 50px past the navbar's own padding at this
+     tier too (nav = 50px here, so hero = 100px). */
+  .hero-content { padding-right: 100px; }
+  .nail-hero-content { padding-left: 100px; padding-right: 100px; }
+  .spa-hero-content { padding-left: 100px; padding-right: 100px; }
+  .about-hero-content { padding-left: 100px; }
+  .visit-hero-inner { padding-left: 100px; padding-right: 100px; }
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
   .footer-links {
@@ -939,7 +954,9 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   align-items: flex-start;
   gap: 30px;
-  padding: clamp(120px, 20vw, 268px) var(--gutter-wide) clamp(40px, 6vw, 100px) var(--gutter-wide);
+  /* Left edge (where the text starts) inset 50px more than the
+     navbar's own horizontal padding — see note above .navbar. */
+  padding: clamp(120px, 20vw, 268px) 130px clamp(40px, 6vw, 100px) 130px;
   flex: 1;
 }
 .nail-hero-title {
@@ -1863,7 +1880,9 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: clamp(28px, 4vw, 59px);
   text-align: center;
-  padding: clamp(90px, 18vw, 134px) clamp(24px, 8vw, 100px) clamp(60px, 12vw, 150px);
+  /* Both edges inset 50px more than the navbar's own horizontal
+     padding — see note above .navbar. */
+  padding: clamp(90px, 18vw, 134px) 130px clamp(60px, 12vw, 150px);
 }
 .spa-title {
   color: #F3F3F3;
@@ -2045,6 +2064,11 @@ img { max-width: 100%; display: block; }
   align-items: flex-start;
   text-align: left;
   padding-top: clamp(80px, 14vw, 200px);
+  /* Unlike Home (right-aligned, so .hero-content's large left value is
+     just compositional space), About is left-aligned — its LEFT edge
+     is the one that needs to track the navbar, inset 50px more than
+     the navbar's own horizontal padding (see note above .navbar). */
+  padding-left: 130px;
 }
 .about-hero-content .btn {
   width: auto;
@@ -2657,7 +2681,9 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 var(--gutter-wide);
+  /* Both edges inset 50px more than the navbar's own horizontal
+     padding — see note above .navbar. */
+  padding: 0 130px;
   box-sizing: border-box;
 }
 .visit-hero-content {
