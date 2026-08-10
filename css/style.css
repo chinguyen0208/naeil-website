@@ -347,10 +347,12 @@ img { max-width: 100%; display: block; }
     gap: clamp(20px, 2.2vw, 40px);
   }
   .nav-links a {
-    font-family: var(--font-body);
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: 21.35px;
     font-weight: 400;
-    letter-spacing: .03em;
+    line-height: normal;
+    letter-spacing: -0.427px;
+    text-align: center;
     color: var(--white);
     text-decoration: none;
     opacity: .9;
