@@ -916,8 +916,13 @@ img { max-width: 100%; display: block; }
   .hero-title, .hero-sub { text-align: left; white-space: normal; }
   .hero-bottom-row { justify-content: flex-start; }
   .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
-  .spa-hero-content { align-items: flex-start; text-align: left; }
-  .spa-title, .spa-sub, .spa-hero-desc { text-align: left; }
+  /* .spa-hero-content's align-items/text-align and .spa-title's
+     text-align now live next to their own base rules further down
+     (search "Must come after the base rule above") — a declaration
+     here would lose the cascade to those later, unconditional base
+     rules and silently do nothing. .spa-sub/.spa-hero-desc are safe
+     to set here since their base rules never declare text-align. */
+  .spa-sub, .spa-hero-desc { text-align: left; }
 }
 
 @media (max-width: 720px) {
@@ -1971,7 +1976,17 @@ img { max-width: 100%; display: block; }
   padding: clamp(90px, 18vw, 134px) 130px clamp(60px, 12vw, 150px);
 }
 /* Must come after the base rule above — see the note on
-   .nail-hero-content's identical override for why. */
+   .nail-hero-content's identical override for why. Also true of
+   align-items/text-align below: an identical override for these two
+   properties used to live in the shared @media block near the top of
+   the file, but it sat BEFORE this base rule (which sets both to
+   "center" unconditionally for the desktop composition), so it lost
+   the cascade and Head Spa's mobile hero silently stayed centered —
+   this is what made "HEAD SPA" look off-center against the correctly
+   left-aligned copy beneath it. */
+@media (max-width: 1023px) {
+  .spa-hero-content { align-items: flex-start; text-align: left; }
+}
 @media (max-width: 720px) {
   .spa-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
 }
@@ -1983,6 +1998,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: 9.6px;
   text-transform: uppercase;
   text-align: center;
+}
+/* Must come after the base rule above — same cascade reason as
+   .spa-hero-content's override. */
+@media (max-width: 1023px) {
+  .spa-title { text-align: left; }
 }
 .spa-sub {
   font-family: var(--font-display);
