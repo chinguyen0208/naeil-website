@@ -1024,6 +1024,9 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   margin: 0;
 }
+/* Kept for backward compatibility only — no longer used in nail.html's
+   markup (see .nail-hero-sub / .nail-hero-desc below, which now sit as
+   direct .nail-hero-content children, matching Lash's flat structure). */
 .nail-hero-bottom-row {
   display: flex;
   align-items: center;
@@ -1031,12 +1034,27 @@ img { max-width: 100%; display: block; }
   align-self: stretch;
   background: rgba(255,255,255,0);
 }
+/* Short tagline (e.g. "Refined beauty without compromise.") — matches
+   .lash-sub's typography exactly, so Nail's hero reads with the same
+   visual weight/rhythm as the Lash reference. */
 .nail-hero-sub {
+  align-self: stretch;
   color: #FFF;
   font-family: var(--font-display);
-  font-size: clamp(15px, 1.6vw, 24px);
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+/* Longer supporting copy — matches .lash-hero-desc's typography and
+   661px column width, so it doesn't stretch wider than Lash's does. */
+.nail-hero-desc {
+  max-width: 661px;
+  color: #FFF;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: normal;
   letter-spacing: -0.48px;
   margin: 0;
 }
@@ -1220,7 +1238,11 @@ img { max-width: 100%; display: block; }
      the size keeps tapering smoothly past 1024px instead of jumping —
      the two formulas agree almost exactly at the 1023/1024 boundary. */
   .nail-hero-title { font-size: clamp(32px, 6.5vw, 68px); letter-spacing: clamp(4px, 0.94vw, 9.6px); text-align: left; }
+  /* Matches .lash-sub / .lash-hero-desc exactly at this breakpoint —
+     neither re-caps font-size here, they just go left-aligned (the
+     base clamp() already floors out gracefully on its own). */
   .nail-hero-sub { text-align: left; }
+  .nail-hero-desc { text-align: left; max-width: none; }
   .nail-hero-bottom-row { justify-content: flex-start; }
 }
 
@@ -1335,7 +1357,7 @@ img { max-width: 100%; display: block; }
 
 /* Hero intro (runs on load, not scroll) */
 .hero-title, .hero-sub, .hero-content .btn,
-.nail-hero-title, .nail-hero-bottom-row, .nail-hero-content .btn,
+.nail-hero-title, .nail-hero-sub, .nail-hero-desc, .nail-hero-content .btn,
 .spa-title, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
 .lash-hero-desc {
   opacity: 0;
@@ -1343,8 +1365,8 @@ img { max-width: 100%; display: block; }
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
 }
 .hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
-.hero-bottom-row, .nail-hero-bottom-row, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
-.spa-hero-desc { animation-delay: .45s; }
+.hero-bottom-row, .nail-hero-sub, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
+.spa-hero-desc, .nail-hero-desc { animation-delay: .45s; }
 .hero-content .btn, .nail-hero-content .btn, .spa-hero-content .btn { animation-delay: .6s; }
 @keyframes heroIn {
   to { opacity: 1; transform: translateY(0); }
