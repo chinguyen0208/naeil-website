@@ -201,12 +201,17 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.2) 100%);
 }
 
+/* Three-part grid — hamburger (left) / logo (true center) / Book CTA
+   (right) — mirrors the rhodeskin.com header pattern. A grid with a
+   centered middle column keeps the logo perfectly centered even when
+   the toggle and Book button differ in width, which flex space-between
+   could not guarantee. */
 .navbar {
   position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 129px;
   box-sizing: border-box;
@@ -215,16 +220,6 @@ img { max-width: 100%; display: block; }
   padding: 10px 80px;
   background: transparent;
   transition: background-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
-}
-
-/* Right-hand cluster (toggle + nav links + Book CTA), grouped as a
-   single flex item so `.navbar`'s space-between only ever balances two
-   things: the logo on the left and this cluster on the right. This is
-   what keeps the nav links hugging the right edge instead of drifting
-   to the visual center of the header. */
-.navbar-right {
-  display: flex;
-  align-items: center;
 }
 
 /* ---- Sticky state — activated via JS once the hero has scrolled out of view ---- */
@@ -237,14 +232,13 @@ img { max-width: 100%; display: block; }
 }
 .navbar.is-fixed .logo-img { opacity: 0; }
 .navbar.is-fixed .logo::after { opacity: 1; }
-.navbar.is-fixed .nav-links a { color: var(--ink); opacity: .82; }
-.navbar.is-fixed .nav-links a:hover,
-.navbar.is-fixed .nav-links a.active { opacity: 1; border-bottom-color: rgba(0,0,0,0.6); }
 .navbar.is-fixed .nav-toggle span { background: var(--ink); }
 .navbar.is-fixed .nav-book-btn { border-color: rgba(0,0,0,0.35); color: var(--ink); }
 .navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
 .logo {
+  grid-column: 2;
+  justify-self: center;
   position: relative;
   display: inline-flex;
 }
@@ -276,23 +270,12 @@ img { max-width: 100%; display: block; }
   transition: opacity .3s ease;
 }
 
-/* "Navigation" auto-layout container: hugs its own content (no fixed
-   width, no stretching) with its own internal padding and a single,
-   consistent 40px item spacing — not individual per-link margins. */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 10px 50px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  letter-spacing: .02em;
-}
-.nav-links a { opacity: .92; transition: opacity .2s ease, color .3s ease; }
-.nav-links a:hover, .nav-links a.active { opacity: 1; border-bottom: 1px solid rgba(255,255,255,0.7); padding-bottom: 4px; }
-
+/* Hamburger — always visible (not just on mobile) and opens the
+   full mega-menu drawer, in the spirit of rhodeskin.com's nav. */
 .nav-toggle {
-  display: none;
+  grid-column: 1;
+  justify-self: start;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   background: none;
@@ -306,6 +289,8 @@ img { max-width: 100%; display: block; }
    out of view. Stays in the DOM/layout at all times so the header never
    shifts width when it appears (opacity + transform only). ---- */
 .nav-book-btn {
+  grid-column: 3;
+  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -330,10 +315,142 @@ img { max-width: 100%; display: block; }
 .nav-book-btn .btn-arrow { transition: transform .25s ease; }
 .nav-book-btn:hover .btn-arrow { transform: translateX(3px); }
 
-/* Mobile-menu fallback entry — always reachable inside the offcanvas
-   menu regardless of scroll position, so booking access is never lost
-   on small screens. Hidden on desktop. */
-.nav-book-mobile { display: none; }
+/* =====================================================
+   MEGA MENU — opened by the hamburger, in the spirit of
+   rhodeskin.com's nav drawer: full-height panel, dark backdrop,
+   each destination shown as an image + title + description row,
+   with a staggered fade/slide reveal on open.
+   ===================================================== */
+.mega-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+.mega-menu-overlay.is-open { opacity: 1; visibility: visible; }
+
+.mega-menu {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background: var(--cream);
+  box-shadow: -12px 0 48px rgba(0,0,0,0.16);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 28px clamp(24px, 5vw, 48px) 40px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .5s cubic-bezier(.16,.8,.24,1);
+}
+.mega-menu-overlay.is-open .mega-menu { transform: translateX(0); }
+
+.mega-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+.mega-menu-logo .logo-img { height: 22px; display: block; filter: brightness(0); }
+.mega-menu-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.mega-menu-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.mega-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mega-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: var(--white);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.mega-menu-overlay.is-open .mega-menu-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .5s ease, transform .5s ease, background-color .25s ease, border-color .25s ease;
+}
+.mega-menu-overlay.is-open .mega-menu-item:nth-child(1) { transition-delay: .1s; }
+.mega-menu-overlay.is-open .mega-menu-item:nth-child(2) { transition-delay: .16s; }
+.mega-menu-overlay.is-open .mega-menu-item:nth-child(3) { transition-delay: .22s; }
+.mega-menu-overlay.is-open .mega-menu-item:nth-child(4) { transition-delay: .28s; }
+.mega-menu-overlay.is-open .mega-menu-item:nth-child(5) { transition-delay: .34s; }
+.mega-menu-item:hover, .mega-menu-item.active { background: var(--cream-deep); border-color: rgba(0,0,0,0.18); }
+
+.mega-menu-item-img {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--tan);
+}
+.mega-menu-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.mega-menu-item-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.mega-menu-item-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.mega-menu-item-desc { font-family: var(--font-body); font-size: 13px; color: var(--ink-soft); }
+.mega-menu-item-arrow {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink-soft);
+  transition: transform .25s ease;
+}
+.mega-menu-item:hover .mega-menu-item-arrow { transform: translateX(3px); }
+
+.mega-menu-bottom { margin-top: auto; padding-top: 32px; }
+.mega-menu-book-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background-color .25s ease;
+}
+.mega-menu-book-btn:hover { background: #000; }
+.mega-menu-book-btn .btn-arrow { transition: transform .25s ease; }
+.mega-menu-book-btn:hover .btn-arrow { transform: translateX(3px); }
 
 .hero-content {
   position: relative;
@@ -673,52 +790,9 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — Mobile (nav collapse)
    ===================================================== */
 @media (max-width: 720px) {
-  .nav-toggle { display: flex; }
-  .nav-links {
-    position: fixed;
-    inset: 0 0 0 auto;
-    width: 70vw;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--ink);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 28px;
-    padding: 0 var(--gutter);
-    transform: translateX(100%);
-    transition: transform .35s ease;
-  }
-  .nav-links.open { transform: translateX(0); }
   .navbar { padding: 24px var(--gutter) 0; }
   .nav-book-btn { height: 42px; padding: 0 20px; font-size: 13px; }
-
-  /* Always-available Book entry inside the offcanvas menu, independent
-     of scroll position — ensures booking access is never lost on mobile. */
-  .nav-book-mobile {
-    display: block;
-    margin-top: 8px;
-  }
-  .nav-book-mobile-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    height: 44px;
-    padding: 0 24px;
-    border-radius: 9999px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.7);
-    color: var(--white);
-    font-family: var(--font-display);
-    font-size: 14px;
-    letter-spacing: .02em;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background-color .25s ease, border-color .25s ease;
-  }
-  .nav-book-mobile-btn:hover { background: rgba(255,255,255,0.14); }
-  .nav-book-mobile-btn .btn-arrow { transition: transform .25s ease; }
-  .nav-book-mobile-btn:hover .btn-arrow { transform: translateX(3px); }
+  .mega-menu { max-width: none; padding: 24px var(--gutter) 32px; }
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
   .footer-links {
