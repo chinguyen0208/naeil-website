@@ -201,17 +201,15 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.2) 100%);
 }
 
-/* Three-part grid — hamburger (left) / logo (true center) / Book CTA
-   (right) — mirrors the rhodeskin.com header pattern. A grid with a
-   centered middle column keeps the logo perfectly centered even when
-   the toggle and Book button differ in width, which flex space-between
-   could not guarantee. */
+/* Two-part layout — logo stays in its familiar top-left spot, while
+   the Book CTA and the hamburger (which opens the mega-menu) sit
+   together as a right-hand cluster. */
 .navbar {
   position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 129px;
   box-sizing: border-box;
@@ -220,6 +218,12 @@ img { max-width: 100%; display: block; }
   padding: 10px 80px;
   background: transparent;
   transition: background-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 /* ---- Sticky state — activated via JS once the hero has scrolled out of view ---- */
@@ -237,8 +241,6 @@ img { max-width: 100%; display: block; }
 .navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
 .logo {
-  grid-column: 2;
-  justify-self: center;
   position: relative;
   display: inline-flex;
 }
@@ -271,10 +273,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* Hamburger — always visible (not just on mobile) and opens the
-   full mega-menu drawer, in the spirit of rhodeskin.com's nav. */
+   full mega-menu drawer, in the spirit of rhodeskin.com's nav. Sits
+   in the right-hand cluster next to the Book CTA; the logo keeps its
+   familiar top-left spot. */
 .nav-toggle {
-  grid-column: 1;
-  justify-self: start;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -289,8 +291,6 @@ img { max-width: 100%; display: block; }
    out of view. Stays in the DOM/layout at all times so the header never
    shifts width when it appears (opacity + transform only). ---- */
 .nav-book-btn {
-  grid-column: 3;
-  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -791,6 +791,7 @@ img { max-width: 100%; display: block; }
    ===================================================== */
 @media (max-width: 720px) {
   .navbar { padding: 24px var(--gutter) 0; }
+  .navbar-right { gap: 14px; }
   .nav-book-btn { height: 42px; padding: 0 20px; font-size: 13px; }
   .mega-menu { max-width: none; padding: 24px var(--gutter) 32px; }
 
