@@ -1,18 +1,41 @@
-// Mobile nav toggle
-const toggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
+// Mega menu — hamburger opens a full drawer (rhodeskin.com-style) listing
+// every destination with a thumbnail, title and short description. The
+// staggered reveal of each row is driven entirely by CSS transition-delay
+// once `.is-open` is toggled here.
+const navToggle = document.querySelector('.nav-toggle');
+const megaMenuOverlay = document.getElementById('megaMenuOverlay');
 
-if (toggle && navLinks) {
-  toggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
+function closeMegaMenu() {
+  if (!megaMenuOverlay) return;
+  megaMenuOverlay.classList.remove('is-open');
+  megaMenuOverlay.setAttribute('aria-hidden', 'true');
+  if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('modal-open');
+}
+
+if (navToggle && megaMenuOverlay) {
+  const megaMenuClose = document.getElementById('megaMenuClose');
+
+  function openMegaMenu() {
+    megaMenuOverlay.classList.add('is-open');
+    megaMenuOverlay.setAttribute('aria-hidden', 'false');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('modal-open');
+  }
+
+  navToggle.addEventListener('click', () => {
+    if (megaMenuOverlay.classList.contains('is-open')) closeMegaMenu();
+    else openMegaMenu();
   });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+  if (megaMenuClose) megaMenuClose.addEventListener('click', closeMegaMenu);
+  megaMenuOverlay.addEventListener('click', (e) => {
+    if (e.target === megaMenuOverlay) closeMegaMenu();
+  });
+  megaMenuOverlay.querySelectorAll('.mega-menu-item').forEach((link) => {
+    link.addEventListener('click', closeMegaMenu);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && megaMenuOverlay.classList.contains('is-open')) closeMegaMenu();
   });
 }
 
@@ -146,12 +169,13 @@ document.querySelectorAll('header.hero').forEach(function (hero) {
 
   function openModal(e) {
     if (e) e.preventDefault();
+    // Close the mega menu first, if open, so it doesn't sit behind the
+    // modal (e.g. when the trigger is the "Book" row inside the menu
+    // itself) — this must run before we lock body scroll below.
+    closeMegaMenu();
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
-    // Close the mobile offcanvas menu, if open, so it doesn't sit behind the modal.
-    if (navLinks) navLinks.classList.remove('open');
-    if (toggle) toggle.setAttribute('aria-expanded', 'false');
   }
   function closeModal() {
     overlay.classList.remove('is-open');
