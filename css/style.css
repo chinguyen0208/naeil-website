@@ -924,10 +924,20 @@ img { max-width: 100%; display: block; }
   /* Hero text/CTA box stays 50px past the navbar's own padding at this
      tier too (nav = 50px here, so hero = 100px). */
   .hero-content { padding-right: 100px; }
-  .nail-hero-content { padding-left: 100px; padding-right: 100px; }
-  .spa-hero-content { padding-left: 100px; padding-right: 100px; }
-  .about-hero-content { padding-left: 100px; }
-  .visit-hero-inner { padding-left: 100px; padding-right: 100px; }
+
+  /* Leading (logo-side) edge — reuses .hero-content's own left-padding
+     formula (clamp(24px, 12vw, 200px)) instead of the flat "nav+50"
+     value above. Lash/Home already use this formula unconditionally
+     for their left side, and at this tier it lands close to the
+     navbar/logo's own left edge — confirmed as the correct reference
+     composition. Nail/Head Spa/About/Visit previously used a flat
+     100px here, which sat noticeably further right than the logo;
+     matching the shared formula keeps every hero's leading edge
+     visually aligned with the logo at narrow widths. */
+  .nail-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+  .spa-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+  .about-hero-content { padding-left: clamp(24px, 12vw, 200px); }
+  .visit-hero-inner { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
 
   .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
   .footer-links {
