@@ -138,7 +138,6 @@ img { max-width: 100%; display: block; }
        .preloader-bg    — the page's own hero photo, blurred/tinted
        .preloader-content
          .preloader-logo — the real NAEIL mark (images/icons/logo.svg)
-         .preloader-text — "LOADING..."
    js/script.js adds .is-done once the hero image, fonts and the
    logo's own draw-in animation have all actually finished (see the
    comment there) — nothing here is hidden on a fixed timer. Colors
@@ -199,7 +198,6 @@ html.preload-active body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
 }
 /* The logo IS the loading animation — a slow diagonal reveal (clip-
    path sweeping the same direction the mark's two loops naturally
@@ -224,29 +222,10 @@ html.preload-active body {
   80%  { clip-path: polygon(0 0, 85% 0, 67% 100%, 0 100%); }
   100% { clip-path: polygon(0 0, 130% 0, 112% 100%, 0 100%); opacity: 1; }
 }
-.preloader-text {
-  font-family: var(--font-condensed);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0;
-  animation: preloaderTextPulse 2.2s ease-in-out infinite;
-}
-@keyframes preloaderTextPulse {
-  0%, 100% { opacity: .55; }
-  50%      { opacity: .9; }
-}
-@media (max-width: 480px) {
-  .preloader-content { gap: 14px; }
-  .preloader-text { font-size: 10px; letter-spacing: 2.4px; }
-}
-/* Respect reduced-motion: keep the brand moment (photo + logo + text)
-   but drop the sweeping reveal and pulse for a simple, quick fade. */
+/* Respect reduced-motion: keep the brand moment (photo + logo) but
+   drop the sweeping reveal for a simple, quick fade. */
 @media (prefers-reduced-motion: reduce) {
   .preloader-logo { animation: none; clip-path: none; opacity: 1; }
-  .preloader-text { animation: none; opacity: .75; }
   .preloader { transition-duration: .3s; }
 }
 
