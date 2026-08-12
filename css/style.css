@@ -2234,11 +2234,12 @@ img { max-width: 100%; display: block; }
   overflow-wrap: break-word;
 }
 .spa-sub {
-  /* Fixed 40px per request (not fluid) — same weight/letter-spacing/
-     line-height/color as before, only the size is now a flat value. */
+  /* Font-size matches .lash-sub's fluid scale exactly — clamp(24px,
+     3.2vw, 40px) — per request, replacing the earlier fixed 40px.
+     letter-spacing already matched (-0.48px). */
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 40px;
+  font-size: clamp(24px, 3.2vw, 40px);
   line-height: 1.25;
   letter-spacing: -0.48px;
   color: #FFF;
