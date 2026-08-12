@@ -535,10 +535,28 @@ html.preload-skip .preloader {
    below) is used instead — the two never appear at the same time.
    ===================================================== */
 @media (min-width: 1024px) {
+  /* Fluid horizontal compression (narrow-desktop fix) — logo size
+     (26px), nav-link font-size (21.35px), and every element's own
+     content (text, CTA, language selector) are NEVER touched below.
+     Only the SPACING around them compresses: outer nav padding, the
+     grid's column-gap, the gap between nav links, each link's own
+     inline padding, the navbar-right gap, and the Book CTA's padding.
+     Every clamp() here is calibrated so its ceiling is the exact
+     original fixed value, reached at/above 1440px (unchanged "large
+     desktop" look) and its floor is the tightest value used at
+     1024px, the lower edge of this same desktop tier — nothing new
+     happens below 1024px, where the existing hamburger/drawer nav
+     (untouched) takes over. white-space:nowrap on nav-links a is a
+     hard guarantee that labels never wrap regardless of how tight the
+     available space gets. grid-template-columns uses minmax(0, 1fr)
+     (not bare 1fr) so the two outer columns are allowed to shrink
+     toward the center column instead of forcing the whole grid wider
+     than the viewport. */
   .navbar {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    column-gap: 24px;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(10px, 3.37vw - 24.5px, 24px);
+    padding-inline: clamp(32px, 11.5vw - 86px, 80px);
   }
   .logo { justify-self: start; }
 
@@ -547,7 +565,7 @@ html.preload-skip .preloader {
     justify-self: center;
     align-items: center;
     justify-content: center;
-    gap: clamp(22px, 2.8vw, 36px);
+    gap: clamp(14px, 5.29vw - 40.15px, 36px);
   }
   .nav-links a {
     font-family: var(--font-display);
@@ -559,21 +577,23 @@ html.preload-skip .preloader {
     color: var(--white);
     text-decoration: none;
     opacity: .9;
-    padding-inline: 10px;
+    white-space: nowrap;
+    padding-inline: clamp(4px, 1.44vw - 10.8px, 10px);
     transition: opacity .25s ease, color .25s ease;
   }
   .nav-links a:hover { opacity: 1; }
 
-  .navbar-right { justify-self: end; }
+  .navbar-right { justify-self: end; gap: clamp(8px, 2.4vw - 16.6px, 18px); }
   .nav-toggle { display: none; }
-  .nav-book-btn { display: inline-flex; }
-  /* .lang-switcher's desktop display:flex override lives next to its
-     own base rule below (in the LANGUAGE SWITCHER section) — NOT here.
-     Putting it here would place an equal-specificity override BEFORE
-     the unconditional base rule that also sets `display`, and the
-     later, unconditional rule would win the cascade regardless of
-     this media query (same bug class fixed twice earlier on
-     .nail-hero-content / .spa-hero-content — see notes there). */
+  .nav-book-btn { display: inline-flex; padding-inline: clamp(14px, 2.89vw - 15.5px, 26px); }
+  /* .lang-switcher's desktop display:flex override (and its own
+     compressed margin-right) lives next to its own base rule below
+     (in the LANGUAGE SWITCHER section) — NOT here. Putting it here
+     would place an equal-specificity override BEFORE the unconditional
+     base rule that also sets `display`, and the later, unconditional
+     rule would win the cascade regardless of this media query (same
+     bug class fixed twice earlier on .nail-hero-content /
+     .spa-hero-content — see notes there). */
 }
 
 /* =====================================================
@@ -600,7 +620,13 @@ html.preload-skip .preloader {
   margin-right: 12px;
 }
 @media (min-width: 1024px) {
-  .lang-switcher { display: flex; }
+  /* Same fluid narrow-desktop compression as the nav block above —
+     ceiling (12px) matches the original fixed value at 1440px+,
+     floor (4px) is the tightest value at 1024px. */
+  .lang-switcher {
+    display: flex;
+    margin-right: clamp(4px, 1.92vw - 15.7px, 12px);
+  }
 }
 
 .lang-switcher-trigger {
