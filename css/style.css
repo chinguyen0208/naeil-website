@@ -2147,13 +2147,29 @@ img { max-width: 100%; display: block; }
    longer translation that wraps to more lines — push content up
    almost flush against it. Reserving 129px+ of padding before
    centering even begins means the content's top edge can never land
-   above that line, in any language, at any height. */
+   above that line, in any language, at any height.
+
+   padding-bottom's floor (56px+) exists for a different reason: the
+   scroll-hint below is pinned to the hero's true bottom edge (see
+   .spa-hero .scroll-hint), independent of this centered content
+   group — matching the Lash hero's "scroll to discover" position —
+   so this padding just keeps the CTA from ever crowding it. */
 .spa-hero {
   justify-content: center;
   min-height: 100vh;
   min-height: 100svh;
   padding-top: clamp(129px, 20vh, 180px);
-  padding-bottom: clamp(24px, 6vh, 64px);
+  padding-bottom: clamp(56px, 8vh, 90px);
+}
+/* Decoupled from the centered [title/subtitle/paragraph/CTA] group on
+   purpose, so it always sits at the true bottom of the hero — same
+   position the other hero pages get "for free" from .hero's shared
+   justify-content:flex-end, which .spa-hero no longer uses. */
+.spa-hero .scroll-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .spa-hero-content {
