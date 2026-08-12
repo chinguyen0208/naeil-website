@@ -79,6 +79,26 @@
         <span data-i18n="nav.book">Book an appointment</span>
         <span class="btn-arrow" aria-hidden="true">&rarr;</span>
       </button>
+      <div class="mobile-lang-switcher">
+        <button type="button" class="mobile-lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <span class="lang-switcher-label">EN</span>
+          <span class="mobile-lang-chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="mobile-lang-dropdown" role="listbox" aria-label="Select language">
+          <button type="button" class="mobile-lang-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span class="mobile-lang-code">EN</span>
+            <span class="mobile-lang-name" data-i18n="lang.en">English</span>
+          </button>
+          <button type="button" class="mobile-lang-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span class="mobile-lang-code">VI</span>
+            <span class="mobile-lang-name" data-i18n="lang.vi">Tiếng Việt</span>
+          </button>
+          <button type="button" class="mobile-lang-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span class="mobile-lang-code">中文</span>
+            <span class="mobile-lang-name" data-i18n="lang.zh">中文</span>
+          </button>
+        </div>
+      </div>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="megaMenuOverlay">
         <span></span><span></span><span></span>
       </button>

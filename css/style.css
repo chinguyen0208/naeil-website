@@ -684,6 +684,111 @@ html.preload-skip .preloader {
 .mega-menu-lang-option.is-selected .lang-check { opacity: 1; }
 
 /* =====================================================
+   MOBILE HEADER LANGUAGE SELECTOR — lives in the mobile-only
+   top bar (<1024px), between the Book button (hidden on mobile)
+   and the hamburger, so visually it sits right before the
+   hamburger: [ NAEIL ] ... [ VI ˅ ] [ ☰ ]. This is a separate,
+   mobile-only component from .lang-switcher above (desktop-only,
+   >=1024px) and from the Language group inside the mega-menu
+   drawer further below (left completely untouched, still there
+   as before) — all three reuse the same [data-lang-option] click
+   handling in i18n.js, so picking a language anywhere keeps every
+   instance on the page in sync. Deliberately quieter than the
+   desktop popover on purpose — small hairline-bordered card, no
+   9999px pill, no heavy shadow — so it reads as part of the
+   editorial header rather than a bolted-on generic UI widget. */
+.mobile-lang-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .mobile-lang-switcher { display: none; }
+}
+
+.mobile-lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--white);
+  opacity: .9;
+  transition: opacity .25s ease, color .25s ease;
+}
+.mobile-lang-trigger:hover { opacity: 1; }
+.navbar.is-fixed .mobile-lang-trigger { color: var(--ink); }
+
+.mobile-lang-chevron {
+  font-size: 9px;
+  line-height: 1;
+  opacity: .8;
+  transition: transform .25s ease;
+}
+.mobile-lang-switcher.is-open .mobile-lang-chevron { transform: rotate(180deg); }
+
+.mobile-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  min-width: 118px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  z-index: 10;
+}
+.mobile-lang-switcher.is-open .mobile-lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-lang-option {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  text-align: left;
+  color: var(--ink-soft);
+  opacity: .65;
+  transition: opacity .2s ease, color .2s ease;
+}
+.mobile-lang-option:hover { opacity: 1; }
+.mobile-lang-option.is-selected { color: var(--ink); opacity: 1; }
+.mobile-lang-option .mobile-lang-code {
+  font-size: 11px;
+  letter-spacing: .04em;
+  min-width: 26px;
+  flex: none;
+}
+.mobile-lang-option .mobile-lang-name {
+  font-size: 12.5px;
+}
+.mobile-lang-option.is-selected .mobile-lang-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =====================================================
    MEGA MENU — opened by the hamburger, in the spirit of
    rhodeskin.com's nav drawer: full-height panel, dark backdrop,
    each destination shown as an image + title + description row,
