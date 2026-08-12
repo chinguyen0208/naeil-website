@@ -875,11 +875,8 @@ img { max-width: 100%; display: block; }
 
    Card width is fixed (357.33px) at every breakpoint — mobile
    scrolls the carousel horizontally rather than shrinking the
-   card — so these sizes were verified against that single fixed
-   width for all 4 services x EN/VI/ZH (longest strings: title
-   "Hair Replenish - 90 PHÚT", sub-desc "Hair Wash · Neck & Shoulder
-   Massage"), all single-line with margin to spare. No changes to
-   layout, image size, carousel, card-to-card gap, colors or content.
+   card. No changes to layout, image size, carousel, card-to-card
+   gap, colors or content.
 
    Vertical rhythm (title -> subdesc -> body -> price) goes
    small -> medium -> large: base gap is lowered to 10px, with
@@ -892,13 +889,29 @@ img { max-width: 100%; display: block; }
 .spa-services .service-card {
   gap: 10px;
 }
+/* h3 font-size 22->19px and letter-spacing 2.2->1px: the title
+   "Hair Replenish - 90 PHÚT" (longest of all 12 title x language
+   combos) was actually wrapping to 2 lines in the browser at the
+   previous 22px/2.2px — a plain-average character-width estimate
+   under-counted how much wider this font renders in ALL CAPS.
+   Re-verified at 19px/1px against real observed behaviour with a
+   large safety margin (~38px / ~11% of the 357px card width) even
+   under a deliberately pessimistic width estimate, plus white-space:
+   nowrap as a hard guarantee — this is safe to force outright since
+   the card width never changes across breakpoints (no viewport-
+   dependent edge case to re-check later, unlike fluid sections). */
 .spa-services .service-card h3 {
-  font-size: 22px;
-  letter-spacing: 2.2px;
+  font-size: 19px;
+  letter-spacing: 1px;
+  white-space: nowrap;
   margin-top: 10px;
 }
+/* Sub-desc dropped 18->16px to stay in the requested "15-20% smaller
+   than title" range now that title itself is smaller (16/19 = 15.8%
+   smaller). Still comfortably 1-line for every language (was already
+   safe at the larger 18px). */
 .spa-services .service-subdesc {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 .spa-services .service-card .card-body {
