@@ -13,6 +13,15 @@
 <script src="js/i18n.js"></script>
 </head>
 <body>
+<script>
+(function(){
+  try {
+    if (sessionStorage.getItem('naeilPreloaderShown') === '1') {
+      document.documentElement.classList.add('preload-skip');
+    }
+  } catch (e) {}
+})();
+</script>
 
 <!-- ============ PRELOADER ============ -->
 <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">

@@ -149,6 +149,15 @@ html.preload-active body {
   overflow: hidden;
   height: 100%;
 }
+/* One-time welcome, not a per-page loader: a tiny synchronous inline
+   script at the very top of <body> (before the #preloader markup) adds
+   this class when sessionStorage shows the visitor already saw the
+   preloader earlier in this browser session. Because it runs before
+   the browser ever paints the #preloader div, this hides it with zero
+   flash on every page after the first. */
+html.preload-skip .preloader {
+  display: none !important;
+}
 .preloader {
   position: fixed;
   inset: 0;

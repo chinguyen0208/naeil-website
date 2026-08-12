@@ -14,9 +14,24 @@
 // Only once ALL of those are true do we fade the preloader out. The
 // single setTimeout below is an upper-bound safety net for a stalled
 // network/font, not something normal loads should ever reach.
+//
+// One-time welcome: this is meant to feel like a welcome screen on the
+// FIRST page a visitor lands on this session, not a loader that plays
+// again on every internal link click. A synchronous inline <script> at
+// the very top of <body> already added `preload-skip` to <html> (with
+// zero flash) if sessionStorage says this session already saw it — so
+// here we just need to bail out immediately in that case, and record
+// that it played once we actually finish the first one.
 (function () {
   var preloader = document.getElementById('preloader');
   if (!preloader) return;
+
+  var STORAGE_KEY = 'naeilPreloaderShown';
+
+  if (document.documentElement.classList.contains('preload-skip')) {
+    if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+    return;
+  }
 
   document.documentElement.classList.add('preload-active');
 
@@ -55,6 +70,7 @@
     if (finished) return;
     finished = true;
     clearTimeout(safetyTimer);
+    try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
     preloader.classList.add('is-done');
     document.documentElement.classList.remove('preload-active');
     var removed = false;
