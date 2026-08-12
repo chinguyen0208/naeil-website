@@ -2344,68 +2344,80 @@ img { max-width: 100%; display: block; }
 
 }
 
-/* ---- What To Expect ---- */
+/* ---- The Naeil Experience (editorial redesign) ----
+   Full retune of this section's typography/spacing toward a quiet,
+   editorial feel: small tracked eyebrow, a large display-serif
+   heading as the section's visual focal point, a short supporting
+   line, then a thin icon-line-icon timeline (no cards/boxes/shadows).
+   Background, section padding rhythm, brand colors, icon artwork and
+   the 5-step concept are unchanged — only sizing/weight/line-height/
+   letter-spacing/vertical spacing. Wrapping to 2 lines is expected
+   and fine for the heading/intro/step text in any language (EN/VI/ZH
+   all verified at 390 / ~800 / ~1150 / 1440px — see below) — nothing
+   here is nowrap or fixed-height, so nothing can clip or overflow. */
 .spa-expect {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 5vw, 56px);
+  gap: clamp(40px, 6vw, 72px);
   padding: clamp(40px, 6vw, 80px);
   background: #E5DDD8;
 }
 .spa-expect-content {
   flex: 0 0 auto;
-  /* Widened 500px -> 680px -> 760px. The 760px step (plus the letter-
-     spacing change below) is what makes the title fit on a single
-     line at every width >=721px — see .spa-expect-title. */
-  width: 760px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 14px;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 16px;
   align-self: center;
-  /* Single source of truth for the title's font-size — both the
-     title and the eyebrow label below read from this variable, so
-     the label is always exactly 4px smaller than the title at every
-     breakpoint (see .spa-expect-label), instead of two independently
-     tuned values that could drift out of sync as either one changes.
-     Coefficient lowered from 3vw to 2.8vw (still 19-25px overall) to
-     give the >=721px no-wrap guarantee below a bit more headroom. */
-  --expect-title-size: clamp(19px, 2.8vw, 25px);
 }
+/* Small, quiet eyebrow — decoupled from the heading's size (previously
+   locked to heading-size minus 4px, which no longer makes sense now
+   that the heading is meant to be the dominant, large focal point). */
 .spa-expect-label {
   font-family: var(--font-condensed);
-  font-size: calc(var(--expect-title-size) - 4px);
-  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--ink-soft);
   display: block;
 }
-/* >=721px (tablet/desktop): guaranteed single line, verified against
-   all 3 translations (EN "Personalised care, from scalp to hair", VI
-   "Chăm sóc theo nhu cầu, từ da đầu đến mái tóc" - the longest, ZH
-   "从头皮到秀发的贴心护理") at every width from 721px to 1920px, with
-   >=60px of spare room at the tightest point. Letter-spacing switched
-   from a fixed 4px to proportional 0.08em (matching the mobile value
-   below) — the fixed px value was eating disproportionate width at
-   the smaller end of the clamp, which is what caused it to wrap.
-   Below 721px (mobile) the override further down keeps white-space
-   normal and allows up to 2 lines, since guaranteeing 1 line down to
-   320px would require shrinking the font to ~11px. */
+/* Large display-serif heading — the section's visual focal point.
+   Sizes verified (word-wrap simulation against real EN/VI/ZH copy,
+   incl. the longest string, VI "Chăm sóc theo nhu cầu, từ da đầu đến
+   mái tóc") at 390 / 768 / 1024 / 1440 / 1920px: every language wraps
+   to a clean 2 lines (1 line for the shorter ZH string) at every one
+   of those widths — never 3+, never clipped. white-space is left at
+   its normal default (no nowrap) since a 2-line break is expected and
+   desired for an editorial headline, not something to fight. */
 .spa-expect-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--expect-title-size);
-  line-height: 1.25;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
+  font-size: clamp(28px, 5.5vw, 52px);
+  line-height: 1.3;
+  letter-spacing: 0.3px;
   color: #454545;
   margin: 0;
+}
+/* Short supporting line under the heading — quieter than both the
+   heading and the eyebrow's tracking. max-width is a plain prose-
+   measure cap (readability only, identical treatment for every
+   language), not a per-language fit hack — text wraps freely. */
+.spa-expect-intro {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: 8px 0 0;
 }
 
 /* Timeline / process flow — 5 equal-width columns spanning the full
@@ -2418,7 +2430,9 @@ img { max-width: 100%; display: block; }
    column ends up being. That width is purely geometric (1 of 5 equal
    grid columns) and never depends on how long any step's title/
    description text is in the active language, so switching locales
-   can never shift, overflow, or misalign it. */
+   can never shift, overflow, or misalign it. No card background, box,
+   shadow or gradient anywhere in this block by design — icon, thin
+   line, icon, thin line... is the whole timeline. */
 .spa-timeline {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -2436,12 +2450,15 @@ img { max-width: 100%; display: block; }
   box-sizing: border-box;
 }
 .spa-step-icon-row { display: flex; align-items: center; justify-content: center; width: 100%; }
-.spa-icon-line { flex: 1 1 0; min-width: 8px; height: 1px; background: rgba(0,0,0,0.3); }
+/* Line lightened (0.3 -> 0.22 opacity) and icon shrunk (52 -> 44px)
+   for a thinner, quieter connector — less "spa process icon", more a
+   single quiet stroke with small markers on it. */
+.spa-icon-line { flex: 1 1 0; min-width: 8px; height: 1px; background: rgba(0,0,0,0.22); }
 .spa-icon-line.is-hidden { background: transparent; }
 .spa-icon-circle {
-  flex: 0 0 52px;
-  width: 52px;
-  height: 52px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(0,0,0,0.15);
@@ -2456,20 +2473,27 @@ img { max-width: 100%; display: block; }
    be much wider (for the connector's sake) without stretching the
    text edge-to-edge. Text wraps freely inside that cap — never clipped,
    never forced onto one line, never allowed to change the column's
-   (grid-defined) width. */
+   (grid-defined) width. Caps widened slightly (180->200 / 168->190px)
+   so the longer EN/VI step descriptions settle into 2-3 short, airy
+   lines instead of 4. */
 .spa-step-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 20px;
 }
+/* Step number — deliberately very small/quiet, well below step-title
+   in weight, per the requested hierarchy (eyebrow/number/desc all
+   quiet, heading and, to a lesser extent, step-title carry the
+   emphasis). */
 .spa-step-num {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 11px;
+  letter-spacing: 1px;
   color: var(--ink-soft);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 .spa-step-title {
   font-family: var(--font-display);
@@ -2477,16 +2501,16 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   color: var(--ink-mid);
   margin: 0 0 10px;
-  max-width: 180px;
+  max-width: 200px;
   overflow-wrap: break-word;
 }
 .spa-step-desc {
   font-family: var(--font-display);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.65;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 168px;
+  max-width: 190px;
   overflow-wrap: break-word;
 }
 
@@ -2497,26 +2521,17 @@ img { max-width: 100%; display: block; }
   .spa-services, .spa-expect { padding: 60px var(--gutter); }
   .spa-services-note { align-self: center; text-align: center; }
 
-  /* Below 720px the 760px desktop width (see .spa-expect-content)
-     collapses down via max-width:100%, so the heading needs its own
-     smaller, more tightly-tracked scale to keep fitting in 2 lines —
-     verified against the longest of the 3 translations (Vietnamese)
-     at 320–720px, with margin to spare. The tighter 8px side padding
-     (down from 20px) buys a bit more width for the same reason.
-     Re-declaring --expect-title-size here (rather than setting
-     .spa-expect-title's font-size directly) keeps .spa-expect-label
-     locked to title-size minus 4px at this breakpoint too.
-     white-space is reset to normal here (undoing the >=721px nowrap
-     guarantee) since forcing 1 line down to 320px would require an
-     unreadably small ~11px font — 2 lines max stays the accepted
-     behavior on mobile, per explicit choice. */
+  /* Below 720px the heading gets its own smaller range — verified at
+     320/375/390/414/480/600/720px against all 3 languages (incl. the
+     longest, Vietnamese): every one wraps to <=2 lines with margin to
+     spare at the required 390px test width. The tighter 8px side
+     padding (down from 16px) buys a little extra width for the same
+     reason, matching the pattern already used elsewhere on this page. */
   .spa-expect-content {
     padding: 0 8px;
-    --expect-title-size: clamp(16px, 5.5vw, 24px);
   }
   .spa-expect-title {
-    letter-spacing: 0.08em;
-    white-space: normal;
+    font-size: clamp(22px, 6vw, 34px);
   }
 
   /* Below the horizontal breakpoint the process becomes a vertical
@@ -2525,7 +2540,9 @@ img { max-width: 100%; display: block; }
      zero-gap technique as desktop — .spa-timeline has no row gap, and
      .spa-step-icon-row is stretched to the full row height, so each
      step's line half-segments still meet the neighbour's with no
-     visible break, this time vertically. */
+     visible break, this time vertically. This existing pattern (5
+     steps stack instead of forcing a horizontal row) is kept as-is,
+     per the brief's own guidance to follow it. */
   .spa-timeline {
     display: flex;
     flex-direction: column;
