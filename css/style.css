@@ -266,6 +266,26 @@ html.preload-skip .preloader {
   text-transform: uppercase;
 }
 
+/* Home "Our Services" heading — scoped override (base .eyebrow.center
+   above is shared; Head Spa already has its own equivalent override at
+   .spa-services .eyebrow.center further down). VI's new copy
+   ("DỊCH VỤ TẠI NAEIL", 17 characters) must never wrap to a 2nd line,
+   so this reuses the exact same proven desktop/mobile scale as Head
+   Spa's own eyebrow — that formula was already verified safe down to
+   320px for a longer 21-character string, so it has comfortable margin
+   here too. */
+.services .eyebrow.center {
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
+}
+@media (max-width: 1023px) {
+  .services .eyebrow.center {
+    font-size: clamp(18px, 6vw, 30px);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+}
+
 .btn {
   box-sizing: border-box;
   display: inline-flex;

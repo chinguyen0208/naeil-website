@@ -245,7 +245,7 @@
       'home.hero.sub': 'Một không gian làm đẹp được tạo nên từ sự tinh tế và chăm chút trong từng trải nghiệm.',
       'home.hero.cta': 'Đặt lịch trải nghiệm',
       'home.hero.scroll': 'kéo xuống để khám phá',
-      'home.services.eyebrow': 'Dịch vụ của chúng tôi',
+      'home.services.eyebrow': 'DỊCH VỤ TẠI NAEIL',
       'home.services.nail.title': 'Nail',
       'home.services.nail.copy': 'Sử dụng gel và sơn cao cấp, an toàn cùng bảng màu tinh tế, tạo nên những thiết kế mang đậm dấu ấn riêng của bạn.',
       'home.services.nail.link': 'Tìm hiểu thêm',
