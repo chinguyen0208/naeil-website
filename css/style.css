@@ -2283,10 +2283,11 @@ img { max-width: 100%; display: block; }
 }
 /* .services-subheading is shared with Nail's own subheading — scoped
    here so Head Spa can use its own size without touching Nail's
-   (which keeps the original clamp(15px, 1.6vw, 17px)). Now matches
-   .spa-hero-desc / .lash-hero-desc's scale exactly, per request. */
+   (which keeps the original clamp(15px, 1.6vw, 17px)). Was matching
+   .spa-hero-desc / .lash-hero-desc's scale exactly (16-24px); lowered
+   4px across the whole range per request. */
 .spa-services .services-subheading {
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(12px, 2vw, 20px);
 }
 
 .spa-services-note {
