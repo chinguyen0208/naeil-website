@@ -1085,13 +1085,11 @@ img { max-width: 100%; display: block; }
   .hero-title, .hero-sub { text-align: left; white-space: normal; }
   .hero-bottom-row { justify-content: flex-start; }
   .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
-  /* .spa-hero-content's align-items/text-align and .spa-title's
-     text-align now live next to their own base rules further down
-     (search "Must come after the base rule above") — a declaration
-     here would lose the cascade to those later, unconditional base
-     rules and silently do nothing. .spa-sub/.spa-hero-desc are safe
-     to set here since their base rules never declare text-align. */
-  .spa-sub, .spa-hero-desc { text-align: left; }
+  /* Head Spa's hero is intentionally centered at every breakpoint
+     (see the "HEAD SPA PAGE — Hero" section below) — it no longer
+     switches to a left-aligned mobile treatment like the other hero
+     pages here, so .spa-hero-content/.spa-title/.spa-sub/.spa-hero-desc
+     are deliberately absent from this shared block. */
 }
 
 @media (max-width: 720px) {
@@ -1143,22 +1141,22 @@ img { max-width: 100%; display: block; }
    narrower still (480px / 380px). Those three are already correct
    at this range and are NOT touched here.
 
-   Nail and Head Spa are the two pages that drift from that standard:
-   - Nail's title (.nail-hero-title) uses align-self:stretch with no
-     max-width at all, so its box is free to grow to the full hero
-     width instead of a controlled column.
-   - Head Spa's description (.spa-hero-desc) does have a max-width,
-     but at 1104px it's roughly double the width used everywhere
-     else, so it never actually engages in this range and the text
-     reads as a wide block rather than a narrow column.
+   Nail is the page that drifts from that standard: its title
+   (.nail-hero-title) uses align-self:stretch with no max-width at
+   all, so its box is free to grow to the full hero width instead of
+   a controlled column.
 
-   Fix: bring both in line with the ~600–660px column already used
-   by Lash/About, scoped to this band only. Large desktop (>=1280px)
-   and mobile (<1024px) are untouched.
+   Fix: bring it in line with the ~600–660px column already used by
+   Lash/About, scoped to this band only. Large desktop (>=1280px) and
+   mobile (<1024px) are untouched.
+
+   Head Spa (.spa-hero-desc) used to need an identical fix here, but
+   now carries a fluid `width: min(100%, 680px)` on its own base rule
+   (see "HEAD SPA PAGE — Hero" below), so it already stays narrow at
+   every width without a band-specific override.
    ===================================================== */
 @media (min-width: 1024px) and (max-width: 1280px) {
   .nail-hero-title { max-width: 640px; }
-  .spa-hero-desc { max-width: 620px; }
 }
 
 /* =====================================================
@@ -1542,13 +1540,14 @@ img { max-width: 100%; display: block; }
 /* Hero intro (runs on load, not scroll) */
 .hero-title, .hero-sub, .hero-content .btn,
 .nail-hero-title, .nail-hero-sub, .nail-hero-desc, .nail-hero-content .btn,
-.spa-title, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
+.spa-title, .spa-hero-rule, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
 .lash-hero-desc {
   opacity: 0;
   transform: translateY(24px);
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
 }
 .hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
+.spa-hero-rule { animation-delay: .25s; }
 .hero-bottom-row, .nail-hero-sub, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
 .spa-hero-desc, .nail-hero-desc { animation-delay: .45s; }
 .hero-content .btn, .nail-hero-content .btn, .spa-hero-content .btn { animation-delay: .6s; }
@@ -2129,6 +2128,35 @@ img { max-width: 100%; display: block; }
    ===================================================== */
 .spa-hero .hero-media img { object-position: center bottom; }
 
+/* Head Spa's hero is the one full-screen hero on the site that reads
+   as a compact, centered editorial composition rather than a
+   bottom/right-anchored text block — every other hero page keeps
+   .hero's shared `justify-content: flex-end`, but here it's
+   overridden to `center` so the [title/rule/subtitle/paragraph/CTA]
+   group sits in the vertical middle of the viewport. .scroll-hint
+   (a fixed-height sibling below .spa-hero-content, unaffected by
+   locale) sits inside that same centered group, which naturally
+   nudges the content block itself slightly above dead-center — the
+   "shifted up a touch, not exact center" feel — without any
+   hardcoded offset. svh (small viewport height) is layered on top of
+   vh so mobile browser chrome can't clip the composition; browsers
+   without svh support simply keep the vh value above it.
+
+   padding-top is a hard floor, not just a starting position: the
+   navbar is 129px tall and absolutely positioned over this same flex
+   box, so centering alone could — on a short viewport combined with a
+   longer translation that wraps to more lines — push content up
+   almost flush against it. Reserving 129px+ of padding before
+   centering even begins means the content's top edge can never land
+   above that line, in any language, at any height. */
+.spa-hero {
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: clamp(129px, 20vh, 180px);
+  padding-bottom: clamp(24px, 6vh, 64px);
+}
+
 .spa-hero-content {
   position: relative;
   z-index: 3;
@@ -2138,27 +2166,25 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: clamp(28px, 4vw, 59px);
+  gap: 0;
   text-align: center;
-  /* Both edges inset 50px more than the navbar's own horizontal
-     padding — see note above .navbar. */
-  padding: clamp(90px, 18vw, 134px) 130px clamp(60px, 12vw, 150px);
-}
-/* Must come after the base rule above — see the note on
-   .nail-hero-content's identical override for why. Also true of
-   align-items/text-align below: an identical override for these two
-   properties used to live in the shared @media block near the top of
-   the file, but it sat BEFORE this base rule (which sets both to
-   "center" unconditionally for the desktop composition), so it lost
-   the cascade and Head Spa's mobile hero silently stayed centered —
-   this is what made "HEAD SPA" look off-center against the correctly
-   left-aligned copy beneath it. */
-@media (max-width: 1023px) {
-  .spa-hero-content { align-items: flex-start; text-align: left; }
+  /* Vertical padding is now just a small safety buffer — .spa-hero's
+     justify-content:center (above) does the real positioning work, so
+     this no longer needs the old huge clamp() that used to anchor the
+     block off the bottom edge. Horizontal padding keeps the ~130px
+     large-desktop inset used elsewhere on the site, shrinking fluidly
+     on narrower screens instead of a hard breakpoint swap. */
+  padding: clamp(20px, 4vh, 48px) clamp(24px, 8vw, 130px);
 }
 @media (max-width: 720px) {
-  .spa-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+  /* Same horizontal formula, slightly smaller ceiling so the compact
+     stack doesn't feel like it's fighting the mobile nav/hamburger
+     for space; still fully fluid, still centered — see above, the
+     old asymmetric left/right padding here was a leftover from the
+     hero's previous left-aligned mobile treatment. */
+  .spa-hero-content { padding-inline: clamp(20px, 8vw, 64px); }
 }
+
 .spa-title {
   color: #F3F3F3;
   font-family: var(--font-condensed);
@@ -2167,11 +2193,20 @@ img { max-width: 100%; display: block; }
   letter-spacing: 9.6px;
   text-transform: uppercase;
   text-align: center;
+  margin: 0 0 14px;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
-/* Must come after the base rule above — same cascade reason as
-   .spa-hero-content's override. */
-@media (max-width: 1023px) {
-  .spa-title { text-align: left; }
+/* Subtle hairline under HEAD SPA — purely decorative (aria-hidden in
+   the markup), short and low-opacity on purpose so it reads as a
+   quiet accent, not a graphic element. Fixed width, so it never
+   depends on text length in any locale. */
+.spa-hero-rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 0 18px;
 }
 .spa-sub {
   font-family: var(--font-display);
@@ -2180,16 +2215,24 @@ img { max-width: 100%; display: block; }
   line-height: 1.25;
   letter-spacing: -0.8px;
   color: #FFF;
-  margin: 0;
+  margin: 0 0 28px;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 .spa-hero-desc {
-  max-width: 1104px;
+  /* Fluid column: never wider than 680px (within the 600–760px range
+     asked for), but freely shrinks on narrow viewports — no fixed
+     breakpoint math, no per-language special-casing. Longer
+     translations simply wrap to more lines; the column width and
+     every element below it stay put. */
+  width: min(100%, 680px);
   font-family: var(--font-display);
   font-size: clamp(16px, 1.9vw, 24px);
   line-height: 1.65;
   letter-spacing: 1px;
   color: #FFF;
-  margin: 0;
+  margin: 0 0 36px;
+  overflow-wrap: break-word;
 }
 /* ---- Our Headspa Services ---- */
 .spa-services {
