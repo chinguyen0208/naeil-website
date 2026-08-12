@@ -1540,14 +1540,13 @@ img { max-width: 100%; display: block; }
 /* Hero intro (runs on load, not scroll) */
 .hero-title, .hero-sub, .hero-content .btn,
 .nail-hero-title, .nail-hero-sub, .nail-hero-desc, .nail-hero-content .btn,
-.spa-title, .spa-hero-rule, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
+.spa-title, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
 .lash-hero-desc {
   opacity: 0;
   transform: translateY(24px);
   animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
 }
 .hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
-.spa-hero-rule { animation-delay: .25s; }
 .hero-bottom-row, .nail-hero-sub, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
 .spa-hero-desc, .nail-hero-desc { animation-delay: .45s; }
 .hero-content .btn, .nail-hero-content .btn, .spa-hero-content .btn { animation-delay: .6s; }
@@ -2132,8 +2131,8 @@ img { max-width: 100%; display: block; }
    as a compact, centered editorial composition rather than a
    bottom/right-anchored text block — every other hero page keeps
    .hero's shared `justify-content: flex-end`, but here it's
-   overridden to `center` so the [title/rule/subtitle/paragraph/CTA]
-   group sits in the vertical middle of the viewport. .scroll-hint
+   overridden to `center` so the [title/subtitle/paragraph/CTA] group
+   sits in the vertical middle of the viewport. .scroll-hint
    (a fixed-height sibling below .spa-hero-content, unaffected by
    locale) sits inside that same centered group, which naturally
    nudges the content block itself slightly above dead-center — the
@@ -2197,27 +2196,18 @@ img { max-width: 100%; display: block; }
   letter-spacing: 5.5px;
   text-transform: uppercase;
   text-align: center;
-  margin: 0 0 14px;
+  /* No hairline under the title anymore (removed per feedback), so
+     this margin alone sets the title→subtitle gap. */
+  margin: 0 0 20px;
   max-width: 100%;
   overflow-wrap: break-word;
 }
-/* Subtle hairline under HEAD SPA — purely decorative (aria-hidden in
-   the markup), short and low-opacity on purpose so it reads as a
-   quiet accent, not a graphic element. Fixed width, so it never
-   depends on text length in any locale. */
-.spa-hero-rule {
-  display: block;
-  width: 48px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.5);
-  margin: 0 0 18px;
-}
 .spa-sub {
-  /* Size matches .lash-sub exactly (clamp(24px, 3.2vw, 40px)/-0.48px) —
-     color and line-height are unchanged, only the scale is aligned. */
+  /* Fixed 40px per request (not fluid) — same weight/letter-spacing/
+     line-height/color as before, only the size is now a flat value. */
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(24px, 3.2vw, 40px);
+  font-size: 40px;
   line-height: 1.25;
   letter-spacing: -0.48px;
   color: #FFF;
@@ -2231,11 +2221,11 @@ img { max-width: 100%; display: block; }
      breakpoint math, no per-language special-casing. Longer
      translations simply wrap to more lines; the column width and
      every element below it stay put.
-     Font-size/letter-spacing match .lash-hero-desc exactly
-     (clamp(16px, 2vw, 24px)/-0.48px) — color unchanged. */
+     Font-size is a fixed 22px per request (not fluid) — color/line-
+     height unchanged. */
   width: min(100%, 680px);
   font-family: var(--font-display);
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: 22px;
   line-height: 1.65;
   letter-spacing: -0.48px;
   color: #FFF;
