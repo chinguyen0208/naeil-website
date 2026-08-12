@@ -1268,17 +1268,22 @@ img { max-width: 100%; display: block; }
 }
 
 .spa-services .eyebrow.center {
-  font-size: clamp(28px, 7vw, 64px);
+  /* Matches .spa-title's exact scale (the "HEAD SPA" hero text) per
+     request — clamp(32px, 4vw, 55px) / 5.5px, replacing the old
+     28-64px/8px formula. Only applies >=1024px; the mobile override
+     below still independently guarantees single-line fit at every
+     narrower width regardless of this value. */
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
   margin: 0 0 40px;
 }
-/* Below 1024px the shared 28-64px/8px-letter-spacing formula above
-   wraps this heading to 2 lines for longer translations (English's
-   "Our Headspa Services" is the worst case — it doesn't reliably fit
-   on one line until roughly 950px+ wide). Scoped smaller scale +
-   proportional (em-based, so it shrinks together with the font)
-   letter-spacing keeps every locale — including the longest one — on
-   a single line with room to spare at every mobile/tablet width down
-   to 320px. Desktop (>=1024px) is untouched, still 28-64px/8px. */
+/* Below 1024px this heading would otherwise wrap to 2+ lines for
+   longer translations (English's "Our Headspa Services" is the worst
+   case). Scoped smaller scale + proportional (em-based, so it shrinks
+   together with the font) letter-spacing keeps every locale —
+   including the longest one — on a single line with room to spare at
+   every mobile/tablet width down to 320px. Independent of the base
+   rule's own size above, so it stays correct even as that changes. */
 @media (max-width: 1023px) {
   .spa-services .eyebrow.center {
     font-size: clamp(18px, 6vw, 30px);
