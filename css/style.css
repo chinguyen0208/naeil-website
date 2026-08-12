@@ -2255,31 +2255,35 @@ img { max-width: 100%; display: block; }
   margin: 0;
 }
 
+/* Timeline / process flow — 5 equal-width columns spanning the full
+   content container (not just the left portion of it). The connector
+   line is built from two flex-growing half-segments living inside each
+   step's own icon row (one before the icon, one after); because the
+   grid has zero column-gap, a step's trailing half-line touches the
+   next step's leading half-line exactly at the shared column edge, so
+   the line reads as one continuous stroke no matter how wide each
+   column ends up being. That width is purely geometric (1 of 5 equal
+   grid columns) and never depends on how long any step's title/
+   description text is in the active language, so switching locales
+   can never shift, overflow, or misalign it. */
 .spa-timeline {
-  display: flex;
-  align-items: flex-start;
-  flex: 1 1 auto;
-  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
   width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
   align-self: center;
 }
-/* Fluid, not fixed: 5 steps + 4 connecting lines add up to ~1048px at
-   their old fixed width, which overflowed well above the 1024px nav
-   breakpoint (it shared space with .spa-expect-content in row layout).
-   Letting steps shrink proportionally removes that overflow risk at
-   every width, down to where the 720px rule stacks them vertically. */
 .spa-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1 1 0;
   min-width: 0;
-  max-width: 168px;
-  text-align: center;
   box-sizing: border-box;
 }
 .spa-step-icon-row { display: flex; align-items: center; justify-content: center; width: 100%; }
-.spa-icon-line { flex: 1 1 12px; min-width: 12px; max-width: 52px; height: 1px; background: rgba(0,0,0,0.3); }
+.spa-icon-line { flex: 1 1 0; min-width: 8px; height: 1px; background: rgba(0,0,0,0.3); }
 .spa-icon-line.is-hidden { background: transparent; }
 .spa-icon-circle {
   flex: 0 0 52px;
@@ -2294,18 +2298,34 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 .spa-icon-circle img { width: 82%; height: 82%; object-fit: contain; display: block; }
+/* Title/description keep a capped, locale-independent text width so
+   line length stays even across all 5 columns; the column itself can
+   be much wider (for the connector's sake) without stretching the
+   text edge-to-edge. Text wraps freely inside that cap — never clipped,
+   never forced onto one line, never allowed to change the column's
+   (grid-defined) width. */
+.spa-step-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 16px;
+}
 .spa-step-num {
   font-family: var(--font-display);
   font-size: 14px;
   color: var(--ink-soft);
-  margin-top: 16px;
+  margin: 0 0 10px;
 }
 .spa-step-title {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 400;
   color: var(--ink-mid);
-  margin: 6px 0 10px;
+  margin: 0 0 10px;
+  max-width: 180px;
+  overflow-wrap: break-word;
 }
 .spa-step-desc {
   font-family: var(--font-display);
@@ -2313,7 +2333,8 @@ img { max-width: 100%; display: block; }
   line-height: 1.5;
   color: var(--ink-soft);
   margin: 0;
-  padding: 0 6px;
+  max-width: 168px;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 1100px) {
@@ -2322,9 +2343,51 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) {
   .spa-services, .spa-expect { padding: 60px var(--gutter); }
   .spa-services-note { align-self: center; text-align: center; }
-  .spa-timeline { flex-direction: column; align-items: center; gap: 40px; }
-  .spa-step { flex: 0 0 auto; width: 100%; max-width: 260px; }
-  .spa-icon-line { display: none; }
+
+  /* Below the horizontal breakpoint the process becomes a vertical
+     timeline: icon column on the left (connector now runs top-to-
+     bottom through it), title/description column on the right. Same
+     zero-gap technique as desktop — .spa-timeline has no row gap, and
+     .spa-step-icon-row is stretched to the full row height, so each
+     step's line half-segments still meet the neighbour's with no
+     visible break, this time vertically. */
+  .spa-timeline {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .spa-step {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .spa-step-icon-row {
+    flex-direction: column;
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .spa-icon-line {
+    width: 1px;
+    height: auto;
+    flex: 1 1 20px;
+    min-width: 0;
+    min-height: 20px;
+  }
+  .spa-step-body {
+    align-items: flex-start;
+    text-align: left;
+    width: auto;
+    flex: 1 1 auto;
+    margin-top: 0;
+    padding: 22px 0;
+  }
+  .spa-step-title,
+  .spa-step-desc {
+    max-width: none;
+  }
 }
 /* =====================================================
    ABOUT PAGE — new tokens (additive only)
