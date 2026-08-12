@@ -160,29 +160,34 @@ html.preload-active body {
   background: var(--cream);
   opacity: 1;
   visibility: visible;
-  transition: opacity .65s cubic-bezier(.4,0,.2,1), visibility 0s linear .65s;
+  will-change: opacity;
+  transition: opacity .45s cubic-bezier(.4,0,.2,1), visibility 0s linear .45s;
 }
 /* Added by script.js once loading is actually done. opacity/visibility
-   are transitioned (the ~650ms fade the brief asks for); pointer-events
-   drops immediately so the real page underneath feels responsive right
-   away instead of waiting out the fade. */
+   are transitioned (a quick ~450ms fade — long enough to avoid a hard
+   cut, short enough not to feel like a second wait after the logo is
+   already done); pointer-events drops immediately so the real page
+   underneath feels responsive right away instead of waiting out the fade. */
 .preloader.is-done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
-/* The photo itself — oversized (-40px inset + scale) so the blur's
-   own soft edge never reveals a hard boundary at the viewport edge.
-   blur+reduced-contrast+lifted-brightness is what keeps this reading
-   as "intentionally soft", not a slow/broken image. */
+/* The photo itself — oversized (-28px inset + scale) so the blur's own
+   soft edge never reveals a hard boundary at the viewport edge. Blur
+   radius is kept as small as the "soft focus" look allows (was 28px —
+   dropped to 20px) because a full-viewport CSS blur is one of the more
+   expensive things a browser paints; a smaller radius over a smaller
+   overscan area is the main lever for making the preloader's first
+   paint land quickly instead of hitching. */
 .preloader-bg {
   position: absolute;
-  inset: -40px;
+  inset: -28px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(28px) saturate(82%) brightness(1.1) contrast(0.9);
-  transform: scale(1.06);
+  filter: blur(20px) saturate(82%) brightness(1.1) contrast(0.9);
+  transform: scale(1.06) translateZ(0);
 }
 /* Warm, milky wash over the photo — this is what gives the muted
    NAEIL color treatment rather than a raw blurred photo. */
@@ -199,24 +204,28 @@ html.preload-active body {
   flex-direction: column;
   align-items: center;
 }
-/* The logo IS the loading animation — a slow diagonal reveal (clip-
-   path sweeping the same direction the mark's two loops naturally
-   flow, upper-left to lower-right) rather than a spinner. Explicit
-   0/20/50/80/100% stops match the brief's own spec; the shared
-   18-percentage-point slant between the top/bottom edges at every
-   stop keeps the sweep a single consistent diagonal, never a straight
-   vertical wipe. animationend on this element is what script.js
-   waits for before it's allowed to close the preloader. */
+/* The logo IS the loading animation — a diagonal reveal (clip-path
+   sweeping the same direction the mark's two loops naturally flow,
+   upper-left to lower-right) rather than a spinner. Same 0/20/50/80/
+   100% shape/slant as before; duration was cut from 2s to 1.1s (2s was
+   the actual root cause of the "chậm quá" report — script.js gates
+   closing the preloader on this animation's own animationend, so a 2s
+   animation put a hard 2s+ floor under every page load no matter how
+   fast the real assets were). will-change hints the browser to put
+   this element on its own compositor layer up front instead of
+   discovering mid-animation that it needs to, which is what removes
+   the small stutter at the very start of the sweep. */
 .preloader-logo {
   width: clamp(48px, 5vw, 68px);
   height: auto;
   display: block;
   opacity: 0;
-  animation: preloaderLogoDraw 2s cubic-bezier(.65,0,.35,1) .15s forwards;
+  will-change: clip-path, opacity;
+  animation: preloaderLogoDraw 1.1s cubic-bezier(.65,0,.35,1) .08s forwards;
 }
 @keyframes preloaderLogoDraw {
   0%   { clip-path: polygon(0 0, -15% 0, -33% 100%, 0 100%); opacity: 0; }
-  8%   { opacity: 1; }
+  14%  { opacity: 1; }
   20%  { clip-path: polygon(0 0, 22% 0, 4% 100%, 0 100%); }
   50%  { clip-path: polygon(0 0, 55% 0, 37% 100%, 0 100%); }
   80%  { clip-path: polygon(0 0, 85% 0, 67% 100%, 0 100%); }

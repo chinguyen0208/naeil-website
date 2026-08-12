@@ -65,8 +65,9 @@
     }
     preloader.addEventListener('transitionend', remove, { once: true });
     // Fallback in case a transitionend never fires (e.g. the
-    // reduced-motion path shortens/changes the transition).
-    setTimeout(remove, 900);
+    // reduced-motion path shortens/changes the transition). Matches
+    // the .45s opacity transition in CSS plus a small buffer.
+    setTimeout(remove, 650);
   }
 
   // Upper-bound safety net only — not the normal path.
