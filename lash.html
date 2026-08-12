@@ -9,14 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="images/lash-page/hero-lash.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader-bg" style="background-image:url('images/lash-page/hero-lash.png')"></div>
+  <div class="preloader-content">
+    <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
+    <p class="preloader-text">Loading...</p>
+  </div>
+</div>
+<script>
+  window.__preloadHero = new Image();
+  window.__preloadHero.src = 'images/lash-page/hero-lash.png';
+</script>
+
 <!-- ============ HEADER / HERO ============ -->
 <header class="hero lash-hero">
   <div class="hero-media">
-    <img src="images/lash-page/hero-lash.png" alt="Close-up of eyes with lifted lashes">
+    <img src="images/lash-page/hero-lash.png" alt="Close-up of eyes with lifted lashes" fetchpriority="high">
   </div>
   <div class="hero-overlay"></div>
 
@@ -83,10 +97,10 @@
 
   <div class="ba-slider reveal" id="baSlider">
     <div class="ba-layer ba-after">
-      <img src="images/lash-page/after.png" alt="Eye after lash lift">
+      <img src="images/lash-page/after.png" alt="Eye after lash lift" loading="lazy">
     </div>
     <div class="ba-layer ba-before" style="width:50%;">
-      <img src="images/lash-page/before.png" alt="Eye before lash lift">
+      <img src="images/lash-page/before.png" alt="Eye before lash lift" loading="lazy">
     </div>
     <span class="ba-tag ba-tag-before" data-i18n="lash.slider.before">Before</span>
     <span class="ba-tag ba-tag-after" data-i18n="lash.slider.after">After</span>
@@ -150,7 +164,7 @@
           <p class="lash-process-panel-desc">Gently removes excess oils and impurities while preserving natural moisture, creating the ideal foundation for better product absorption, healthier lashes and longer-lasting lift results.</p>
         </div>
         <div class="lash-process-panel-img">
-          <img src="images/lash-page/cleanse.png" alt="Cleanse products">
+          <img src="images/lash-page/cleanse.png" alt="Cleanse products" loading="lazy">
         </div>
       </div>
     </div>
@@ -403,7 +417,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/nail.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
@@ -411,7 +425,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
@@ -419,7 +433,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item active">
-            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
@@ -432,7 +446,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
@@ -440,7 +454,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>

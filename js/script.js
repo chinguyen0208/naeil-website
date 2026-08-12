@@ -1,3 +1,80 @@
+// Preloader — a real asset-gated brand moment, not a fixed timer. Each
+// page's own tiny inline <script> (right after the #preloader markup)
+// starts fetching that page's hero photo as early as possible and
+// stashes it on window.__preloadHero, so the fetch begins before this
+// file (loaded at the very end of <body>) has even arrived. From here
+// we just wait for everything that actually needs to be ready:
+//   - that hero image finishing (success OR error — a broken image
+//     must never leave a visitor stuck on the preloader forever)
+//   - document.fonts.ready, so text doesn't flash in an unstyled font
+//   - the nav logo (small, but part of the persistent chrome)
+//   - the preloader logo's OWN draw-in animation finishing, via its
+//     `animationend` event — so the reveal is never cut off short even
+//     if every asset above happens to be cached/instant
+// Only once ALL of those are true do we fade the preloader out. The
+// single setTimeout below is an upper-bound safety net for a stalled
+// network/font, not something normal loads should ever reach.
+(function () {
+  var preloader = document.getElementById('preloader');
+  if (!preloader) return;
+
+  document.documentElement.classList.add('preload-active');
+
+  function waitForImage(imgOrUrl) {
+    return new Promise(function (resolve) {
+      var img = imgOrUrl instanceof HTMLImageElement || imgOrUrl instanceof Image
+        ? imgOrUrl
+        : null;
+      if (!img) {
+        if (!imgOrUrl) { resolve(); return; }
+        img = new Image();
+        img.src = imgOrUrl;
+      }
+      if (img.complete && img.naturalWidth > 0) { resolve(); return; }
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    });
+  }
+
+  var heroReady = waitForImage(window.__preloadHero);
+  var navLogoReady = waitForImage(document.querySelector('.navbar .logo-img'));
+  var fontsReady = (document.fonts && document.fonts.ready)
+    ? document.fonts.ready.catch(function () {})
+    : Promise.resolve();
+
+  var logoEl = preloader.querySelector('.preloader-logo');
+  var logoAnimDone = new Promise(function (resolve) {
+    if (!logoEl || !window.getComputedStyle(logoEl).animationName || window.getComputedStyle(logoEl).animationName === 'none') {
+      resolve(); return;
+    }
+    logoEl.addEventListener('animationend', resolve, { once: true });
+  });
+
+  var finished = false;
+  function finishPreloader() {
+    if (finished) return;
+    finished = true;
+    clearTimeout(safetyTimer);
+    preloader.classList.add('is-done');
+    document.documentElement.classList.remove('preload-active');
+    var removed = false;
+    function remove() {
+      if (removed) return;
+      removed = true;
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+    }
+    preloader.addEventListener('transitionend', remove, { once: true });
+    // Fallback in case a transitionend never fires (e.g. the
+    // reduced-motion path shortens/changes the transition).
+    setTimeout(remove, 900);
+  }
+
+  // Upper-bound safety net only — not the normal path.
+  var safetyTimer = setTimeout(finishPreloader, 6000);
+
+  Promise.all([heroReady, navLogoReady, fontsReady, logoAnimDone]).then(finishPreloader);
+})();
+
 // Mega menu — hamburger opens a full drawer (rhodeskin.com-style) listing
 // every destination with a thumbnail, title and short description. The
 // staggered reveal of each row is driven entirely by CSS transition-delay

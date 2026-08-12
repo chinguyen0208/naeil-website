@@ -9,14 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="images/hero.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader-bg" style="background-image:url('images/hero.png')"></div>
+  <div class="preloader-content">
+    <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
+    <p class="preloader-text">Loading...</p>
+  </div>
+</div>
+<script>
+  window.__preloadHero = new Image();
+  window.__preloadHero.src = 'images/hero.png';
+</script>
+
 <!-- ============ HEADER / HERO ============ -->
 <header class="hero">
   <div class="hero-media">
-    <img src="images/hero.png" alt="Close-up beauty portrait — Naeil self care">
+    <img src="images/hero.png" alt="Close-up beauty portrait — Naeil self care" fetchpriority="high">
   </div>
   <div class="hero-overlay"></div>
 
@@ -87,7 +101,7 @@
     <div class="services-grid reveal-stagger" id="services-grid">
     <article class="service-card" id="services-nail">
       <a class="service-img" href="nail.html" aria-label="Explore Nail">
-        <img src="images/nail.png" alt="Nail gel application close-up">
+        <img src="images/nail.png" alt="Nail gel application close-up" loading="lazy">
       </a>
       <h3 data-i18n="home.services.nail.title">Nail</h3>
       <div class="card-body">
@@ -98,7 +112,7 @@
 
     <article class="service-card" id="services-lash">
       <a class="service-img" href="lash.html" aria-label="Explore Lash Lift">
-        <img src="images/lash-lift.png" alt="Lash lift close-up of eye">
+        <img src="images/lash-lift.png" alt="Lash lift close-up of eye" loading="lazy">
       </a>
       <h3 data-i18n="home.services.lash.title">Lash Lift</h3>
       <div class="card-body">
@@ -109,7 +123,7 @@
 
     <article class="service-card" id="services-hair">
       <a class="service-img" href="head-spa.html" aria-label="Explore Head Spa">
-        <img src="images/head-spa.png" alt="Head spa neck massage close-up">
+        <img src="images/head-spa.png" alt="Head spa neck massage close-up" loading="lazy">
       </a>
       <h3 data-i18n="home.services.spa.title">Head Spa</h3>
       <div class="card-body">
@@ -124,7 +138,7 @@
 <!-- ============ OUR PHILOSOPHY ============ -->
 <section class="philosophy">
   <div class="philosophy-img reveal">
-    <img src="images/philosophy.png" alt="Naeil branded card flat-lay">
+    <img src="images/philosophy.png" alt="Naeil branded card flat-lay" loading="lazy">
   </div>
 
   <div class="philosophy-content reveal">
@@ -206,7 +220,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/nail.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
@@ -214,7 +228,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
@@ -222,7 +236,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
@@ -235,7 +249,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
@@ -243,7 +257,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>

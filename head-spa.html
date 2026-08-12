@@ -9,14 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="images/head-spa-page/hero-headspa.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader-bg" style="background-image:url('images/head-spa-page/hero-headspa.png')"></div>
+  <div class="preloader-content">
+    <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
+    <p class="preloader-text">Loading...</p>
+  </div>
+</div>
+<script>
+  window.__preloadHero = new Image();
+  window.__preloadHero.src = 'images/head-spa-page/hero-headspa.png';
+</script>
+
 <!-- ============ HEADER / HERO ============ -->
 <header class="hero spa-hero">
   <div class="hero-media">
-    <img src="images/head-spa-page/hero-headspa.png" alt="Close-up of head spa massage with traditional comb">
+    <img src="images/head-spa-page/hero-headspa.png" alt="Close-up of head spa massage with traditional comb" fetchpriority="high">
   </div>
   <div class="hero-overlay"></div>
 
@@ -89,7 +103,7 @@
     <div class="services-grid reveal-stagger" id="spa-services-grid">
     <article class="service-card reveal-item">
       <div class="service-img">
-        <img src="images/head-spa-page/essential.png" alt="Essential head spa — shampoo ritual">
+        <img src="images/head-spa-page/essential.png" alt="Essential head spa — shampoo ritual" loading="lazy">
       </div>
       <h3 data-i18n="spa.services.essential.title">Essential - 45 MIN</h3>
       <p class="service-subdesc" data-i18n="spa.services.essential.subdesc">Quick Wash · Basic Cleansing</p>
@@ -101,7 +115,7 @@
 
     <article class="service-card reveal-item">
       <div class="service-img">
-        <img src="images/head-spa-page/restore.png" alt="Restore — neck and shoulder massage" style="object-position:center 46%;">
+        <img src="images/head-spa-page/restore.png" alt="Restore — neck and shoulder massage" style="object-position:center 46%;" loading="lazy">
       </div>
       <h3 data-i18n="spa.services.restore.title">Restore - 75 MIN</h3>
       <p class="service-subdesc" data-i18n="spa.services.restore.subdesc">Hair Wash · Neck &amp; Shoulder Massage</p>
@@ -113,7 +127,7 @@
 
     <article class="service-card reveal-item">
       <div class="service-img">
-        <img src="images/head-spa-page/scalp-reset.png" alt="Scalp Reset — scalp oil treatment" style="object-position:center 33%;">
+        <img src="images/head-spa-page/scalp-reset.png" alt="Scalp Reset — scalp oil treatment" style="object-position:center 33%;" loading="lazy">
       </div>
       <h3 data-i18n="spa.services.scalpreset.title">Scalp Reset - 90 MIN</h3>
       <p class="service-subdesc" data-i18n="spa.services.scalpreset.subdesc">Scalp Cleansing</p>
@@ -125,7 +139,7 @@
 
     <article class="service-card reveal-item">
       <div class="service-img">
-        <img src="images/head-spa-page/hair-replenish.png" alt="Hair Replenish — scalp massage">
+        <img src="images/head-spa-page/hair-replenish.png" alt="Hair Replenish — scalp massage" loading="lazy">
       </div>
       <h3 data-i18n="spa.services.hairreplenish.title">Hair Replenish - 90 MIN</h3>
       <p class="service-subdesc" data-i18n="spa.services.hairreplenish.subdesc">Restore &amp; Nourish Hair</p>
@@ -152,7 +166,7 @@
     <div class="spa-step reveal-item">
       <div class="spa-step-icon-row">
         <span class="spa-icon-line is-hidden"></span>
-        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-analyse.png" alt="Analyse icon"></span>
+        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-analyse.png" alt="Analyse icon" loading="lazy"></span>
         <span class="spa-icon-line"></span>
       </div>
       <div class="spa-step-body">
@@ -165,7 +179,7 @@
     <div class="spa-step reveal-item">
       <div class="spa-step-icon-row">
         <span class="spa-icon-line"></span>
-        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-cleanse.png" alt="Cleanse icon"></span>
+        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-cleanse.png" alt="Cleanse icon" loading="lazy"></span>
         <span class="spa-icon-line"></span>
       </div>
       <div class="spa-step-body">
@@ -178,7 +192,7 @@
     <div class="spa-step reveal-item">
       <div class="spa-step-icon-row">
         <span class="spa-icon-line"></span>
-        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-treat.png" alt="Treat icon"></span>
+        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-treat.png" alt="Treat icon" loading="lazy"></span>
         <span class="spa-icon-line"></span>
       </div>
       <div class="spa-step-body">
@@ -191,7 +205,7 @@
     <div class="spa-step reveal-item">
       <div class="spa-step-icon-row">
         <span class="spa-icon-line"></span>
-        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-nourish.png" alt="Nourish icon"></span>
+        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-nourish.png" alt="Nourish icon" loading="lazy"></span>
         <span class="spa-icon-line"></span>
       </div>
       <div class="spa-step-body">
@@ -204,7 +218,7 @@
     <div class="spa-step reveal-item">
       <div class="spa-step-icon-row">
         <span class="spa-icon-line"></span>
-        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-styling.png" alt="Styling icon"></span>
+        <span class="spa-icon-circle"><img src="images/head-spa-page/icon-styling.png" alt="Styling icon" loading="lazy"></span>
         <span class="spa-icon-line is-hidden"></span>
       </div>
       <div class="spa-step-body">
@@ -280,7 +294,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/nail.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
@@ -288,7 +302,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item active">
-            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
@@ -296,7 +310,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
@@ -309,7 +323,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
@@ -317,7 +331,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>

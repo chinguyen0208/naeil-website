@@ -9,14 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="images/visit-page/hero-visit.jpg" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body class="page-visit">
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader-bg" style="background-image:url('images/visit-page/hero-visit.jpg')"></div>
+  <div class="preloader-content">
+    <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
+    <p class="preloader-text">Loading...</p>
+  </div>
+</div>
+<script>
+  window.__preloadHero = new Image();
+  window.__preloadHero.src = 'images/visit-page/hero-visit.jpg';
+</script>
+
 <!-- ============ SECTION 01 — HERO ============ -->
 <header class="hero visit-hero">
   <div class="hero-media">
-    <img src="images/visit-page/hero-visit.jpg" alt="Warm, sunlit interior of the Naeil studio">
+    <img src="images/visit-page/hero-visit.jpg" alt="Warm, sunlit interior of the Naeil studio" fetchpriority="high">
   </div>
   <div class="visit-hero-scrim"></div>
 
@@ -216,7 +230,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
         <div class="mega-menu-rows">
           <a href="nail.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/nail.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/nail.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
@@ -224,7 +238,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="head-spa.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
@@ -232,7 +246,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="lash.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
@@ -245,7 +259,7 @@
         <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
         <div class="mega-menu-rows">
           <a href="about.html" class="mega-menu-item">
-            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
@@ -253,7 +267,7 @@
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="visit.html" class="mega-menu-item active">
-            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt=""></span>
+            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
               <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>
