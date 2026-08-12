@@ -1,0 +1,4092 @@
+/* =====================================================
+   NAEIL — Homepage
+   Tokens
+   ===================================================== */
+/* =====================================================
+   NAEIL — Homepage
+   Fonts
+   ===================================================== */
+@font-face {
+  font-family: 'Britanica';
+  src: url('../fonts/britanica-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss Condensed';
+  src: url('../fonts/bagosscondensed-regular.ttf') format('truetype'),
+       url('../fonts/bagosscondensed-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/futura-medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/futura-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =====================================================
+   Tokens
+   ===================================================== */
+:root {
+  --cream:        #F8F4F1;
+  --cream-deep:   #F0E7E0;
+  --tan:          #E5DDD8;
+  --ink:          #000000;
+  --ink-mid:      #454545;
+  --ink-soft:     #616161;
+  --icon-gray:    #828282;
+  --line:         rgba(0,0,0,0.12);
+  --blue:         #CBE6E9;
+  --blue-deep:    #8FB3D6;
+  --white:        #FFFFFF;
+
+  --font-display: 'Britanica', 'Cormorant Garamond', serif;
+  --font-condensed: 'Bagoss Condensed', 'Oswald', sans-serif;
+  --font-script:  'Comfortaa', cursive;
+  --font-body:    'Futura', 'Jost', sans-serif;
+
+  --container: 1440px;
+  /* Two shared horizontal-inset tiers used across every page — named so
+     the whole site draws from one system instead of pages/sections each
+     hardcoding their own clamp() gutter. --gutter is the standard inset
+     for contained body sections (About/Nail/Lash/Head-spa/Home content
+     blocks, footer); --gutter-wide is the slightly more generous inset
+     used by full-bleed hero content and the Visit page, which sits
+     closer to the viewport edge and reads better with extra breathing
+     room. Both share the same 24px mobile floor so nothing misaligns
+     at narrow widths — only the desktop ceiling differs. */
+  --gutter: clamp(24px, 6vw, 80px);
+  --gutter-wide: clamp(24px, 6vw, 100px);
+}
+
+/* =====================================================
+   VIETNAMESE FONT OVERRIDE — the brand's EN/ZH fonts render
+   Vietnamese diacritics unreliably. js/i18n.js sets
+   data-locale="vi" on <html> whenever Vietnamese is active
+   (see applyLocale in i18n.js), so this block only takes
+   effect for Vietnamese — English and Chinese keep the
+   original fonts untouched. Both replacements have confirmed
+   full Vietnamese glyph coverage and are loaded via the
+   existing Google Fonts <link> in <head>:
+     - Montserrat for --font-display and --font-condensed —
+       clean geometric sans used for headings/nav/labels.
+     - Quicksand for --font-body — soft geometric sans with
+       rounded terminals, used for paragraph copy.
+   ===================================================== */
+html[data-locale="vi"] {
+  --font-display: 'Montserrat', sans-serif;
+  --font-condensed: 'Montserrat', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+img { max-width: 100%; display: block; }
+
+.placeholder-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e4dccd 0%, #cfc2ac 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.placeholder-img::after {
+  content: attr(data-label);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: rgba(42,39,35,0.55);
+  text-align: center;
+  padding: 12px 20px;
+  border: 1px dashed rgba(42,39,35,0.3);
+  border-radius: 4px;
+  max-width: 80%;
+  background: rgba(255,255,255,0.35);
+}
+
+/* =====================================================
+   PRELOADER — full-screen brand moment shown before the site is
+   ready. Markup (identical on every page, only the background
+   image URL differs) is a single fixed overlay:
+     #preloader (.preloader)
+       .preloader-bg    — the page's own hero photo, blurred/tinted
+       .preloader-content
+         .preloader-logo — the real NAEIL mark (images/icons/logo.svg)
+   js/script.js adds .is-done once the hero image, fonts and the
+   logo's own draw-in animation have all actually finished (see the
+   comment there) — nothing here is hidden on a fixed timer. Colors
+   reuse existing tokens only (--cream/--cream-deep/--ink-soft); no
+   new brand colors introduced.
+   ===================================================== */
+html.preload-active,
+html.preload-active body {
+  overflow: hidden;
+  height: 100%;
+}
+/* One-time welcome, not a per-page loader: a tiny synchronous inline
+   script at the very top of <body> (before the #preloader markup) adds
+   this class when sessionStorage shows the visitor already saw the
+   preloader earlier in this browser session. Because it runs before
+   the browser ever paints the #preloader div, this hides it with zero
+   flash on every page after the first. */
+html.preload-skip .preloader {
+  display: none !important;
+}
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--cream);
+  opacity: 1;
+  visibility: visible;
+  will-change: opacity;
+  transition: opacity .45s cubic-bezier(.4,0,.2,1), visibility 0s linear .45s;
+}
+/* Added by script.js once loading is actually done. opacity/visibility
+   are transitioned (a quick ~450ms fade — long enough to avoid a hard
+   cut, short enough not to feel like a second wait after the logo is
+   already done); pointer-events drops immediately so the real page
+   underneath feels responsive right away instead of waiting out the fade. */
+.preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+/* The photo itself — oversized (-28px inset + scale) so the blur's own
+   soft edge never reveals a hard boundary at the viewport edge. Blur
+   radius is kept as small as the "soft focus" look allows (was 28px —
+   dropped to 20px) because a full-viewport CSS blur is one of the more
+   expensive things a browser paints; a smaller radius over a smaller
+   overscan area is the main lever for making the preloader's first
+   paint land quickly instead of hitching. */
+.preloader-bg {
+  position: absolute;
+  inset: -28px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(20px) saturate(82%) brightness(1.1) contrast(0.9);
+  transform: scale(1.06) translateZ(0);
+}
+/* Warm, milky wash over the photo — this is what gives the muted
+   NAEIL color treatment rather than a raw blurred photo. */
+.preloader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(248,244,241,0.60), rgba(240,231,224,0.74));
+}
+.preloader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* The logo IS the loading animation — a diagonal reveal (clip-path
+   sweeping the same direction the mark's two loops naturally flow,
+   upper-left to lower-right) rather than a spinner. Same 0/20/50/80/
+   100% shape/slant as before; duration was cut from 2s to 1.1s (2s was
+   the actual root cause of the "chậm quá" report — script.js gates
+   closing the preloader on this animation's own animationend, so a 2s
+   animation put a hard 2s+ floor under every page load no matter how
+   fast the real assets were). will-change hints the browser to put
+   this element on its own compositor layer up front instead of
+   discovering mid-animation that it needs to, which is what removes
+   the small stutter at the very start of the sweep. */
+.preloader-logo {
+  width: clamp(48px, 5vw, 68px);
+  height: auto;
+  display: block;
+  opacity: 0;
+  will-change: clip-path, opacity;
+  animation: preloaderLogoDraw 1.1s cubic-bezier(.65,0,.35,1) .08s forwards;
+}
+@keyframes preloaderLogoDraw {
+  0%   { clip-path: polygon(0 0, -15% 0, -33% 100%, 0 100%); opacity: 0; }
+  14%  { opacity: 1; }
+  20%  { clip-path: polygon(0 0, 22% 0, 4% 100%, 0 100%); }
+  50%  { clip-path: polygon(0 0, 55% 0, 37% 100%, 0 100%); }
+  80%  { clip-path: polygon(0 0, 85% 0, 67% 100%, 0 100%); }
+  100% { clip-path: polygon(0 0, 130% 0, 112% 100%, 0 100%); opacity: 1; }
+}
+/* Respect reduced-motion: keep the brand moment (photo + logo) but
+   drop the sweeping reveal for a simple, quick fade. */
+@media (prefers-reduced-motion: reduce) {
+  .preloader-logo { animation: none; clip-path: none; opacity: 1; }
+  .preloader { transition-duration: .3s; }
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.eyebrow.center {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 7vw, 64px);
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+/* Home "Our Services" heading — scoped override (base .eyebrow.center
+   above is shared; Head Spa already has its own equivalent override at
+   .spa-services .eyebrow.center further down). VI's new copy
+   ("DỊCH VỤ TẠI NAEIL", 17 characters) must never wrap to a 2nd line,
+   so this reuses the exact same proven desktop/mobile scale as Head
+   Spa's own eyebrow — that formula was already verified safe down to
+   320px for a longer 21-character string, so it has comfortable margin
+   here too. */
+.services .eyebrow.center {
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
+}
+@media (max-width: 1023px) {
+  .services .eyebrow.center {
+    font-size: clamp(18px, 6vw, 30px);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  border-radius: 30px;
+  /* Reset the native <button> UA-stylesheet border. Most .btn CTAs are
+     <a> tags (no default border), but .visit-hero-btn is a <button>
+     (it also opens the shared booking modal via data-book-trigger),
+     so without this reset it shows a stray grey outline that isn't
+     part of the design. .btn-outline / .btn-ink set their own border
+     afterward and still win, so this doesn't affect them. */
+  border: none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: .02em;
+  transition: all .25s ease;
+}
+.btn-light {
+  width: 231px;
+  height: 40px;
+  background: var(--white);
+  color: var(--blue);
+}
+.btn-light:hover { background: var(--blue); color: var(--white); }
+
+.btn-outline {
+  width: 150px;
+  height: 26px;
+  padding: 0;
+  background: rgba(255,255,255,0);
+  border: 1px solid rgba(0,0,0,0.35);
+  color: var(--ink);
+  font-size: 12px;
+}
+.btn-outline:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.btn-ink {
+  height: 48px;
+  padding: 0 32px;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--ink);
+  font-size: 14px;
+}
+.btn-ink:hover { background: transparent; color: var(--ink); }
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #000;
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color .2s ease, gap .2s ease;
+}
+.link-arrow:hover { border-color: var(--ink); gap: 12px; }
+.arrow-icon { width: 13px; height: 8px; display: inline-block; }
+
+/* =====================================================
+   HERO
+   ===================================================== */
+/* Hero is intentionally full-bleed/full-viewport-width at every screen
+   size — it must NOT be capped to var(--container), or wide monitors
+   show empty page background down both sides of the image (regressed
+   this once already: capping .hero to match the navbar's max-width
+   looked correct in theory but broke the full-bleed hero on wide
+   screens in practice — reverted). The navbar overlaying it keeps its
+   own max-width:var(--container) centering for its CONTENT (logo,
+   links, CTA), which is the correct place for that inset — the
+   photograph itself should always fill the full width of the browser,
+   responsively, at any viewport. */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  color: var(--white);
+}
+
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.2) 100%);
+}
+
+/* Mobile default (<1024px): logo left, hamburger-only cluster right —
+   opens the mega-menu drawer. At desktop (>=1024px) this switches to a
+   three-part layout — logo / centered inline links / Book CTA — with
+   the hamburger and drawer disabled entirely; see the
+   min-width:1024px block further down. */
+.navbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 129px;
+  box-sizing: border-box;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 10px 80px;
+  background: transparent;
+  transition: background-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---- Sticky state — activated via JS once the hero has scrolled out of view ---- */
+/* The base .navbar rule above caps itself at max-width:var(--container)
+   (1440px) with margin:0 auto — by design for the absolute, over-hero
+   state (matches the rest of the site's 1440px content system), but
+   that same cap was leaking into the FIXED/sticky state too: once
+   position becomes fixed, left:0/right:0 (inherited from the base
+   rule) plus a max-width narrower than the viewport plus auto margins
+   is exactly the recipe for a centered bar with visible page
+   background on both sides on any viewport wider than 1440px (the
+   reported ~20px gaps). max-width/margin are reset here so only the
+   fixed state stretches truly edge-to-edge; the original hero-overlay
+   state above is completely untouched. Padding (unchanged, from the
+   base rule) is what keeps the logo/links/CTA sitting the same
+   distance from the edge as before — it's just measured from the true
+   viewport edge now instead of from the old 1440px box's edge. */
+.navbar.is-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: rgba(248,244,241,0.94);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.navbar.is-fixed .logo-img { opacity: 0; }
+.navbar.is-fixed .logo::after { opacity: 1; }
+.navbar.is-fixed .nav-toggle span { background: var(--ink); }
+.navbar.is-fixed .nav-book-btn { border-color: rgba(0,0,0,0.35); color: var(--ink); }
+.navbar.is-fixed .nav-book-btn:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.navbar.is-fixed .nav-links a { color: var(--ink); opacity: .7; }
+.navbar.is-fixed .nav-links a:hover { opacity: 1; }
+
+.logo {
+  position: relative;
+  display: inline-flex;
+}
+/* Recolored logo shown only once the nav is scrolled/fixed — uses the
+   logo file as a CSS mask so the tint is an exact color match (#CBE6E9)
+   rather than an approximated filter. */
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #CBE6E9;
+  -webkit-mask-image: url("../images/icons/logo.svg");
+  mask-image: url("../images/icons/logo.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+  transition: opacity .3s ease;
+}
+
+/* Hamburger — mobile-only (<1024px) trigger for the mega-menu drawer.
+   Hidden entirely at desktop widths, where inline links replace it. */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 6;
+}
+.nav-toggle span { width: 26px; height: 2px; background: var(--white); display: block; transition: background-color .3s ease; }
+
+/* Desktop-only inline nav links (Home/Nail/Hair/Lash/About/Visit) —
+   hidden by default (mobile uses the hamburger + drawer instead) and
+   shown/centered in the min-width:1024px block below. */
+.nav-links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- "Book an appointment →" nav CTA. Hidden on mobile (<1024px) —
+   the mobile top bar shows only the logo + hamburger, with booking
+   handled by the hero CTA and the drawer's own Book row. At desktop
+   it becomes a persistent, always-visible outlined pill overlaying
+   the hero, per the min-width:1024px block below. ---- */
+.nav-book-btn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 26px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.7);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.nav-book-btn:hover { background: rgba(255,255,255,0.14); }
+.nav-book-btn .btn-arrow { transition: transform .25s ease; }
+.nav-book-btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* =====================================================
+   DESKTOP NAVIGATION (>=1024px) — transparent bar overlaying the hero:
+   logo left, inline links centered, outlined Book CTA right. Below this
+   breakpoint the mobile logo + hamburger (opening the mega-menu drawer
+   below) is used instead — the two never appear at the same time.
+   ===================================================== */
+@media (min-width: 1024px) {
+  /* Fluid horizontal compression (narrow-desktop fix) — logo size
+     (26px), nav-link font-size (21.35px), and every element's own
+     content (text, CTA, language selector) are NEVER touched below.
+     Only the SPACING around them compresses: outer nav padding, the
+     grid's column-gap, the gap between nav links, each link's own
+     inline padding, the navbar-right gap, and the Book CTA's padding.
+     Every clamp() here is calibrated so its ceiling is the exact
+     original fixed value, reached at/above 1440px (unchanged "large
+     desktop" look) and its floor is the tightest value used at
+     1024px, the lower edge of this same desktop tier — nothing new
+     happens below 1024px, where the existing hamburger/drawer nav
+     (untouched) takes over. white-space:nowrap on nav-links a is a
+     hard guarantee that labels never wrap regardless of how tight the
+     available space gets. grid-template-columns uses minmax(0, 1fr)
+     (not bare 1fr) so the two outer columns are allowed to shrink
+     toward the center column instead of forcing the whole grid wider
+     than the viewport. */
+  .navbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(10px, 3.37vw - 24.5px, 24px);
+    padding-inline: clamp(32px, 11.5vw - 86px, 80px);
+  }
+  .logo { justify-self: start; }
+
+  .nav-links {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 5.29vw - 40.15px, 36px);
+  }
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: 21.35px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.427px;
+    text-align: center;
+    color: var(--white);
+    text-decoration: none;
+    opacity: .9;
+    white-space: nowrap;
+    padding-inline: clamp(4px, 1.44vw - 10.8px, 10px);
+    transition: opacity .25s ease, color .25s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .navbar-right { justify-self: end; gap: clamp(8px, 2.4vw - 16.6px, 18px); }
+  .nav-toggle { display: none; }
+  .nav-book-btn { display: inline-flex; padding-inline: clamp(14px, 2.89vw - 15.5px, 26px); }
+  /* .lang-switcher's desktop display:flex override (and its own
+     compressed margin-right) lives next to its own base rule below
+     (in the LANGUAGE SWITCHER section) — NOT here. Putting it here
+     would place an equal-specificity override BEFORE the unconditional
+     base rule that also sets `display`, and the later, unconditional
+     rule would win the cascade regardless of this media query (same
+     bug class fixed twice earlier on .nail-hero-content /
+     .spa-hero-content — see notes there). */
+}
+
+/* =====================================================
+   LANGUAGE SWITCHER — sits inside .navbar-right, directly
+   before the Book CTA (desktop only; mobile uses the
+   "Language" group added inside the mega-menu drawer below
+   instead). Purely additive: does not alter any existing
+   header/nav rule, and reuses only existing tokens
+   (--font-body, --cream, --cream-deep, --ink, --ink-mid,
+   --ink-soft, --white) — no new colors or radii introduced.
+
+   Note on spacing: .navbar-right already applies gap:18px
+   between its children (see the base .navbar-right rule
+   above). Adding this extra 12px margin-right brings the
+   switcher-to-CTA gap to ~30px. The switcher's gap to the
+   end of the inline nav-links list is governed by the
+   existing 1fr/auto/1fr centered-nav grid and will vary
+   with viewport width — left untouched deliberately, per
+   the instruction not to restructure the existing header.
+   ===================================================== */
+.lang-switcher {
+  display: none;
+  position: relative;
+  margin-right: 12px;
+}
+@media (min-width: 1024px) {
+  /* Same fluid narrow-desktop compression as the nav block above —
+     ceiling (12px) matches the original fixed value at 1440px+,
+     floor (4px) is the tightest value at 1024px. */
+  .lang-switcher {
+    display: flex;
+    margin-right: clamp(4px, 1.92vw - 15.7px, 12px);
+  }
+}
+
+.lang-switcher-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--white);
+  opacity: .85;
+  transition: opacity .25s ease, color .25s ease;
+}
+.lang-switcher-trigger:hover { opacity: 1; }
+.navbar.is-fixed .lang-switcher-trigger { color: var(--ink); }
+
+.lang-switcher-chevron {
+  font-size: 10px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+.lang-switcher.is-open .lang-switcher-chevron { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 136px;
+  background: var(--cream);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+  z-index: 10;
+}
+.lang-switcher.is-open .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 10px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  text-align: left;
+  transition: background-color .2s ease, color .2s ease;
+}
+.lang-dropdown-option:hover { background: var(--cream-deep); color: var(--ink); }
+.lang-dropdown-option .lang-check { opacity: 0; font-size: 12px; color: var(--ink); }
+.lang-dropdown-option.is-selected { color: var(--ink); font-weight: 500; }
+.lang-dropdown-option.is-selected .lang-check { opacity: 1; }
+
+/* ---- Mobile: "Language" group inside the mega-menu drawer, styled to
+   match the existing Services/Explore groups (.mega-menu-group-label
+   is reused as-is for the "Language" heading). ---- */
+.mega-menu-lang-options {
+  display: flex;
+  flex-direction: column;
+}
+.mega-menu-lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  padding: 13px 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-align: left;
+  transition: color .2s ease;
+}
+.mega-menu-lang-options .mega-menu-lang-option:last-child { border-bottom: none; }
+.mega-menu-lang-option .lang-check { opacity: 0; font-size: 13px; color: var(--ink); }
+.mega-menu-lang-option.is-selected { color: var(--ink); font-weight: 500; }
+.mega-menu-lang-option.is-selected .lang-check { opacity: 1; }
+
+/* =====================================================
+   MOBILE HEADER LANGUAGE SELECTOR — lives in the mobile-only
+   top bar (<1024px), between the Book button (hidden on mobile)
+   and the hamburger, so visually it sits right before the
+   hamburger: [ NAEIL ] ... [ VI ˅ ] [ ☰ ]. This is a separate,
+   mobile-only component from .lang-switcher above (desktop-only,
+   >=1024px) and from the Language group inside the mega-menu
+   drawer further below (left completely untouched, still there
+   as before) — all three reuse the same [data-lang-option] click
+   handling in i18n.js, so picking a language anywhere keeps every
+   instance on the page in sync. Deliberately quieter than the
+   desktop popover on purpose — small hairline-bordered card, no
+   9999px pill, no heavy shadow — so it reads as part of the
+   editorial header rather than a bolted-on generic UI widget. */
+.mobile-lang-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .mobile-lang-switcher { display: none; }
+}
+
+.mobile-lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--white);
+  opacity: .9;
+  transition: opacity .25s ease, color .25s ease;
+}
+.mobile-lang-trigger:hover { opacity: 1; }
+.navbar.is-fixed .mobile-lang-trigger { color: var(--ink); }
+
+.mobile-lang-chevron {
+  font-size: 9px;
+  line-height: 1;
+  opacity: .8;
+  transition: transform .25s ease;
+}
+.mobile-lang-switcher.is-open .mobile-lang-chevron { transform: rotate(180deg); }
+
+.mobile-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  min-width: 118px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  z-index: 10;
+}
+.mobile-lang-switcher.is-open .mobile-lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-lang-option {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  text-align: left;
+  color: var(--ink-soft);
+  opacity: .65;
+  transition: opacity .2s ease, color .2s ease;
+}
+.mobile-lang-option:hover { opacity: 1; }
+.mobile-lang-option.is-selected { color: var(--ink); opacity: 1; }
+.mobile-lang-option .mobile-lang-code {
+  font-size: 11px;
+  letter-spacing: .04em;
+  min-width: 26px;
+  flex: none;
+}
+.mobile-lang-option .mobile-lang-name {
+  font-size: 12.5px;
+}
+.mobile-lang-option.is-selected .mobile-lang-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =====================================================
+   MEGA MENU — opened by the hamburger, in the spirit of
+   rhodeskin.com's nav drawer: full-height panel, dark backdrop,
+   each destination shown as an image + title + description row,
+   with a staggered fade/slide reveal on open.
+   ===================================================== */
+.mega-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+.mega-menu-overlay.is-open { opacity: 1; visibility: visible; }
+
+.mega-menu {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background: var(--cream);
+  box-shadow: -12px 0 48px rgba(0,0,0,0.16);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 28px clamp(24px, 5vw, 48px) 40px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .5s cubic-bezier(.16,.8,.24,1);
+}
+.mega-menu-overlay.is-open .mega-menu { transform: translateX(0); }
+
+.mega-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+.mega-menu-logo .logo-img { height: 22px; display: block; filter: brightness(0); }
+.mega-menu-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.mega-menu-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* Editorial, grouped list — replaces the previous "5 large cards" layout.
+   Destinations are split into SERVICES / EXPLORE groups, each introduced
+   by a small uppercase label + hairline rule, with plain horizontal rows
+   underneath (image accent + title/subtitle + thin arrow) instead of
+   individual card containers. Uses the site's existing type + color
+   tokens only — no new fonts or brand colors introduced. */
+.mega-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.mega-menu-group-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.mega-menu-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  background: transparent;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.mega-menu-rows .mega-menu-item:last-child { border-bottom: none; }
+.mega-menu-overlay.is-open .mega-menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mega-menu-overlay.is-open .mega-menu-group:nth-child(1) .mega-menu-item:nth-child(1) { transition-delay: .10s; }
+.mega-menu-overlay.is-open .mega-menu-group:nth-child(1) .mega-menu-item:nth-child(2) { transition-delay: .16s; }
+.mega-menu-overlay.is-open .mega-menu-group:nth-child(1) .mega-menu-item:nth-child(3) { transition-delay: .22s; }
+.mega-menu-overlay.is-open .mega-menu-group:nth-child(2) .mega-menu-item:nth-child(1) { transition-delay: .28s; }
+.mega-menu-overlay.is-open .mega-menu-group:nth-child(2) .mega-menu-item:nth-child(2) { transition-delay: .34s; }
+
+.mega-menu-item-img {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--tan);
+}
+.mega-menu-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.mega-menu-item-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.mega-menu-item-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.mega-menu-item-desc {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  opacity: .85;
+}
+.mega-menu-item-arrow {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  transition: transform .25s ease, color .25s ease;
+}
+.mega-menu-item:hover .mega-menu-item-arrow,
+.mega-menu-item:focus-visible .mega-menu-item-arrow { color: var(--ink); transform: translateX(4px); }
+
+.mega-menu-bottom { margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(0,0,0,0.08); }
+.mega-menu-book-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background-color .25s ease;
+}
+.mega-menu-book-btn:hover { background: #000; }
+.mega-menu-book-btn .btn-arrow { transition: transform .25s ease; }
+.mega-menu-book-btn:hover .btn-arrow { transform: translateX(3px); }
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 30px;
+  /* Right edge (where the text/CTA sit, closest to the nav's own
+     right-side controls) is inset 50px more than the navbar's own
+     horizontal padding, at every tier — see the shared note above
+     .navbar and the <720px override below. */
+  padding: clamp(120px, 20vw, 300px) 130px clamp(40px, 6vw, 100px) clamp(24px, 12vw, 200px);
+}
+.hero-title {
+  align-self: stretch;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: normal;
+  letter-spacing: 4.8px;
+  color: #FFF;
+  text-align: right;
+  white-space: nowrap;
+  margin: 0;
+}
+.hero-bottom-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: rgba(255,255,255,0);
+}
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 25px);
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  color: #FFF;
+  text-align: right;
+  margin: 0;
+}
+
+.scroll-hint {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.65);
+  padding-bottom: 12px;
+}
+
+/* =====================================================
+   SERVICES
+   ===================================================== */
+
+.services {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  gap: 40px;
+  padding: 60px var(--gutter) 70px;
+  background: rgba(240, 231, 224, 0.44);
+}
+
+.services .services-grid {
+  gap: 60px;
+}
+
+.service-card {
+  display: flex;
+  width: 357.33px;
+  min-width: 357.33px;
+  min-height: 513.81px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.service-card .service-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.service-card .service-img img { width: 100%; height: 100%; object-fit: cover; }
+.service-card h3 {
+  font-family: var(--font-condensed);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-soft);
+  margin: 0;
+}
+/* Secondary sub-label under the service title (Head Spa page only —
+   this class is not used on the Home page's .service-card instances,
+   so the shared .service-card rules above are untouched). Smaller and
+   lighter than h3 to sit clearly beneath it in the visual hierarchy,
+   and lighter than the .service-card p description that follows. */
+.service-subdesc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin: 0;
+}
+.service-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 30px;
+  align-self: stretch;
+  width: 100%;
+  flex: 1;
+}
+.service-card .card-body > .link-arrow {
+  margin-top: auto;
+}
+.service-card p {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  align-self: stretch;
+  margin: 0;
+}
+
+/* Home "Our Services" cards — Vietnamese-only description refinement.
+   .service-card p above (20px) is currently used ONLY by these 3 Home
+   cards (Head Spa has its own .spa-services-scoped override further
+   down), but this is still written as an explicit, doubly-scoped
+   override — to .services (Home's section id="services" only) AND to
+   html[data-locale="vi"] — rather than edited in place, so English and
+   Chinese keep the original 20px/1.5 exactly as-is, and nothing here
+   could ever leak onto another page's cards even if one starts reusing
+   the bare .service-card class later. Slightly smaller + a touch more
+   line-height keeps the title (unchanged, still 20px/uppercase/2px
+   tracking) reading as clearly stronger than the description. */
+html[data-locale="vi"] .services .service-card p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* ---- Head Spa service-card typography hierarchy (scoped) ----
+   .service-card / h3 / .card-body / p above are shared with the
+   Home page's own service cards (index.html), so every override
+   here is scoped under .spa-services to avoid touching Home.
+   .service-subdesc is Head-Spa-only already but is included here
+   too, just to keep the whole hierarchy in one place.
+
+   Card width is fixed (357.33px) at every breakpoint — mobile
+   scrolls the carousel horizontally rather than shrinking the
+   card. No changes to layout, image size, carousel, card-to-card
+   gap, colors or content.
+
+   Vertical rhythm (title -> subdesc -> body -> price) goes
+   small -> medium -> large: base gap is lowered to 10px, with
+   margin-top added back on h3 (image->title stays ~20px, same as
+   before) and on .card-body (subdesc->body becomes ~18px). The
+   body->price gap (30px, via .card-body's own gap + its
+   margin-top:auto price push) is already the largest and is left
+   untouched, so the eye now reads title -> subdesc -> body -> price
+   with clearly increasing pauses instead of one flat 20px rhythm. */
+.spa-services .service-card {
+  gap: 10px;
+}
+/* h3 font-size 22->19px and letter-spacing 2.2->1px: the title
+   "Hair Replenish - 90 PHÚT" (longest of all 12 title x language
+   combos) was actually wrapping to 2 lines in the browser at the
+   previous 22px/2.2px — a plain-average character-width estimate
+   under-counted how much wider this font renders in ALL CAPS.
+   Re-verified at 19px/1px against real observed behaviour with a
+   large safety margin (~38px / ~11% of the 357px card width) even
+   under a deliberately pessimistic width estimate, plus white-space:
+   nowrap as a hard guarantee — this is safe to force outright since
+   the card width never changes across breakpoints (no viewport-
+   dependent edge case to re-check later, unlike fluid sections). */
+.spa-services .service-card h3 {
+  font-size: 19px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+/* Sub-desc dropped 18->16px to stay in the requested "15-20% smaller
+   than title" range now that title itself is smaller (16/19 = 15.8%
+   smaller). Still comfortably 1-line for every language (was already
+   safe at the larger 18px). */
+.spa-services .service-subdesc {
+  font-size: 16px;
+  font-weight: 400;
+}
+.spa-services .service-card .card-body {
+  margin-top: 8px;
+}
+.spa-services .service-card p {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* =====================================================
+   PHILOSOPHY
+   ===================================================== */
+.philosophy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--tan);
+  min-height: 640px;
+}
+
+.philosophy-img { min-height: 480px; }
+.philosophy-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.philosophy-content {
+  padding: 80px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50px;
+  align-self: stretch;
+  justify-self: stretch;
+  background: rgba(255,255,255,0);
+}
+
+.philosophy-eyebrow {
+  align-self: stretch;
+  color: #616161;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.philosophy-title {
+  align-self: stretch;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 47px);
+  line-height: normal;
+  letter-spacing: 0.94px;
+  color: #414141;
+  margin: 0;
+}
+.philosophy-title .consious {
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(34px, 5.6vw, 60px);
+  line-height: 1.2;
+  letter-spacing: 1.2px;
+  color: #414141;
+}
+.philosophy-title .care-word {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 47px);
+  line-height: 1.2;
+  letter-spacing: 0.94px;
+  color: #414141;
+}
+
+.philosophy-content p {
+  align-self: stretch;
+  color: #828282;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.site-footer {
+  background: #F8F4F1;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 56px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 72px) var(--gutter);
+  box-sizing: border-box;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+.brand-script {
+  color: #CBE6E9;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 50px);
+  font-weight: 400;
+  letter-spacing: clamp(2px, 0.5vw, 5px);
+  margin: 0;
+  margin-right: calc(clamp(2px, 0.5vw, 5px) * -1);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.social-icons a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.06);
+  transition: background .25s ease, transform .3s cubic-bezier(.2,.8,.3,1.2), box-shadow .25s ease;
+}
+.social-icons a:hover {
+  background: var(--ink);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.14);
+}
+.social-icons img { width: 18px; height: 18px; transition: filter .2s ease; }
+.social-icons a:hover img { filter: brightness(0) invert(1); }
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(130px, 160px));
+  gap: 40px clamp(40px, 5vw, 88px);
+  flex: 1 1 480px;
+  max-width: 620px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.footer-col h4 {
+  align-self: stretch;
+  color: var(--ink-mid);
+  font-family: var(--font-condensed);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-col ul li { margin: 0; }
+.footer-col ul li a,
+.footer-col .visit-list li {
+  align-self: stretch;
+  color: #454545;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.36px;
+}
+.footer-col ul li a:hover { color: var(--ink); }
+.visit-list li { line-height: 150%; }
+
+.footer-bottom {
+  max-width: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 26px var(--gutter);
+  box-sizing: border-box;
+  text-align: center;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 150%;
+  border-top: 1px solid rgba(0,0,0,0.18);
+}
+
+/* =====================================================
+   RESPONSIVE — Tablet
+   ===================================================== */
+@media (max-width: 1024px) {
+  .philosophy { grid-template-columns: 1fr; }
+  .philosophy-img { min-height: 380px; }
+  .philosophy-content { padding: 64px var(--gutter); max-width: none; }
+  .footer-links { grid-template-columns: repeat(3, minmax(110px, 1fr)); gap: 32px 24px; max-width: none; }
+}
+
+/* =====================================================
+   RESPONSIVE — Mobile (nav collapse)
+   ===================================================== */
+/* Content that must reflow throughout the ENTIRE <1024px mobile range
+   (matching the nav breakpoint), not just below 720px — this closes the
+   721–1023px "dead zone" where content used to keep its desktop-only
+   formatting (e.g. a nowrap right-aligned hero title) while the nav had
+   already switched to mobile. */
+@media (max-width: 1023px) {
+  .hero-content { align-items: flex-start; }
+  .hero-title, .hero-sub { text-align: left; white-space: normal; }
+  .hero-bottom-row { justify-content: flex-start; }
+  .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
+  /* Head Spa's hero is intentionally centered at every breakpoint
+     (see the "HEAD SPA PAGE — Hero" section below) — it no longer
+     switches to a left-aligned mobile treatment like the other hero
+     pages here, so .spa-hero-content/.spa-title/.spa-sub/.spa-hero-desc
+     are deliberately absent from this shared block. */
+}
+
+@media (max-width: 720px) {
+  /* Minimum 50px horizontal inset, on every page, at every width — the
+     shared --gutter token floors at 24px on narrow phones, which is
+     below that minimum, so the nav uses its own raised floor here. */
+  .navbar { padding: 24px clamp(50px, 6vw, 80px) 0; }
+  .navbar-right { gap: 14px; }
+  .mega-menu { max-width: none; padding: 24px var(--gutter) 32px; }
+
+  /* Hero text/CTA box stays 50px past the navbar's own padding at this
+     tier too (nav = 50px here, so hero = 100px). */
+  .hero-content { padding-right: 100px; }
+
+  /* Leading (logo-side) edge for Nail/Head Spa/About/Visit — reuses
+     .hero-content's own left-padding formula (clamp(24px, 12vw, 200px))
+     instead of the flat "nav+50" value above, matching Lash/Home's
+     already-correct alignment with the logo at narrow widths.
+     NOTE: this override now lives next to each page's own hero-content
+     base rule (.nail-hero-content, .spa-hero-content, .about-hero-content,
+     .visit-hero-inner) instead of here — a rule with equal specificity
+     placed here would lose the cascade to that later, unconditional
+     base rule and silently do nothing. Left as a pointer so the
+     pattern isn't reintroduced here by mistake. */
+
+  .footer-top { flex-direction: column; align-items: center; gap: 48px; text-align: center; }
+  .footer-links {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 36px;
+    max-width: 320px;
+  }
+}
+
+/* =====================================================
+   SHARED HERO RESPONSIVE SYSTEM — Small desktop
+   (1024–1280px: below the point where the fluid clamp() hero type
+   comfortably fills a wide frame, but above the <1024px breakpoint
+   where the nav/layout already switches to its mobile treatment.
+   1280px reuses the project's existing "before cramped" convention,
+   see .lash-process-row above.)
+
+   Reference / golden standard: the Lash hero. Its description
+   (.lash-hero-desc) already carries `max-width: 661px`, and About's
+   (.about-hero-desc) carries `max-width: 605px` — both keep their
+   text column narrow and editorial no matter how much horizontal
+   room the hero has. Visit's hero (.visit-hero-content / -desc) is
+   narrower still (480px / 380px). Those three are already correct
+   at this range and are NOT touched here.
+
+   Nail is the page that drifts from that standard: its title
+   (.nail-hero-title) uses align-self:stretch with no max-width at
+   all, so its box is free to grow to the full hero width instead of
+   a controlled column.
+
+   Fix: bring it in line with the ~600–660px column already used by
+   Lash/About, scoped to this band only. Large desktop (>=1280px) and
+   mobile (<1024px) are untouched.
+
+   Head Spa (.spa-hero-desc) used to need an identical fix here, but
+   now carries a fluid `width: min(100%, 680px)` on its own base rule
+   (see "HEAD SPA PAGE — Hero" below), so it already stays narrow at
+   every width without a band-specific override.
+   ===================================================== */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .nail-hero-title { max-width: 640px; }
+}
+
+/* =====================================================
+   NAIL PAGE — Hero
+   ===================================================== */
+.nail-hero .hero-media img { object-position: center 40%; }
+
+.nail-hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* Bottom-anchored to match the Home/Lash hero reference pattern
+     (.hero-content uses justify-content: flex-end). Was previously
+     "center" + flex:1, which vertically centered the text instead of
+     anchoring it to the lower third — an inconsistency vs. every
+     other hero on the site. */
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 30px;
+  /* Left edge (where the text starts) inset 50px more than the
+     navbar's own horizontal padding — see note above .navbar. */
+  padding: clamp(120px, 20vw, 268px) 130px clamp(40px, 6vw, 100px) 130px;
+}
+/* Narrow-mobile override MUST come after the base rule above — same
+   selector/specificity, so source order decides, and this needs to
+   win. (An earlier attempt placed this same override inside the
+   shared @media block near the top of the file; because that block
+   sits BEFORE this base rule in source order, the base rule's fixed
+   130px silently won the cascade and the override never rendered.) */
+@media (max-width: 720px) {
+  .nail-hero-content { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+}
+.nail-hero-title {
+  align-self: stretch;
+  color: var(--blue);
+  font-family: var(--font-condensed);
+  font-weight: 400;
+  /* Matches .lash-title's exact scale (same font, same 10% letter-
+     spacing-to-size ratio) — was clamp(40px, 6.5vw, 96px)/9.6px, which
+     read noticeably larger than every other page's hero title. */
+  font-size: clamp(32px, 4vw, 55px);
+  line-height: normal;
+  letter-spacing: 5.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+/* Kept for backward compatibility only — no longer used in nail.html's
+   markup (see .nail-hero-sub / .nail-hero-desc below, which now sit as
+   direct .nail-hero-content children, matching Lash's flat structure). */
+.nail-hero-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: rgba(255,255,255,0);
+}
+/* Short tagline (e.g. "Refined beauty without compromise.") — matches
+   .lash-sub's typography exactly, so Nail's hero reads with the same
+   visual weight/rhythm as the Lash reference. */
+.nail-hero-sub {
+  align-self: stretch;
+  color: #FFF;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+/* Longer supporting copy — matches .lash-hero-desc's typography and
+   661px column width, so it doesn't stretch wider than Lash's does. */
+.nail-hero-desc {
+  max-width: 661px;
+  color: #FFF;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: normal;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+
+/* =====================================================
+   NAIL PAGE — What Goes On Your Nail (services)
+   ===================================================== */
+.nail-services {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: clamp(40px, 6vw, 80px) var(--gutter);
+  background: rgba(240, 231, 224, 0.44);
+}
+
+.nail-eyebrow {
+  color: var(--ink-soft);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 7vw, 64px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.spa-services .eyebrow.center {
+  /* Matches .spa-title's exact scale (the "HEAD SPA" hero text) per
+     request — clamp(32px, 4vw, 55px) / 5.5px, replacing the old
+     28-64px/8px formula. Only applies >=1024px; the mobile override
+     below still independently guarantees single-line fit at every
+     narrower width regardless of this value. */
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
+  margin: 0 0 40px;
+}
+/* Below 1024px this heading would otherwise wrap to 2+ lines for
+   longer translations (English's "Our Headspa Services" is the worst
+   case). Scoped smaller scale + proportional (em-based, so it shrinks
+   together with the font) letter-spacing keeps every locale —
+   including the longest one — on a single line with room to spare at
+   every mobile/tablet width down to 320px. Independent of the base
+   rule's own size above, so it stays correct even as that changes. */
+@media (max-width: 1023px) {
+  .spa-services .eyebrow.center {
+    font-size: clamp(18px, 6vw, 30px);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+}
+
+.services-subheading {
+  color: #454545;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.4px;
+  margin: 0;
+}
+
+.product-card {
+  display: flex;
+  width: 357.33px;
+  min-width: 357.33px;
+  min-height: 513.81px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-card .product-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.product-card .product-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.product-card .product-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  align-self: stretch;
+  padding: 20px 0;
+}
+.product-card h3 {
+  align-self: stretch;
+  color: #616161;
+  text-align: center;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.product-card p {
+  align-self: stretch;
+  color: #616161;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.36px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* =====================================================
+   NAIL PAGE — The Naeil Standard
+   ===================================================== */
+.standard-section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: #E5DDD8;
+}
+
+.standard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50px;
+  padding: clamp(40px, 6vw, 80px);
+  box-sizing: border-box;
+}
+
+.standard-eyebrow {
+  align-self: stretch;
+  color: #616161;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.standard-title {
+  align-self: stretch;
+  color: #414141;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 3.5vw, 47px);
+  line-height: normal;
+  letter-spacing: 0.94px;
+  margin: 0;
+}
+
+.standard-content p {
+  align-self: stretch;
+  color: #828282;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+.standard-img { width: 100%; height: 100%; min-height: 480px; }
+.standard-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.btn-outline-small {
+  min-width: 160px;
+  height: 28px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0);
+  border: 1px solid rgba(0,0,0,0.35);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  transition: all .25s ease;
+}
+.btn-outline-small:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+@media (max-width: 1024px) {
+  .standard-section { grid-template-columns: 1fr; }
+  .standard-img { min-height: 380px; }
+}
+@media (max-width: 1023px) {
+  .nail-hero-content { align-items: flex-start; }
+  /* Same 6.5vw curve as the desktop rule above, just re-capped lower so
+     the size keeps tapering smoothly past 1024px instead of jumping —
+     the two formulas agree almost exactly at the 1023/1024 boundary. */
+  /* No font-size re-cap needed anymore — the base clamp(32px, 4vw, 55px)
+     already tapers to the same 32px floor Lash's own .lash-title uses,
+     which is why .lash-title has no mobile font-size override either. */
+  .nail-hero-title { text-align: left; }
+  .nail-hero-sub { text-align: left; }
+  .nail-hero-desc { text-align: left; max-width: none; }
+  .nail-hero-bottom-row { justify-content: flex-start; }
+}
+
+/* =====================================================
+   SERVICE / PRODUCT GRIDS — shared wrapping layout
+   (used by homepage "Our Services", nail "What Goes On
+   Your Nail", and head spa "Our Headspa Services")
+   ===================================================== */
+.carousel-wrap {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.services-grid,
+.product-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(24px, 5vw, 70px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 64px 16px;
+}
+.services-grid::-webkit-scrollbar,
+.product-grid::-webkit-scrollbar { display: none; }
+
+/* Only left-align (so the row can scroll) once it actually overflows;
+   otherwise keep the cards centered in the viewport. */
+.carousel-wrap.has-overflow .services-grid,
+.carousel-wrap.has-overflow .product-grid {
+  justify-content: flex-start;
+}
+
+.service-card,
+.product-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: var(--arrow-center, 38%);
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(8px) saturate(1.3);
+  -webkit-backdrop-filter: blur(8px) saturate(1.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  padding: 0;
+  transition: background .2s ease, opacity .2s ease, transform .2s ease, border-color .2s ease;
+}
+.carousel-arrow img { width: 13px; height: 8px; display: block; opacity: .85; }
+.carousel-arrow.prev { left: clamp(8px, 2vw, 24px); }
+.carousel-arrow.prev img { transform: scaleX(-1); }
+.carousel-arrow.next { right: clamp(8px, 2vw, 24px); }
+.carousel-arrow:hover { background: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.6); }
+.carousel-arrow:hover:not(.is-disabled) { transform: translateY(-50%) scale(1.06); }
+.carousel-arrow.is-disabled { display: none; }
+.carousel-wrap.has-overflow .carousel-arrow { display: flex; }
+
+@media (max-width: 900px) {
+  .carousel-arrow { width: 42px; height: 42px; }
+}
+@media (max-width: 720px) {
+  .services-grid,
+  .product-grid { gap: 40px; }
+}
+
+/* =====================================================
+   ANIMATIONS — scroll reveal, hover motion, hero intro
+   ===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.in-view .reveal-item:nth-child(1) { transition-delay: .05s; }
+.reveal-stagger.in-view .reveal-item:nth-child(2) { transition-delay: .15s; }
+.reveal-stagger.in-view .reveal-item:nth-child(3) { transition-delay: .25s; }
+.reveal-stagger .reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);
+}
+.reveal-stagger.in-view .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* Hero intro (runs on load, not scroll) */
+.hero-title, .hero-sub, .hero-content .btn,
+.nail-hero-title, .nail-hero-sub, .nail-hero-desc, .nail-hero-content .btn,
+.spa-title, .spa-sub, .spa-hero-desc, .spa-hero-content .btn,
+.lash-hero-desc {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
+}
+.hero-title, .nail-hero-title, .spa-title { animation-delay: .15s; }
+.hero-bottom-row, .nail-hero-sub, .spa-sub, .lash-hero-desc { animation-delay: .35s; }
+.spa-hero-desc, .nail-hero-desc { animation-delay: .45s; }
+.hero-content .btn, .nail-hero-content .btn, .spa-hero-content .btn { animation-delay: .6s; }
+@keyframes heroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover motion */
+.service-card, .product-card { transition: transform .35s ease; }
+.service-card:hover, .product-card:hover { transform: translateY(-6px); }
+
+.service-img, .product-img { overflow: hidden; }
+.service-img img, .product-img img {
+  transition: transform .6s cubic-bezier(.16,.8,.24,1);
+}
+.service-card:hover .service-img img,
+.product-card:hover .product-img img {
+  transform: scale(1.06);
+}
+
+/* Philosophy / Standard image subtle zoom on hover of whole section */
+.philosophy-img img, .standard-img img { transition: transform .8s ease; }
+.philosophy:hover .philosophy-img img,
+.standard-section:hover .standard-img img { transform: scale(1.03); }
+
+/* Nav underline smoother */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 1px;
+  background: currentColor;
+  transition: width .3s ease;
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a.active { border-bottom: none; padding-bottom: 0; }
+
+/* =====================================================
+   LASH PAGE
+   ===================================================== */
+.lash-hero .hero-media img { object-position: center 30%; }
+.lash-hero-btn {
+  width: auto;
+  min-width: 231px;
+  padding: 0 32px;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.lash-hero .hero-bottom-row .btn { margin-left: auto; }
+
+.lash-title {
+  color: var(--blue);
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
+  white-space: normal;
+  text-align: right;
+}
+
+.lash-sub {
+  align-self: stretch;
+  color: #FFF;
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+
+.lash-hero-desc {
+  align-self: flex-end;
+  max-width: 661px;
+  text-align: right;
+  color: #FFF;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: normal;
+  letter-spacing: -0.48px;
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .lash-title { text-align: left; white-space: normal; }
+  .lash-sub { text-align: left; }
+  .lash-hero-desc { align-self: flex-start; text-align: left; max-width: none; }
+  .lash-hero .hero-bottom-row .btn { margin-left: 0; }
+}
+
+.lash-eyebrow {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 5.5vw, 64px);
+  line-height: 1.56;
+  letter-spacing: 1.28px;
+  color: var(--ink-mid);
+  margin: 0 0 20px;
+}
+
+.lash-intro {
+  padding: clamp(56px, 9vw, 100px) var(--gutter);
+  text-align: center;
+  background: var(--cream);
+}
+.lash-intro-sub {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin: 0 0 56px;
+}
+
+.reveal-block { margin: 0 0 48px; }
+.lash-subtitle {
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 40px);
+  color: var(--ink-mid);
+  margin: 0 0 14px;
+}
+.reveal-copy {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---- Draggable before/after comparison slider ---- */
+.ba-slider {
+  position: relative;
+  max-width: var(--container);
+  margin: 0 auto;
+  aspect-ratio: 779 / 480;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+  transition: box-shadow .4s ease;
+}
+.ba-slider:hover { box-shadow: 0 28px 70px rgba(0,0,0,0.16); }
+
+.ba-layer { position: absolute; inset: 0; overflow: hidden; }
+.ba-layer img {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ba-before { width: 50%; }
+
+.ba-tag {
+  position: absolute;
+  bottom: 22px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 999px;
+  background: rgba(20,18,16,0.32);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.ba-tag-before { left: 22px; }
+.ba-tag-after { right: 22px; }
+
+.ba-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 0;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-handle-track {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  background: rgba(255,255,255,0.9);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+.ba-handle-grip {
+  position: relative;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+  color: #333;
+  transition: transform .3s cubic-bezier(.2,.8,.3,1.2), box-shadow .3s ease;
+}
+.ba-handle-grip svg { width: 18px; height: 18px; }
+.ba-slider:hover .ba-handle-grip { transform: scale(1.08); }
+.ba-slider.is-dragging .ba-handle-grip { transform: scale(1.14); }
+.ba-slider.is-dragging { box-shadow: 0 30px 76px rgba(0,0,0,0.2); }
+
+/* ---- The Process — feature tabs ---- */
+.lash-process {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(40px, 5vw, 56px);
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(80px, 10vw, 130px) var(--gutter);
+  background: var(--cream);
+}
+
+.lash-process-row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(40px, 5vw, 64px);
+  width: 100%;
+}
+
+.lash-process-nav {
+  flex: 0 0 auto;
+  width: clamp(240px, 26vw, 340px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 44px);
+}
+
+.lash-process-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.lash-process-label {
+  color: var(--ink-soft);
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.lash-process-title {
+  color: #454545;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(19px, 3vw, 25px);
+  line-height: normal;
+  letter-spacing: 3px;
+  margin: 0;
+}
+.lash-process-intro {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: var(--ink-soft);
+  max-width: 320px;
+  margin: 0;
+}
+
+.lash-process-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+.lash-process-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: background-color .3s ease, padding-left .3s ease;
+}
+.lash-process-step:hover:not(.is-active) { background: rgba(0,0,0,0.03); }
+.lash-process-step.is-active {
+  background: var(--tan);
+  padding-left: 20px;
+}
+.lash-process-step-num {
+  flex: 0 0 auto;
+  width: 28px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.3px;
+  color: var(--icon-gray);
+  transition: color .3s ease;
+}
+.lash-process-step-name {
+  flex: 1 1 auto;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(17px, 1.6vw, 21px);
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  transition: color .3s ease;
+}
+.lash-process-step-icon {
+  flex: 0 0 auto;
+  width: 20px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--icon-gray);
+  transition: color .3s ease;
+}
+.lash-process-step.is-active .lash-process-step-num,
+.lash-process-step.is-active .lash-process-step-name,
+.lash-process-step.is-active .lash-process-step-icon { color: var(--ink-mid); }
+
+.lash-process-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lash-process-progress-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--icon-gray);
+}
+.lash-process-progress-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+}
+.lash-process-progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 1px;
+  background: var(--ink-mid);
+  width: 25%;
+  transition: width .45s ease-in-out;
+}
+
+.lash-process-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #FBF8F5;
+  overflow: hidden;
+}
+.lash-process-panel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(36px, 5vw, 64px);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .4s ease-in-out, transform .4s ease-in-out;
+}
+.lash-process-panel-inner.is-leaving { opacity: 0; transform: translateY(-14px); }
+.lash-process-panel-inner.is-entering { opacity: 0; transform: translateY(18px); }
+
+.lash-process-panel-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 340px;
+}
+.lash-process-panel-num {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--icon-gray);
+}
+.lash-process-panel-title {
+  color: #454545;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: 2px;
+  margin: 0;
+}
+.lash-process-panel-divider {
+  width: 48px;
+  height: 1px;
+  background: rgba(0,0,0,0.2);
+}
+.lash-process-panel-desc {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.4px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.lash-process-panel-img {
+  flex: 0 0 auto;
+  width: clamp(200px, 28vw, 320px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lash-process-panel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lash-process-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.lash-process-hint span {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+.lash-process-hint-arrows {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.lash-process-hint-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink-mid);
+  padding: 4px 6px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.lash-process-hint-arrow:hover:not(:disabled) { transform: translateX(3px); }
+.lash-process-hint-arrow.prev:hover:not(:disabled) { transform: translateX(-3px); }
+.lash-process-hint-arrow:disabled { opacity: .3; cursor: default; }
+
+@media (max-width: 1280px) {
+  .lash-process-row { gap: clamp(32px, 4vw, 56px); }
+}
+
+@media (max-width: 1024px) {
+  .lash-process-row { flex-direction: column; gap: 40px; }
+  .lash-process-nav { width: 100%; }
+  .lash-process-panel { width: 100%; }
+  .lash-process-panel-inner { flex-direction: column; align-items: flex-start; }
+  .lash-process-panel-text { max-width: none; }
+  .lash-process-panel-img { width: 100%; max-width: 280px; align-self: center; }
+}
+
+@media (max-width: 720px) {
+  .lash-process-step { padding: 16px 12px; }
+  .lash-process-panel-inner { padding: 32px 24px; }
+}
+
+.lash-why {
+  background: var(--tan);
+  padding: clamp(80px, 10vw, 130px) var(--gutter);
+}
+.lash-why-inner {
+  display: flex;
+  gap: clamp(48px, 7vw, 110px);
+  align-items: flex-start;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.why-intro {
+  flex: 0 0 clamp(220px, 24vw, 300px);
+  position: sticky;
+  top: 120px;
+}
+.why-kicker {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.why-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 4.4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.3px;
+  color: #333;
+  margin: 0;
+}
+
+.why-list {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(0,0,0,0.16);
+}
+.why-item {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(20px, 3vw, 44px);
+  padding: clamp(26px, 3vw, 36px) 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.16);
+  transition: background .35s ease, padding-left .35s ease;
+}
+.why-item:hover {
+  padding-left: 14px;
+  background: rgba(255,255,255,0.22);
+}
+.why-num {
+  flex: 0 0 auto;
+  width: 40px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink-soft);
+  opacity: .55;
+}
+.why-body h4 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin: 0 0 10px;
+}
+.why-body p {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 480px;
+}
+
+@media (max-width: 900px) {
+  .ba-handle-grip { width: 38px; height: 38px; }
+  .ba-tag { font-size: 10px; padding: 6px 14px; bottom: 14px; }
+  .lash-why-inner { flex-direction: column; gap: 44px; }
+  .why-intro { position: static; flex: none; }
+}
+@media (max-width: 560px) {
+  .why-item { align-items: flex-start; gap: 16px; }
+  .why-item:hover { padding-left: 4px; }
+}
+/* =====================================================
+   HEAD SPA PAGE
+   ===================================================== */
+.spa-hero .hero-media img { object-position: center bottom; }
+
+/* Head Spa's hero is the one full-screen hero on the site that reads
+   as a compact, centered editorial composition rather than a
+   bottom/right-anchored text block — every other hero page keeps
+   .hero's shared `justify-content: flex-end`, but here it's
+   overridden to `center` so the [title/subtitle/paragraph/CTA] group
+   sits in the vertical middle of the viewport. .scroll-hint
+   (a fixed-height sibling below .spa-hero-content, unaffected by
+   locale) sits inside that same centered group, which naturally
+   nudges the content block itself slightly above dead-center — the
+   "shifted up a touch, not exact center" feel — without any
+   hardcoded offset. svh (small viewport height) is layered on top of
+   vh so mobile browser chrome can't clip the composition; browsers
+   without svh support simply keep the vh value above it.
+
+   padding-top is a hard floor, not just a starting position: the
+   navbar is 129px tall and absolutely positioned over this same flex
+   box, so centering alone could — on a short viewport combined with a
+   longer translation that wraps to more lines — push content up
+   almost flush against it. Reserving 129px+ of padding before
+   centering even begins means the content's top edge can never land
+   above that line, in any language, at any height.
+
+   padding-bottom's floor (56px+) exists for a different reason: the
+   scroll-hint below is pinned to the hero's true bottom edge (see
+   .spa-hero .scroll-hint), independent of this centered content
+   group — matching the Lash hero's "scroll to discover" position —
+   so this padding just keeps the CTA from ever crowding it. */
+.spa-hero {
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: clamp(129px, 20vh, 180px);
+  padding-bottom: clamp(56px, 8vh, 90px);
+}
+/* Decoupled from the centered [title/subtitle/paragraph/CTA] group on
+   purpose, so it always sits at the true bottom of the hero — same
+   position the other hero pages get "for free" from .hero's shared
+   justify-content:flex-end, which .spa-hero no longer uses. */
+.spa-hero .scroll-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.spa-hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+  /* Vertical padding is now just a small safety buffer — .spa-hero's
+     justify-content:center (above) does the real positioning work, so
+     this no longer needs the old huge clamp() that used to anchor the
+     block off the bottom edge. Horizontal padding keeps the ~130px
+     large-desktop inset used elsewhere on the site, shrinking fluidly
+     on narrower screens instead of a hard breakpoint swap. */
+  padding: clamp(20px, 4vh, 48px) clamp(24px, 8vw, 130px);
+}
+@media (max-width: 720px) {
+  /* Same horizontal formula, slightly smaller ceiling so the compact
+     stack doesn't feel like it's fighting the mobile nav/hamburger
+     for space; still fully fluid, still centered — see above, the
+     old asymmetric left/right padding here was a leftover from the
+     hero's previous left-aligned mobile treatment. */
+  .spa-hero-content { padding-inline: clamp(20px, 8vw, 64px); }
+}
+
+.spa-title {
+  /* Font-size/letter-spacing match .lash-title's scale exactly, per
+     request — same clamp(32px, 4vw, 55px)/5.5px used on the Lash hero
+     (and already shared by .nail-hero-title). Color and every other
+     property are untouched; only the type SIZE is being aligned. */
+  color: #F3F3F3;
+  font-family: var(--font-condensed);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
+  text-transform: uppercase;
+  text-align: center;
+  /* No hairline under the title anymore (removed per feedback), so
+     this margin alone sets the title→subtitle gap. */
+  margin: 0 0 20px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+.spa-sub {
+  /* Font-size matches .lash-sub's fluid scale exactly — clamp(24px,
+     3.2vw, 40px) — per request, replacing the earlier fixed 40px.
+     letter-spacing already matched (-0.48px). */
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.25;
+  letter-spacing: -0.48px;
+  color: #FFF;
+  margin: 0 0 28px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+.spa-hero-desc {
+  /* Fluid column: never wider than 680px (within the 600–760px range
+     asked for), but freely shrinks on narrow viewports — no fixed
+     breakpoint math, no per-language special-casing. Longer
+     translations simply wrap to more lines; the column width and
+     every element below it stay put.
+     Font-size matches .lash-hero-desc's fluid scale exactly — clamp
+     (16px, 2vw, 24px) — per request, replacing the earlier fixed
+     18px. letter-spacing already matched (-0.48px). */
+  width: min(100%, 680px);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: 1.65;
+  letter-spacing: -0.48px;
+  color: #FFF;
+  margin: 0 0 36px;
+  overflow-wrap: break-word;
+}
+/* ---- Our Headspa Services ---- */
+.spa-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  min-height: clamp(0px, 60vw, 809px);
+  justify-content: center;
+  padding: 60px var(--gutter) 50px;
+  background: rgba(240, 231, 224, 0.44);
+}
+/* .services-subheading is shared with Nail's own subheading — scoped
+   here so Head Spa can use its own size without touching Nail's
+   (which keeps the original clamp(15px, 1.6vw, 17px)).
+   Ceiling dropped 20px -> 15px (a 25% cut, matching the requested
+   20-25% reduction) so the line no longer dominates the section
+   width on desktop. Floor left close to its previous 12px (13px)
+   rather than also cutting it ~25% to ~9px, which would read as
+   too small/illegible for a supporting sentence — the actual
+   complaint (subtitle "chiếm quá nhiều chiều ngang") is about the
+   wide-viewport size, which the ceiling cut directly addresses.
+   Letter-spacing softened from the shared 2.4px to 1.2px, and a
+   900-1000px measure cap (960px) is added and centered so the line
+   reads as a quiet, secondary supporting sentence under the heading
+   rather than competing with it — heading, layout, spacing, images
+   and service cards are all untouched. */
+.spa-services .services-subheading {
+  font-size: clamp(13px, 1.4vw, 15px);
+  letter-spacing: 1.2px;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.spa-services-note {
+  align-self: flex-end;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--ink-soft);
+  text-align: right;
+  margin: 0;
+
+}
+
+/* ---- The Naeil Experience (editorial redesign) ----
+   Full retune of this section's typography/spacing toward a quiet,
+   editorial feel: small tracked eyebrow, a large display-serif
+   heading as the section's visual focal point, a short supporting
+   line, then a thin icon-line-icon timeline (no cards/boxes/shadows).
+   Background, section padding rhythm, brand colors, icon artwork and
+   the 5-step concept are unchanged — only sizing/weight/line-height/
+   letter-spacing/vertical spacing. Wrapping to 2 lines is expected
+   and fine for the heading/intro/step text in any language (EN/VI/ZH
+   all verified at 390 / ~800 / ~1150 / 1440px — see below) — nothing
+   here is nowrap or fixed-height, so nothing can clip or overflow. */
+.spa-expect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(40px, 6vw, 72px);
+  padding: clamp(40px, 6vw, 80px);
+  background: #E5DDD8;
+}
+.spa-expect-content {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 0 16px;
+  align-self: center;
+}
+/* Small, quiet eyebrow — decoupled from the heading's size (previously
+   locked to heading-size minus 4px, which no longer makes sense now
+   that the heading is meant to be the dominant, large focal point). */
+.spa-expect-label {
+  font-family: var(--font-condensed);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: block;
+}
+/* Large display-serif heading — the section's visual focal point.
+   Base rule = English's own scale (unchanged, "keep current EN
+   composition"). Chinese also uses this base rule as-is: its string
+   is short enough to stay on 1 line at every width already. */
+.spa-expect-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 5.5vw, 52px);
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+  color: #454545;
+  margin: 0;
+}
+/* Vietnamese-only heading override. Two things make VI need its own
+   tuning rather than just inheriting the EN scale above:
+   1) js/i18n.js sets data-locale="vi" and swaps --font-display /
+      --font-condensed to Montserrat for Vietnamese (see the block
+      near the top of this file) — Montserrat renders noticeably
+      wider per character than Britanica, so reusing EN's exact
+      clamp() would still risk wrapping even with shorter text.
+   2) The heading content itself is now shortened ("Chăm sóc theo
+      nhu cầu" — the "từ da đầu đến mái tóc" half moved to the
+      supporting line below) specifically so it can read as a clean
+      1-line focal point rather than fighting a long string into 2.
+   Verified via word-wrap simulation against several pessimistic
+   character-width assumptions (covering the Montserrat-is-wider
+   unknown): stays on 1 line at the required 390 / ~800 / ~1150 /
+   1440px checkpoints with margin to spare in every case tested,
+   and never exceeds 2 lines even under the most pessimistic
+   assumption. .spa-expect-content's max-width is also widened for
+   Vietnamese only (720px vs the shared 640px) to give the heading
+   (and the supporting line under it) a little more room — English
+   and Chinese keep the original 640px, so their composition/wrap
+   points are completely unaffected by this. */
+html[data-locale="vi"] .spa-expect-content {
+  max-width: 720px;
+}
+html[data-locale="vi"] .spa-expect-title {
+  font-size: clamp(26px, 4.2vw, 42px);
+}
+/* Short supporting line under the heading — quieter than both the
+   heading and the eyebrow's tracking. max-width is a plain prose-
+   measure cap (readability only, identical treatment for every
+   language), not a per-language fit hack — text wraps freely. */
+.spa-expect-intro {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: 8px 0 0;
+}
+
+/* Timeline / process flow — 5 equal-width columns spanning the full
+   content container (not just the left portion of it). The connector
+   line is built from two flex-growing half-segments living inside each
+   step's own icon row (one before the icon, one after); because the
+   grid has zero column-gap, a step's trailing half-line touches the
+   next step's leading half-line exactly at the shared column edge, so
+   the line reads as one continuous stroke no matter how wide each
+   column ends up being. That width is purely geometric (1 of 5 equal
+   grid columns) and never depends on how long any step's title/
+   description text is in the active language, so switching locales
+   can never shift, overflow, or misalign it. No card background, box,
+   shadow or gradient anywhere in this block by design — icon, thin
+   line, icon, thin line... is the whole timeline. */
+.spa-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  align-self: center;
+}
+.spa-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.spa-step-icon-row { display: flex; align-items: center; justify-content: center; width: 100%; }
+/* Line lightened (0.3 -> 0.22 opacity) and icon shrunk (52 -> 44px)
+   for a thinner, quieter connector — less "spa process icon", more a
+   single quiet stroke with small markers on it. */
+.spa-icon-line { flex: 1 1 0; min-width: 8px; height: 1px; background: rgba(0,0,0,0.22); }
+.spa-icon-line.is-hidden { background: transparent; }
+.spa-icon-circle {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: var(--tan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spa-icon-circle img { width: 82%; height: 82%; object-fit: contain; display: block; }
+/* Title/description keep a capped, locale-independent text width so
+   line length stays even across all 5 columns; the column itself can
+   be much wider (for the connector's sake) without stretching the
+   text edge-to-edge. Text wraps freely inside that cap — never clipped,
+   never forced onto one line, never allowed to change the column's
+   (grid-defined) width. Caps widened slightly (180->200 / 168->190px)
+   so the longer EN/VI step descriptions settle into 2-3 short, airy
+   lines instead of 4. */
+.spa-step-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+/* Step number — deliberately very small/quiet, well below step-title
+   in weight, per the requested hierarchy (eyebrow/number/desc all
+   quiet, heading and, to a lesser extent, step-title carry the
+   emphasis). */
+.spa-step-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+.spa-step-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink-mid);
+  margin: 0 0 10px;
+  max-width: 200px;
+  overflow-wrap: break-word;
+}
+.spa-step-desc {
+  font-family: var(--font-display);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 190px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1100px) {
+  .spa-expect { flex-direction: column; }
+}
+@media (max-width: 720px) {
+  .spa-services, .spa-expect { padding: 60px var(--gutter); }
+  .spa-services-note { align-self: center; text-align: center; }
+
+  /* Below 720px the heading gets its own smaller range — verified for
+     EN/ZH at 320/375/390/414/480/600/720px, every one <=2 lines with
+     margin to spare at the required 390px test width. The tighter 8px
+     side padding (down from 16px) buys a little extra width for the
+     same reason, matching the pattern already used elsewhere on this
+     page. (Vietnamese gets its own smaller mobile override right
+     below, since it now needs a shorter range of its own — see the
+     Montserrat-width note on the desktop VI override above.) */
+  .spa-expect-content {
+    padding: 0 8px;
+  }
+  .spa-expect-title {
+    font-size: clamp(22px, 6vw, 34px);
+  }
+  html[data-locale="vi"] .spa-expect-title {
+    font-size: clamp(20px, 5.5vw, 30px);
+  }
+
+  /* Below the horizontal breakpoint the process becomes a vertical
+     timeline: icon column on the left (connector now runs top-to-
+     bottom through it), title/description column on the right. Same
+     zero-gap technique as desktop — .spa-timeline has no row gap, and
+     .spa-step-icon-row is stretched to the full row height, so each
+     step's line half-segments still meet the neighbour's with no
+     visible break, this time vertically. This existing pattern (5
+     steps stack instead of forcing a horizontal row) is kept as-is,
+     per the brief's own guidance to follow it. */
+  .spa-timeline {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .spa-step {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .spa-step-icon-row {
+    flex-direction: column;
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .spa-icon-line {
+    width: 1px;
+    height: auto;
+    flex: 1 1 20px;
+    min-width: 0;
+    min-height: 20px;
+  }
+  .spa-step-body {
+    align-items: flex-start;
+    text-align: left;
+    width: auto;
+    flex: 1 1 auto;
+    margin-top: 0;
+    padding: 22px 0;
+  }
+  .spa-step-title,
+  .spa-step-desc {
+    max-width: none;
+  }
+}
+/* =====================================================
+   ABOUT PAGE — new tokens (additive only)
+   ===================================================== */
+:root {
+  --baby-blue: #DCEFF2;
+  --sage: #A7B79E;
+}
+
+/* =====================================================
+   ABOUT PAGE — Hero
+   ===================================================== */
+.about-hero .hero-media img { object-position: center 40%; }
+.about-hero .hero-overlay { background: rgba(0,0,0,0.20); }
+
+.about-hero-content {
+  align-items: flex-start;
+  text-align: left;
+  padding-top: clamp(80px, 14vw, 200px);
+  /* Unlike Home (right-aligned, so .hero-content's large left value is
+     just compositional space), About is left-aligned — its LEFT edge
+     is the one that needs to track the navbar, inset 50px more than
+     the navbar's own horizontal padding (see note above .navbar). */
+  padding-left: 130px;
+}
+/* Must come after the base rule above — see the note on
+   .nail-hero-content's identical override for why. */
+@media (max-width: 720px) {
+  .about-hero-content { padding-left: clamp(24px, 12vw, 200px); }
+}
+.about-hero-content .btn {
+  width: auto;
+  min-width: 231px;
+  padding: 0 32px;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.about-eyebrow-sm {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: #FFF;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
+  animation-delay: .05s;
+}
+
+.about-hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: 0.9375;
+  letter-spacing: 4.8px;
+  color: #FFF;
+  margin: 0;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
+  animation-delay: .2s;
+}
+
+.about-hero-desc {
+  max-width: 605px;
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.6;
+  letter-spacing: 2px;
+  color: #FFF;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
+  animation-delay: .4s;
+}
+
+@media (max-width: 1023px) {
+  /* Same 6.5vw curve as the desktop rule above, re-capped lower so size
+     keeps tapering smoothly instead of jumping at the breakpoint. */
+  .about-hero-title { font-size: clamp(32px, 6.5vw, 68px); }
+}
+
+/* ---- Hero button icon (reused on .btn.btn-light) ---- */
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+.btn-icon svg { width: 16px; height: 16px; flex-shrink: 0; display: block; }
+
+/* ---- Shared "Book your appointment" arrow — one consistent design for
+   every booking button across the site (nav, hero, footer CTAs). ---- */
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 2px;
+  transition: transform .25s ease;
+}
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* =====================================================
+   ABOUT PAGE — Brand Philosophy
+   ===================================================== */
+.about-philosophy {
+  background: var(--cream);
+  padding: clamp(80px, 10vw, 130px) var(--gutter);
+}
+.about-philosophy-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(48px, 7vw, 110px);
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.about-philosophy-text {
+  flex: 0 0 clamp(280px, 40vw, 480px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.about-quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+.about-philosophy-copy {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  color: var(--ink-soft);
+  max-width: 380px;
+  margin: 0;
+}
+
+.about-philosophy-media {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.about-philosophy-img {
+  flex: 1 1 auto;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.about-philosophy-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.about-vertical-text {
+  flex: 0 0 auto;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .about-philosophy-inner { flex-direction: column; gap: 48px; }
+  .about-philosophy-text { flex: none; max-width: none; }
+  .about-vertical-text { display: none; }
+}
+
+/* =====================================================
+   ABOUT PAGE — Our Values
+   ===================================================== */
+.about-values {
+  position: relative;
+  min-height: clamp(480px, 55vw, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #FFF;
+}
+.about-values-media { position: absolute; inset: 0; }
+.about-values-media img { width: 100%; height: 100%; object-fit: cover; }
+.about-values-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.about-values-label {
+  grid-column: 1;
+  grid-row: 1;
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+.about-values-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  column-gap: clamp(16px, 3vw, 40px);
+  row-gap: clamp(20px, 3vw, 32px);
+  align-items: start;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) var(--gutter);
+}
+.about-value {
+  grid-row: 2;
+  text-align: left;
+}
+.about-value-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.75);
+}
+.about-value-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 36px);
+  letter-spacing: 0.5px;
+  color: #FFF;
+  margin: 14px 0 16px;
+}
+.about-value-desc {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 260px;
+  margin: 0;
+}
+.about-value-divider {
+  grid-row: 2;
+  align-self: stretch;
+  width: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .about-values-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .about-value-divider { display: none; }
+}
+
+/* =====================================================
+   ABOUT PAGE — Our Ritual (editorial scroll experience)
+   ===================================================== */
+.about-ritual {
+  background: var(--white);
+  padding: clamp(64px, 8vw, 100px) 0 clamp(56px, 7vw, 90px);
+  text-align: center;
+  overflow: hidden;
+}
+.about-ritual-inner {
+  max-width: var(--container);
+  margin: 0 auto clamp(48px, 6vw, 64px);
+  padding: 0 var(--gutter);
+}
+.about-ritual-label {
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.about-ritual-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+
+/* ---- Ritual timeline — five steps in a single horizontal row ---- */
+.ritual-timeline-scroll {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.ritual-timeline-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(8px, 2vw, 24px);
+}
+.ritual-timeline-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 28px;
+  height: 1px;
+  background: var(--line);
+  z-index: 0;
+}
+.ritual-step {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.ritual-step-icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ritual-step-icon svg { width: 22px; height: 22px; display: block; }
+.ritual-step-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+}
+.ritual-step-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(18px, 1.6vw, 22px);
+  letter-spacing: 0.3px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+.ritual-step-desc {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 200px;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .ritual-timeline-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+  }
+  .ritual-timeline-row {
+    width: max-content;
+    justify-content: flex-start;
+  }
+  .ritual-step {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+  }
+}
+
+/* ---- Step 05 — WhatsApp CTA (reused by the Final CTA section) ---- */
+.ritual-cta-whatsapp {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 420px;
+  width: 100%;
+  height: 58px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+  border-radius: 16px;
+  background: #FCFBF8;
+  border: 1px solid #E7E0D7;
+  color: #4A4642;
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 250ms ease, border-color 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+}
+.ritual-cta-whatsapp:hover {
+  background: #F7F4EF;
+  border-color: #D8D1C8;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+}
+.ritual-cta-whatsapp:hover .ritual-cta-arrow { transform: translateX(4px); }
+.ritual-cta-whatsapp:active { transform: translateY(0); }
+.ritual-cta-whatsapp:focus-visible {
+  outline: 2px solid #E7E0D7;
+  outline-offset: 2px;
+}
+.ritual-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.ritual-cta-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  line-height: 0;
+}
+.ritual-cta-icon svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  flex-shrink: 0;
+  display: block;
+}
+.ritual-cta-text {
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: inherit;
+}
+.ritual-cta-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  transition: transform 250ms ease;
+}
+
+@media (max-width: 480px) {
+  .ritual-cta-whatsapp {
+    max-width: none;
+    width: calc(100% - 48px);
+  }
+}
+
+/* =====================================================
+   ABOUT PAGE — Our Space
+   ===================================================== */
+.about-space {
+  background: var(--cream);
+  padding: clamp(80px, 10vw, 130px) var(--gutter);
+}
+.about-space-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(48px, 6vw, 100px);
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.about-space-text {
+  flex: 0 0 clamp(260px, 30vw, 380px);
+  display: flex;
+  flex-direction: column;
+}
+.about-space-label {
+  font-family: var(--font-condensed);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.about-space-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: var(--ink-mid);
+  margin: 36px 0 0;
+}
+.about-space-copy {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 400px;
+  margin: 52px 0 0;
+}
+.about-space-gallery {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: stretch;
+  column-gap: clamp(16px, 2vw, 24px);
+}
+.about-space-img {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--tan);
+}
+.about-space-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-space-img-lg { aspect-ratio: 4 / 5; }
+
+.about-space-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 20px);
+  height: 100%;
+}
+.about-space-img-sm { flex: 1 1 0; min-height: 0; }
+
+@media (max-width: 1024px) {
+  .about-space-inner { flex-direction: column; gap: 48px; }
+  .about-space-text { flex: none; max-width: none; }
+}
+@media (max-width: 640px) {
+  .about-space-gallery { grid-template-columns: 1fr; }
+  .about-space-img-lg { aspect-ratio: 4 / 5; }
+  .about-space-stack { height: auto; }
+  .about-space-img-sm { flex: none; min-height: auto; aspect-ratio: 16 / 10; }
+}
+
+/* =====================================================
+   ABOUT PAGE — Final CTA
+   ===================================================== */
+.about-final-cta {
+  background: var(--tan);
+  padding: clamp(90px, 12vw, 150px) var(--gutter);
+  text-align: center;
+}
+.about-final-cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.about-final-cta-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+.about-final-cta-copy {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.about-final-cta-btn {
+  margin: 8px auto 0;
+  width: auto;
+  height: 48px;
+  padding: 0 28px;
+  gap: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* =====================================================================
+   VISIT PAGE — a hospitality-led page distinct from About.
+   All rules below are scoped to .visit-* classes only.
+   ===================================================================== */
+
+/* ---- Section 01 — Hero (full-bleed photograph) ---- */
+.visit-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(60vh, 65vw, 70vh);
+  overflow: hidden;
+}
+.visit-hero .hero-media img { object-position: center 45%; }
+.visit-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(100deg,
+    rgba(20,17,14,0.66) 0%,
+    rgba(20,17,14,0.46) 30%,
+    rgba(20,17,14,0.14) 56%,
+    rgba(20,17,14,0) 74%);
+}
+.visit-hero-inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  /* Both edges inset 50px more than the navbar's own horizontal
+     padding — see note above .navbar. */
+  padding: 0 130px;
+  box-sizing: border-box;
+}
+/* Must come after the base rule above — see the note on
+   .nail-hero-content's identical override for why. */
+@media (max-width: 720px) {
+  .visit-hero-inner { padding-left: clamp(24px, 12vw, 200px); padding-right: 100px; }
+}
+.visit-hero-content {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroIn .9s cubic-bezier(.16,.8,.24,1) forwards;
+  animation-delay: .15s;
+}
+.visit-hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.1;
+  letter-spacing: 0.3px;
+  color: #FFF;
+  margin: 0;
+}
+.visit-hero-desc {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.6;
+  letter-spacing: 0.1px;
+  color: rgba(255,255,255,0.9);
+  max-width: 380px;
+  margin: 0;
+}
+.visit-hero-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  width: auto;
+  min-width: 231px;
+  height: 40px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* ---- Mobile/tablet hero (<1024px) — content grouped in the lower
+   third rather than centered, a lighter atmospheric scrim instead of a
+   heavy uniform overlay, a more proportional heading, and an outlined
+   transparent CTA (the filled btn-light pill reads too low-contrast on
+   the photo at this size). Desktop (>=1024px) is untouched. ---- */
+@media (max-width: 1023px) {
+  .visit-hero {
+    justify-content: flex-end;
+    min-height: clamp(520px, 82vh, 680px);
+  }
+  .visit-hero-inner { padding-bottom: clamp(40px, 8vw, 64px); }
+  .visit-hero-content { gap: 16px; max-width: 420px; }
+  .visit-hero-title { font-size: clamp(32px, 8vw, 42px); letter-spacing: 0.2px; }
+  .visit-hero-desc { font-size: 15px; max-width: 320px; }
+  .visit-hero-scrim {
+    background: linear-gradient(180deg,
+      rgba(20,17,14,0.05) 0%,
+      rgba(20,17,14,0.12) 42%,
+      rgba(20,17,14,0.40) 74%,
+      rgba(20,17,14,0.55) 100%);
+  }
+  .visit-hero-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: #FFF;
+  }
+  .visit-hero-btn:hover { background: rgba(255,255,255,0.14); color: #FFF; }
+}
+
+/* ---- Section 02 — Location / Hours ---- */
+.visit-info {
+  background: var(--cream);
+  padding: clamp(56px, 7vw, 88px) 80px;
+}
+.visit-info-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  /* Address 42% / Opening Hours 28% / Image 30% of the available column
+     space, with a floor on each track so no column gets crushed. */
+  grid-template-columns:
+    minmax(360px, 42fr)
+    minmax(240px, 28fr)
+    minmax(280px, 30fr);
+  column-gap: clamp(80px, 6vw, 100px);
+  row-gap: clamp(64px, 6vw, 80px);
+  align-items: start;
+}
+/* Grid-driven, not content-driven: min-width:0 lets each column shrink
+   below its content's intrinsic size, and max-width:100% stops any
+   column from growing past its allotted track — so the address can
+   never push into or overlap the Opening Hours column. */
+.visit-info-col { min-width: 0; max-width: 100%; }
+.visit-info-location { max-width: 100%; }
+.visit-info-hours { min-width: 0; max-width: 100%; }
+
+.visit-info-label {
+  display: block;
+  font-family: var(--font-condensed);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Location — the visual focal point */
+.visit-info-address {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(29px, 2.8vw, 39px);
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  color: var(--ink-mid);
+  margin: 32px 0 36px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.visit-info-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s ease, color .2s ease;
+}
+.visit-info-directions:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
+
+/* Opening Hours — editorial timetable */
+.visit-hours-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.visit-hours-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.visit-hours-row:first-child { padding-top: 0; }
+.visit-hours-row:last-child { border-bottom: none; }
+.visit-hours-day, .visit-hours-time {
+  font-family: var(--font-display);
+  font-size: 16px;
+  white-space: nowrap;
+}
+.visit-hours-day { color: var(--ink-mid); }
+.visit-hours-time { color: var(--ink-soft); }
+
+.visit-info-note {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 28px 0 0;
+}
+
+/* Image column */
+.visit-info-img {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--tan);
+}
+.visit-info-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 1024px) {
+  .visit-info-inner { grid-template-columns: minmax(0, 42fr) minmax(0, 28fr); }
+  .visit-info-img { grid-column: 1 / 3; max-width: 380px; }
+}
+@media (max-width: 900px) {
+  .visit-info-inner { grid-template-columns: 1fr; column-gap: 0; row-gap: 48px; }
+  .visit-info-img { grid-column: 1; max-width: 300px; }
+}
+
+/* ---- Mobile/tablet Location spacing (<1024px) — the same fixed 80px
+   horizontal padding and generous vertical rhythm used at desktop reads
+   as empty/unrelated-to-the-hero at phone widths; this aligns the
+   section to the hero's own horizontal margin and tightens the rhythm
+   without touching the desktop layout above. ---- */
+@media (max-width: 1023px) {
+  .visit-info { padding: clamp(40px, 8vw, 64px) var(--gutter-wide); }
+  .visit-info-inner { row-gap: clamp(40px, 8vw, 56px); }
+  .visit-info-address {
+    font-size: clamp(22px, 6.5vw, 28px);
+    margin: 18px 0 20px;
+  }
+  .visit-info-directions { color: var(--ink-mid); }
+  .visit-info-directions:hover { color: var(--ink); border-color: var(--ink); }
+}
+
+/* ---- Section 03 — Map ---- */
+.visit-find {
+  background: var(--cream-deep);
+  padding: clamp(90px, 10vw, 140px) var(--gutter-wide) clamp(68px, 8vw, 105px);
+}
+.visit-find-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(48px, 6vw, 96px);
+}
+.visit-map {
+  flex: 1 1 55%;
+  min-width: 0;
+  border-radius: 36px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--tan);
+}
+.visit-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.visit-find-text {
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+.visit-find-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+.visit-find-copy {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 400px;
+  margin: 0;
+}
+.visit-find-parking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 4px 0 0;
+}
+.visit-parking-icon {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.visit-parking-icon svg { width: 13px; height: 13px; display: block; }
+
+@media (max-width: 1024px) {
+  .visit-find-inner { flex-direction: column; }
+  .visit-map { flex: none; width: 100%; aspect-ratio: 16 / 10; }
+}
+
+/* ---- Section 04 — Final CTA ---- */
+.visit-cta {
+  background: var(--cream);
+  padding: clamp(36px, 4.5vw, 54px) var(--gutter-wide) clamp(48px, 6vw, 80px);
+}
+.visit-cta-card {
+  max-width: var(--container);
+  margin: 0 auto;
+  background: #EAE3DC;
+  border-radius: 36px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 44px 64px;
+}
+.visit-cta-media {
+  flex: 0 0 auto;
+  width: 370px;
+  height: 210px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.visit-cta-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.visit-cta-text {
+  flex: 1 1 auto;
+  align-self: stretch;
+  min-width: 0;
+  margin-left: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+.visit-cta-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 2.4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  margin: 0 0 14px;
+}
+.visit-cta-copy {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  opacity: 0.8;
+  margin: 0 0 28px;
+}
+.visit-cta-btn {
+  width: fit-content;
+  height: 40px;
+  padding: 0 32px;
+  border-width: 1px;
+  gap: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  /* The fixed-width media (370px) + nowrap title used to get squeezed
+     into a very narrow remaining column between ~900–1023px, right up
+     against the nav's own breakpoint — stack earlier so the title
+     never runs out of room. */
+  .visit-cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(28px, 5vw, 40px);
+  }
+  .visit-cta-media { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .visit-cta-text { margin-left: 0; margin-top: 32px; max-width: none; }
+  .visit-cta-title { white-space: normal; }
+}
+
+/* ---- Shared parallax for large Visit-page photography ---- */
+.visit-parallax img { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .visit-parallax img { transform: none !important; }
+}
+
+/* ---- Footer alignment guide, scoped to this page only ----
+   Matches the Hero's horizontal inset so every section (including the
+   footer) shares the exact same left/right edge on the Visit page,
+   without affecting the shared footer on any other page. ---- */
+.page-visit .footer-top { padding-left: var(--gutter-wide); padding-right: var(--gutter-wide); }
+
+/* =====================================================
+   BOOKING MODAL — WhatsApp / Zalo / Phone
+   Triggered by .nav-book-btn / .nav-book-mobile-btn, identical on
+   every page. Not a page link — opens this overlay instead.
+   ===================================================== */
+body.modal-open { overflow: hidden; }
+
+.booking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+.booking-modal-overlay.is-open { opacity: 1; visibility: visible; }
+
+.booking-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 48px 40px 40px;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  transition: transform .4s cubic-bezier(.16,.8,.24,1), opacity .4s ease;
+}
+.booking-modal-overlay.is-open .booking-modal { transform: translateY(0) scale(1); opacity: 1; }
+
+.booking-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.15);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.booking-modal-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.booking-modal-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.booking-modal-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  letter-spacing: .5px;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.booking-modal-sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+}
+
+.booking-modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.booking-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: transparent;
+  text-align: left;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.booking-option:hover { background: var(--ink); border-color: var(--ink); }
+.booking-option:hover .booking-option-text strong,
+.booking-option:hover .booking-option-text small,
+.booking-option:hover .booking-option-arrow { color: var(--cream); }
+.booking-option:hover .booking-option-icon { filter: invert(1) brightness(2); }
+
+.booking-option-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.booking-option-icon svg, .booking-option-icon img { width: 100%; height: 100%; display: block; }
+
+.booking-option-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.booking-option-text strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  transition: color .25s ease;
+}
+.booking-option-text small {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+  transition: color .25s ease;
+}
+.booking-option-arrow {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink-soft);
+  transition: color .25s ease, transform .25s ease;
+}
+.booking-option:hover .booking-option-arrow { transform: translateX(3px); }
+
+@media (max-width: 480px) {
+  .booking-modal { padding: 40px 26px 32px; border-radius: 20px; }
+}
