@@ -827,6 +827,21 @@ img { max-width: 100%; display: block; }
   color: var(--ink-soft);
   margin: 0;
 }
+/* Secondary sub-label under the service title (Head Spa page only —
+   this class is not used on the Home page's .service-card instances,
+   so the shared .service-card rules above are untouched). Smaller and
+   lighter than h3 to sit clearly beneath it in the visual hierarchy,
+   and lighter than the .service-card p description that follows. */
+.service-subdesc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin: 0;
+}
 .service-card .card-body {
   display: flex;
   flex-direction: column;
