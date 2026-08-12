@@ -2259,6 +2259,12 @@ img { max-width: 100%; display: block; }
   padding: 60px var(--gutter) 50px;
   background: rgba(240, 231, 224, 0.44);
 }
+/* .services-subheading is shared with Nail's own subheading — scoped
+   here so Head Spa's max size drops to 16px without touching Nail's
+   (which keeps the original clamp(15px, 1.6vw, 17px)). */
+.spa-services .services-subheading {
+  font-size: clamp(15px, 1.6vw, 16px);
+}
 
 .spa-services-note {
   align-self: flex-end;
