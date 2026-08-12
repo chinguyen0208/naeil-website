@@ -276,8 +276,27 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- Sticky state — activated via JS once the hero has scrolled out of view ---- */
+/* The base .navbar rule above caps itself at max-width:var(--container)
+   (1440px) with margin:0 auto — by design for the absolute, over-hero
+   state (matches the rest of the site's 1440px content system), but
+   that same cap was leaking into the FIXED/sticky state too: once
+   position becomes fixed, left:0/right:0 (inherited from the base
+   rule) plus a max-width narrower than the viewport plus auto margins
+   is exactly the recipe for a centered bar with visible page
+   background on both sides on any viewport wider than 1440px (the
+   reported ~20px gaps). max-width/margin are reset here so only the
+   fixed state stretches truly edge-to-edge; the original hero-overlay
+   state above is completely untouched. Padding (unchanged, from the
+   base rule) is what keeps the logo/links/CTA sitting the same
+   distance from the edge as before — it's just measured from the true
+   viewport edge now instead of from the old 1440px box's edge. */
 .navbar.is-fixed {
   position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   background: rgba(248,244,241,0.94);
   backdrop-filter: blur(14px) saturate(180%);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
