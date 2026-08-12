@@ -1830,7 +1830,7 @@ img { max-width: 100%; display: block; }
   text-align: left;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(24px, 3vw, 30px);
+  font-size: clamp(19px, 3vw, 25px);
   line-height: normal;
   letter-spacing: 3px;
   margin: 0;
@@ -2332,8 +2332,10 @@ img { max-width: 100%; display: block; }
      title and the eyebrow label below read from this variable, so
      the label is always exactly 4px smaller than the title at every
      breakpoint (see .spa-expect-label), instead of two independently
-     tuned values that could drift out of sync as either one changes. */
-  --expect-title-size: clamp(30px, 3.2vw, 40px);
+     tuned values that could drift out of sync as either one changes.
+     Matches .lash-process-title's size (clamp(19px, 3vw, 25px)) per
+     request. */
+  --expect-title-size: clamp(19px, 3vw, 25px);
 }
 .spa-expect-label {
   font-family: var(--font-condensed);
