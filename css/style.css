@@ -2403,13 +2403,9 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 /* Large display-serif heading — the section's visual focal point.
-   Sizes verified (word-wrap simulation against real EN/VI/ZH copy,
-   incl. the longest string, VI "Chăm sóc theo nhu cầu, từ da đầu đến
-   mái tóc") at 390 / 768 / 1024 / 1440 / 1920px: every language wraps
-   to a clean 2 lines (1 line for the shorter ZH string) at every one
-   of those widths — never 3+, never clipped. white-space is left at
-   its normal default (no nowrap) since a 2-line break is expected and
-   desired for an editorial headline, not something to fight. */
+   Base rule = English's own scale (unchanged, "keep current EN
+   composition"). Chinese also uses this base rule as-is: its string
+   is short enough to stay on 1 line at every width already. */
 .spa-expect-title {
   font-family: var(--font-display);
   font-weight: 400;
@@ -2418,6 +2414,33 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.3px;
   color: #454545;
   margin: 0;
+}
+/* Vietnamese-only heading override. Two things make VI need its own
+   tuning rather than just inheriting the EN scale above:
+   1) js/i18n.js sets data-locale="vi" and swaps --font-display /
+      --font-condensed to Montserrat for Vietnamese (see the block
+      near the top of this file) — Montserrat renders noticeably
+      wider per character than Britanica, so reusing EN's exact
+      clamp() would still risk wrapping even with shorter text.
+   2) The heading content itself is now shortened ("Chăm sóc theo
+      nhu cầu" — the "từ da đầu đến mái tóc" half moved to the
+      supporting line below) specifically so it can read as a clean
+      1-line focal point rather than fighting a long string into 2.
+   Verified via word-wrap simulation against several pessimistic
+   character-width assumptions (covering the Montserrat-is-wider
+   unknown): stays on 1 line at the required 390 / ~800 / ~1150 /
+   1440px checkpoints with margin to spare in every case tested,
+   and never exceeds 2 lines even under the most pessimistic
+   assumption. .spa-expect-content's max-width is also widened for
+   Vietnamese only (720px vs the shared 640px) to give the heading
+   (and the supporting line under it) a little more room — English
+   and Chinese keep the original 640px, so their composition/wrap
+   points are completely unaffected by this. */
+html[data-locale="vi"] .spa-expect-content {
+  max-width: 720px;
+}
+html[data-locale="vi"] .spa-expect-title {
+  font-size: clamp(26px, 4.2vw, 42px);
 }
 /* Short supporting line under the heading — quieter than both the
    heading and the eyebrow's tracking. max-width is a plain prose-
@@ -2534,17 +2557,22 @@ img { max-width: 100%; display: block; }
   .spa-services, .spa-expect { padding: 60px var(--gutter); }
   .spa-services-note { align-self: center; text-align: center; }
 
-  /* Below 720px the heading gets its own smaller range — verified at
-     320/375/390/414/480/600/720px against all 3 languages (incl. the
-     longest, Vietnamese): every one wraps to <=2 lines with margin to
-     spare at the required 390px test width. The tighter 8px side
-     padding (down from 16px) buys a little extra width for the same
-     reason, matching the pattern already used elsewhere on this page. */
+  /* Below 720px the heading gets its own smaller range — verified for
+     EN/ZH at 320/375/390/414/480/600/720px, every one <=2 lines with
+     margin to spare at the required 390px test width. The tighter 8px
+     side padding (down from 16px) buys a little extra width for the
+     same reason, matching the pattern already used elsewhere on this
+     page. (Vietnamese gets its own smaller mobile override right
+     below, since it now needs a shorter range of its own — see the
+     Montserrat-width note on the desktop VI override above.) */
   .spa-expect-content {
     padding: 0 8px;
   }
   .spa-expect-title {
     font-size: clamp(22px, 6vw, 34px);
+  }
+  html[data-locale="vi"] .spa-expect-title {
+    font-size: clamp(20px, 5.5vw, 30px);
   }
 
   /* Below the horizontal breakpoint the process becomes a vertical
