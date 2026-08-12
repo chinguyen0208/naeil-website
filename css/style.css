@@ -2221,11 +2221,11 @@ img { max-width: 100%; display: block; }
      breakpoint math, no per-language special-casing. Longer
      translations simply wrap to more lines; the column width and
      every element below it stay put.
-     Font-size is a fixed 22px per request (not fluid) — color/line-
+     Font-size is a fixed 18px per request (not fluid) — color/line-
      height unchanged. */
   width: min(100%, 680px);
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.65;
   letter-spacing: -0.48px;
   color: #FFF;
