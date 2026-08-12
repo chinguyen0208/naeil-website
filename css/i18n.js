@@ -271,7 +271,7 @@
       'nail.services.gelbottle.title': 'The Gel Bottle',
       'nail.services.gelbottle.copy': 'Dòng BIAB chuyên nghiệp giúp củng cố móng, đồng thời giữ lại vẻ tự nhiên và thanh thoát.',
       'nail.services.mayour.title': 'Mayour',
-      'nail.services.mayour.copy': 'Bảng màu gel tinh tế, được lựa chọn cho những sắc độ nhẹ nhàng và dễ ứng dụng.',
+      'nail.services.mayour.copy': 'Bảng màu gel Hàn Quốc tinh tế, được lựa chọn cho những sắc độ nhẹ nhàng và dễ ứng dụng.',
       'nail.services.favori.title': 'Favori',
       'nail.services.favori.copy': 'Sản phẩm chuyên nghiệp từ Nhật Bản, chú trọng sự chính xác và độ hoàn thiện trong từng chi tiết.',
       'nail.standard.eyebrow': 'Tiêu chuẩn Naeil',
