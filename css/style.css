@@ -1127,6 +1127,22 @@ html.preload-skip .preloader {
   margin: 0;
 }
 
+/* Home "Our Services" cards — Vietnamese-only description refinement.
+   .service-card p above (20px) is currently used ONLY by these 3 Home
+   cards (Head Spa has its own .spa-services-scoped override further
+   down), but this is still written as an explicit, doubly-scoped
+   override — to .services (Home's section id="services" only) AND to
+   html[data-locale="vi"] — rather than edited in place, so English and
+   Chinese keep the original 20px/1.5 exactly as-is, and nothing here
+   could ever leak onto another page's cards even if one starts reusing
+   the bare .service-card class later. Slightly smaller + a touch more
+   line-height keeps the title (unchanged, still 20px/uppercase/2px
+   tracking) reading as clearly stronger than the description. */
+html[data-locale="vi"] .services .service-card p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
 /* ---- Head Spa service-card typography hierarchy (scoped) ----
    .service-card / h3 / .card-body / p above are shared with the
    Home page's own service cards (index.html), so every override
