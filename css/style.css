@@ -866,6 +866,49 @@ img { max-width: 100%; display: block; }
   margin: 0;
 }
 
+/* ---- Head Spa service-card typography hierarchy (scoped) ----
+   .service-card / h3 / .card-body / p above are shared with the
+   Home page's own service cards (index.html), so every override
+   here is scoped under .spa-services to avoid touching Home.
+   .service-subdesc is Head-Spa-only already but is included here
+   too, just to keep the whole hierarchy in one place.
+
+   Card width is fixed (357.33px) at every breakpoint — mobile
+   scrolls the carousel horizontally rather than shrinking the
+   card — so these sizes were verified against that single fixed
+   width for all 4 services x EN/VI/ZH (longest strings: title
+   "Hair Replenish - 90 PHÚT", sub-desc "Hair Wash · Neck & Shoulder
+   Massage"), all single-line with margin to spare. No changes to
+   layout, image size, carousel, card-to-card gap, colors or content.
+
+   Vertical rhythm (title -> subdesc -> body -> price) goes
+   small -> medium -> large: base gap is lowered to 10px, with
+   margin-top added back on h3 (image->title stays ~20px, same as
+   before) and on .card-body (subdesc->body becomes ~18px). The
+   body->price gap (30px, via .card-body's own gap + its
+   margin-top:auto price push) is already the largest and is left
+   untouched, so the eye now reads title -> subdesc -> body -> price
+   with clearly increasing pauses instead of one flat 20px rhythm. */
+.spa-services .service-card {
+  gap: 10px;
+}
+.spa-services .service-card h3 {
+  font-size: 22px;
+  letter-spacing: 2.2px;
+  margin-top: 10px;
+}
+.spa-services .service-subdesc {
+  font-size: 18px;
+  font-weight: 400;
+}
+.spa-services .service-card .card-body {
+  margin-top: 8px;
+}
+.spa-services .service-card p {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
 /* =====================================================
    PHILOSOPHY
    ===================================================== */
