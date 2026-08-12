@@ -2186,11 +2186,15 @@ img { max-width: 100%; display: block; }
 }
 
 .spa-title {
+  /* Font-size/letter-spacing match .lash-title's scale exactly, per
+     request — same clamp(32px, 4vw, 55px)/5.5px used on the Lash hero
+     (and already shared by .nail-hero-title). Color and every other
+     property are untouched; only the type SIZE is being aligned. */
   color: #F3F3F3;
   font-family: var(--font-condensed);
   font-weight: 400;
-  font-size: clamp(44px, 6.5vw, 96px);
-  letter-spacing: 9.6px;
+  font-size: clamp(32px, 4vw, 55px);
+  letter-spacing: 5.5px;
   text-transform: uppercase;
   text-align: center;
   margin: 0 0 14px;
@@ -2209,11 +2213,13 @@ img { max-width: 100%; display: block; }
   margin: 0 0 18px;
 }
 .spa-sub {
+  /* Size matches .lash-sub exactly (clamp(24px, 3.2vw, 40px)/-0.48px) —
+     color and line-height are unchanged, only the scale is aligned. */
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(24px, 3.6vw, 40px);
+  font-size: clamp(24px, 3.2vw, 40px);
   line-height: 1.25;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.48px;
   color: #FFF;
   margin: 0 0 28px;
   max-width: 100%;
@@ -2224,12 +2230,14 @@ img { max-width: 100%; display: block; }
      asked for), but freely shrinks on narrow viewports — no fixed
      breakpoint math, no per-language special-casing. Longer
      translations simply wrap to more lines; the column width and
-     every element below it stay put. */
+     every element below it stay put.
+     Font-size/letter-spacing match .lash-hero-desc exactly
+     (clamp(16px, 2vw, 24px)/-0.48px) — color unchanged. */
   width: min(100%, 680px);
   font-family: var(--font-display);
-  font-size: clamp(16px, 1.9vw, 24px);
+  font-size: clamp(16px, 2vw, 24px);
   line-height: 1.65;
-  letter-spacing: 1px;
+  letter-spacing: -0.48px;
   color: #FFF;
   margin: 0 0 36px;
   overflow-wrap: break-word;
