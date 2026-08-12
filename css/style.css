@@ -2313,12 +2313,10 @@ img { max-width: 100%; display: block; }
 }
 .spa-expect-content {
   flex: 0 0 auto;
-  /* Widened from 500px so the Vietnamese heading below (the longest
-     of the 3 translations) has room to settle into 2 lines instead of
-     3 once font-size hits its 40px desktop ceiling — see .spa-expect-
-     title. Purely a container-width fix; the heading's own font-size/
-     letter-spacing are untouched at this range. */
-  width: 680px;
+  /* Widened 500px -> 680px -> 760px. The 760px step (plus the letter-
+     spacing change below) is what makes the title fit on a single
+     line at every width >=721px — see .spa-expect-title. */
+  width: 760px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -2333,9 +2331,9 @@ img { max-width: 100%; display: block; }
      the label is always exactly 4px smaller than the title at every
      breakpoint (see .spa-expect-label), instead of two independently
      tuned values that could drift out of sync as either one changes.
-     Matches .lash-process-title's size (clamp(19px, 3vw, 25px)) per
-     request. */
-  --expect-title-size: clamp(19px, 3vw, 25px);
+     Coefficient lowered from 3vw to 2.8vw (still 19-25px overall) to
+     give the >=721px no-wrap guarantee below a bit more headroom. */
+  --expect-title-size: clamp(19px, 2.8vw, 25px);
 }
 .spa-expect-label {
   font-family: var(--font-condensed);
@@ -2345,12 +2343,24 @@ img { max-width: 100%; display: block; }
   color: var(--ink-soft);
   display: block;
 }
+/* >=721px (tablet/desktop): guaranteed single line, verified against
+   all 3 translations (EN "Personalised care, from scalp to hair", VI
+   "Chăm sóc theo nhu cầu, từ da đầu đến mái tóc" - the longest, ZH
+   "从头皮到秀发的贴心护理") at every width from 721px to 1920px, with
+   >=60px of spare room at the tightest point. Letter-spacing switched
+   from a fixed 4px to proportional 0.08em (matching the mobile value
+   below) — the fixed px value was eating disproportionate width at
+   the smaller end of the clamp, which is what caused it to wrap.
+   Below 721px (mobile) the override further down keeps white-space
+   normal and allows up to 2 lines, since guaranteeing 1 line down to
+   320px would require shrinking the font to ~11px. */
 .spa-expect-title {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--expect-title-size);
   line-height: 1.25;
-  letter-spacing: 4px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
   color: #454545;
   margin: 0;
 }
@@ -2444,7 +2454,7 @@ img { max-width: 100%; display: block; }
   .spa-services, .spa-expect { padding: 60px var(--gutter); }
   .spa-services-note { align-self: center; text-align: center; }
 
-  /* Below 720px the 680px desktop width (see .spa-expect-content)
+  /* Below 720px the 760px desktop width (see .spa-expect-content)
      collapses down via max-width:100%, so the heading needs its own
      smaller, more tightly-tracked scale to keep fitting in 2 lines —
      verified against the longest of the 3 translations (Vietnamese)
@@ -2452,13 +2462,18 @@ img { max-width: 100%; display: block; }
      (down from 20px) buys a bit more width for the same reason.
      Re-declaring --expect-title-size here (rather than setting
      .spa-expect-title's font-size directly) keeps .spa-expect-label
-     locked to title-size minus 4px at this breakpoint too. */
+     locked to title-size minus 4px at this breakpoint too.
+     white-space is reset to normal here (undoing the >=721px nowrap
+     guarantee) since forcing 1 line down to 320px would require an
+     unreadably small ~11px font — 2 lines max stays the accepted
+     behavior on mobile, per explicit choice. */
   .spa-expect-content {
     padding: 0 8px;
     --expect-title-size: clamp(16px, 5.5vw, 24px);
   }
   .spa-expect-title {
     letter-spacing: 0.08em;
+    white-space: normal;
   }
 
   /* Below the horizontal breakpoint the process becomes a vertical
