@@ -2304,7 +2304,12 @@ img { max-width: 100%; display: block; }
 }
 .spa-expect-content {
   flex: 0 0 auto;
-  width: 500px;
+  /* Widened from 500px so the Vietnamese heading below (the longest
+     of the 3 translations) has room to settle into 2 lines instead of
+     3 once font-size hits its 40px desktop ceiling — see .spa-expect-
+     title. Purely a container-width fix; the heading's own font-size/
+     letter-spacing are untouched at this range. */
+  width: 680px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -2314,10 +2319,16 @@ img { max-width: 100%; display: block; }
   text-align: center;
   padding: 0 20px;
   align-self: center;
+  /* Single source of truth for the title's font-size — both the
+     title and the eyebrow label below read from this variable, so
+     the label is always exactly 4px smaller than the title at every
+     breakpoint (see .spa-expect-label), instead of two independently
+     tuned values that could drift out of sync as either one changes. */
+  --expect-title-size: clamp(30px, 3.2vw, 40px);
 }
 .spa-expect-label {
   font-family: var(--font-condensed);
-  font-size: 20px;
+  font-size: calc(var(--expect-title-size) - 4px);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -2326,7 +2337,7 @@ img { max-width: 100%; display: block; }
 .spa-expect-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, 3.2vw, 40px);
+  font-size: var(--expect-title-size);
   line-height: 1.25;
   letter-spacing: 4px;
   color: #454545;
@@ -2421,6 +2432,23 @@ img { max-width: 100%; display: block; }
 @media (max-width: 720px) {
   .spa-services, .spa-expect { padding: 60px var(--gutter); }
   .spa-services-note { align-self: center; text-align: center; }
+
+  /* Below 720px the 680px desktop width (see .spa-expect-content)
+     collapses down via max-width:100%, so the heading needs its own
+     smaller, more tightly-tracked scale to keep fitting in 2 lines —
+     verified against the longest of the 3 translations (Vietnamese)
+     at 320–720px, with margin to spare. The tighter 8px side padding
+     (down from 20px) buys a bit more width for the same reason.
+     Re-declaring --expect-title-size here (rather than setting
+     .spa-expect-title's font-size directly) keeps .spa-expect-label
+     locked to title-size minus 4px at this breakpoint too. */
+  .spa-expect-content {
+    padding: 0 8px;
+    --expect-title-size: clamp(16px, 5.5vw, 24px);
+  }
+  .spa-expect-title {
+    letter-spacing: 0.08em;
+  }
 
   /* Below the horizontal breakpoint the process becomes a vertical
      timeline: icon column on the left (connector now runs top-to-
