@@ -2339,11 +2339,24 @@ img { max-width: 100%; display: block; }
 }
 /* .services-subheading is shared with Nail's own subheading — scoped
    here so Head Spa can use its own size without touching Nail's
-   (which keeps the original clamp(15px, 1.6vw, 17px)). Was matching
-   .spa-hero-desc / .lash-hero-desc's scale exactly (16-24px); lowered
-   4px across the whole range per request. */
+   (which keeps the original clamp(15px, 1.6vw, 17px)).
+   Ceiling dropped 20px -> 15px (a 25% cut, matching the requested
+   20-25% reduction) so the line no longer dominates the section
+   width on desktop. Floor left close to its previous 12px (13px)
+   rather than also cutting it ~25% to ~9px, which would read as
+   too small/illegible for a supporting sentence — the actual
+   complaint (subtitle "chiếm quá nhiều chiều ngang") is about the
+   wide-viewport size, which the ceiling cut directly addresses.
+   Letter-spacing softened from the shared 2.4px to 1.2px, and a
+   900-1000px measure cap (960px) is added and centered so the line
+   reads as a quiet, secondary supporting sentence under the heading
+   rather than competing with it — heading, layout, spacing, images
+   and service cards are all untouched. */
 .spa-services .services-subheading {
-  font-size: clamp(12px, 2vw, 20px);
+  font-size: clamp(13px, 1.4vw, 15px);
+  letter-spacing: 1.2px;
+  max-width: 960px;
+  margin-inline: auto;
 }
 
 .spa-services-note {
