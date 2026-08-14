@@ -3079,7 +3079,7 @@ html[data-locale="vi"] .spa-expect-title {
   margin: 0;
 }
 .about-philosophy-copy {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.2px;
@@ -3109,8 +3109,8 @@ html[data-locale="vi"] .spa-expect-title {
   flex: 0 0 auto;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-family: 'Crimson Text', serif;
-  font-style: italic;
+  font-family: var(--font-display);
+  font-style: normal;
   font-size: clamp(16px, 1.8vw, 20px);
   line-height: 1.5;
   letter-spacing: 0.5px;
@@ -3189,7 +3189,7 @@ html[data-locale="vi"] .spa-expect-title {
   margin: 14px 0 16px;
 }
 .about-value-desc {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.6;
   color: rgba(255,255,255,0.85);
@@ -3265,7 +3265,7 @@ html[data-locale="vi"] .spa-expect-title {
   right: 0;
   top: 28px;
   height: 1px;
-  background: var(--line);
+  background: rgba(175, 195, 201, 0.4);
   z-index: 0;
 }
 .ritual-step {
@@ -3307,7 +3307,7 @@ html[data-locale="vi"] .spa-expect-title {
   margin: 0;
 }
 .ritual-step-desc {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.6;
   color: var(--ink-soft);
@@ -3453,7 +3453,7 @@ html[data-locale="vi"] .spa-expect-title {
   margin: 36px 0 0;
 }
 .about-space-copy {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
@@ -3521,7 +3521,7 @@ html[data-locale="vi"] .spa-expect-title {
   margin: 0;
 }
 .about-final-cta-copy {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
