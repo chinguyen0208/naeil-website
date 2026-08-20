@@ -91,7 +91,7 @@
       'nail.standard.btn': 'Book your appointment',
       // ---- Head Spa ----
       'spa.hero.title': 'Head Spa',
-      'spa.hero.sub': 'Scalp care. Hair nourishment.',
+      'spa.hero.sub': 'Deeply relaxed, completely at ease.',
       'spa.hero.desc': 'A restorative head spa ritual designed to cleanse, nourish and rebalance your scalp. Relieve tension, improve circulation and restore healthy, radiant hair from the roots.',
       'spa.hero.cta': 'Book your service',
       'spa.services.eyebrow': 'Our Headspa Services',
