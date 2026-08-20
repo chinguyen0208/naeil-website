@@ -3033,7 +3033,14 @@ html[data-locale="vi"] .spa-expect-title {
 @media (max-width: 1023px) {
   /* Same 6.5vw curve as the desktop rule above, re-capped lower so size
      keeps tapering smoothly instead of jumping at the breakpoint. */
-  .about-hero-title { font-size: clamp(32px, 6.5vw, 68px); }
+  .about-hero-title {
+    font-size: clamp(32px, 6.5vw, 68px);
+    /* Desktop's 0.9375 line-height reads cramped once the heading wraps
+       to two short lines at mobile widths — nudged up for breathing
+       room between "Nơi bạn có thể" and "chậm lại." only; font-size,
+       letter-spacing and everything else above stays untouched. */
+    line-height: 1.15;
+  }
 }
 
 /* ---- Hero button icon (reused on .btn.btn-light) ---- */
