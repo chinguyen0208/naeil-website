@@ -362,7 +362,7 @@
       'about.philosophy.vertical2': 'Trong từng chi tiết.',
       'about.values.label': 'GIÁ TRỊ CỦA CHÚNG TÔI',
       'about.values.precision.title': 'Sự chỉn chu, tỉ mỉ.',
-      'about.values.precision.copy': 'Mọi chi tiết đều quan trọng. Từ cách chúng tôi làm việc đến sản phẩm chúng tôi lựa chọn.',
+      'about.values.precision.copy': 'Kỹ thuật chỉn chu. Sản phẩm được lựa chọn kỹ lưỡng.',
       'about.values.comfort.title': 'Sự thư thái',
       'about.values.comfort.copy': 'Một không gian để bạn hoàn toàn thư giãn, tận hưởng và cảm thấy được nâng niu.',
       'about.values.presence.title': 'Sự trọn vẹn',
