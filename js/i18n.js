@@ -364,7 +364,7 @@
       'about.values.precision.title': 'Sự chỉn chu, tỉ mỉ.',
       'about.values.precision.copy': 'Kỹ thuật chỉn chu. Sản phẩm được lựa chọn kỹ lưỡng.',
       'about.values.comfort.title': 'Sự thư thái',
-      'about.values.comfort.copy': 'Một không gian để bạn hoàn toàn thư giãn, tận hưởng và cảm thấy được nâng niu.',
+      'about.values.comfort.copy': 'Một khoảng thời gian để bạn thư giãn và tận hưởng.',
       'about.values.presence.title': 'Sự trọn vẹn',
       'about.values.presence.copy': 'Nơi bạn có thể chậm lại và hoàn toàn hiện diện trong khoảnh khắc.',
       'about.ritual.label': 'THÓI QUEN KHÔNG THỂ THIẾU',
