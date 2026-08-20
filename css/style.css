@@ -3460,6 +3460,14 @@ html[data-locale="vi"] .about-ritual {
   color: var(--ink-mid);
   margin: 36px 0 0;
 }
+/* Vietnamese-only: "Một không gian để / bạn chậm lại." runs wider than
+   the original EN/ZH heading at the base size, pushing past a
+   comfortable two-line fit in the text column. Sized down ~17-18%
+   (both clamp bounds) so it settles onto two natural lines without
+   touching layout, image, or spacing — EN/ZH keep the base size. */
+html[data-locale="vi"] .about-space-title {
+  font-size: clamp(25px, 2.8vw, 36px);
+}
 .about-space-copy {
   font-family: var(--font-display);
   font-size: 16px;
