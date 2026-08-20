@@ -3502,6 +3502,11 @@ html[data-locale="vi"] .about-space-title {
   grid-template-columns: 1.4fr 1fr;
   align-items: stretch;
   column-gap: clamp(16px, 2vw, 24px);
+  /* Only visible once the grid collapses to a single column (≤640px,
+     see below) — that's when the large image and the stack beneath it
+     become grid rows instead of side-by-side columns, and without a
+     row-gap they touch with no space between them. */
+  row-gap: 16px;
 }
 .about-space-img {
   border-radius: 12px;
