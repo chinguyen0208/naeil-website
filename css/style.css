@@ -3731,7 +3731,7 @@ html[data-locale="vi"] .about-space-title {
   gap: 6px;
   font-family: var(--font-display);
   font-size: 14px;
-  color: var(--blue);
+  color: var(--ink-mid);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color .2s ease, color .2s ease;
