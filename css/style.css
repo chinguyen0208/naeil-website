@@ -3424,6 +3424,13 @@ html[data-locale="vi"] .about-ritual {
   display: none;
 }
 
+/* Vietnamese-only: the Visit page map/location section (Google Map,
+   "A calm space, right in the city." heading, body copy, parking note)
+   is removed for the VI locale only. EN and ZH keep this section. */
+html[data-locale="vi"] .visit-find {
+  display: none;
+}
+
 /* =====================================================
    ABOUT PAGE — Our Space
    ===================================================== */
