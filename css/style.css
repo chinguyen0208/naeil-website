@@ -3416,6 +3416,14 @@ html[data-locale="vi"] .spa-expect-title {
   }
 }
 
+/* Vietnamese-only: the "Our Ritual" 5-step journey section is removed
+   entirely for the VI locale per explicit request. EN and ZH keep this
+   section unchanged — scoped via the existing html[data-locale="vi"]
+   mechanism so no HTML is duplicated and nothing else is affected. */
+html[data-locale="vi"] .about-ritual {
+  display: none;
+}
+
 /* =====================================================
    ABOUT PAGE — Our Space
    ===================================================== */
