@@ -1588,6 +1588,18 @@ html[data-locale="vi"] .services .service-card p {
   letter-spacing: -0.48px;
   margin: 0;
 }
+/* Vietnamese-only: "Đẹp theo cách tự nhiên nhất." must stay on one
+   line (no manual break), which needs a slightly smaller size than
+   the base EN/ZH scale to fit comfortably — nowrap is desktop-only so
+   narrow mobile widths can still wrap naturally if ever needed. */
+html[data-locale="vi"] .nail-hero-sub {
+  font-size: clamp(20px, 2.6vw, 32px);
+}
+@media (min-width: 1024px) {
+  html[data-locale="vi"] .nail-hero-sub {
+    white-space: nowrap;
+  }
+}
 /* Longer supporting copy — matches .lash-hero-desc's typography and
    661px column width, so it doesn't stretch wider than Lash's does. */
 .nail-hero-desc {
