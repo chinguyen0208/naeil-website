@@ -352,7 +352,7 @@
       'lash.why.lowmaintenance.title': 'Ít cần chăm sóc',
       'lash.why.lowmaintenance.copy': 'Hàng mi cong tự nhiên, luôn chỉn chu mỗi ngày.',
       'about.hero.eyebrow': 'VỀ NAEIL',
-      'about.hero.line1': 'Chỉn chu một cách tự nhiên.',
+      'about.hero.line1': 'Nơi bạn có thể chậm lại.',
       'about.hero.line2': '',
       'about.hero.desc': 'NAEIL là salon làm đẹp hiện đại, nơi những trải nghiệm được tạo nên từ sự tinh tế, chỉn chu và chăm sóc tận tâm. Mỗi chi tiết đều được chăm chút dành cho những ai tìm kiếm vẻ đẹp nhẹ nhàng, tinh tế cùng sự thư thái.',
       'about.hero.cta': 'Đặt lịch dịch vụ',
