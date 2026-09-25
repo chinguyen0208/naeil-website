@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="images/lash-page/hero-lash.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
-<body>
+<body class="cs-page">
 <script>
 (function(){
   try {
@@ -36,7 +36,7 @@
 </script>
 
 <!-- ============ HEADER / HERO ============ -->
-<header class="hero lash-hero">
+<header class="hero lash-hero cs-hero">
   <div class="hero-media">
     <img src="images/lash-page/hero-lash.png" alt="Close-up of eyes with lifted lashes" fetchpriority="high">
   </div>
@@ -109,17 +109,25 @@
   <h1 class="hero-title lash-title" data-i18n="lash.hero.title">Korean Lash Lift</h1>
 <p class="lash-sub" data-i18n="lash.hero.sub">Softly lifted, refined results.</p>
     <p class="lash-hero-desc" data-i18n="lash.hero.desc">A bespoke lash treatment designed to enhance your natural lashes with soft lift and delicate definition, tailored to your unique eye shape.</p>
-    <button type="button" class="btn btn-light lash-hero-btn" data-book-trigger aria-label="Open booking options">
-      <span data-i18n="lash.hero.cta">Book your appointment</span>
-      <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+    <button type="button" class="btn btn-light cs-btn lash-hero-btn" disabled aria-disabled="true">
+      <span data-i18n="cs.btn">Coming soon</span>
     </button>
   </div>
 
   <div class="scroll-hint" data-i18n="home.hero.scroll">scroll to discover</div>
+
+  <!-- Coming-soon state: a light veil over the preview + a floating notice -->
+  <div class="cs-veil cs-veil--hero" aria-hidden="true"></div>
+  <div class="cs-notice" role="status">
+    <p class="cs-notice-title" data-i18n="cs.notice.title">A new ritual is coming soon.</p>
+    <span class="cs-notice-rule" aria-hidden="true"></span>
+    <p class="cs-notice-copy" data-i18n="cs.notice.lash">Lash Lift is being prepared by NAEIL to welcome you.</p>
+    <a class="cs-notice-link" href="https://www.instagram.com/naeilnailbar/" target="_blank" rel="noopener noreferrer" data-i18n="cs.notice.follow">Follow @naeilnailbar for updates</a>
+  </div>
 </header>
 
 <!-- ============ NATURAL, YET NOTICEABLE ============ -->
-<section class="lash-intro">
+<section class="lash-intro" data-cs-veil>
   <h2 class="lash-eyebrow reveal" data-i18n="lash.intro.eyebrow">Natural, Yet Noticeable</h2>
   <p class="lash-intro-sub" data-i18n="lash.intro.sub">A gentle lift that enhances your natural beauty — softer, brighter, unmistakably you.</p>
 
@@ -142,7 +150,7 @@
 </section>
 
 <!-- ============ THE LASH LIFT PROCESS ============ -->
-<section class="lash-process">
+<section class="lash-process" data-cs-veil>
   <div class="lash-process-row">
     <div class="lash-process-nav reveal">
       <div class="lash-process-heading">
@@ -334,7 +342,7 @@
 </script>
 
 <!-- ============ WHY WE LOVE IT ============ -->
-<section class="lash-why">
+<section class="lash-why" data-cs-veil>
   <div class="lash-why-inner">
   <div class="why-intro reveal">
     <span class="why-kicker" data-i18n="lash.why.kicker">The Naeil Difference</span>
@@ -382,7 +390,7 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site-footer" id="footer">
+<footer class="site-footer" id="footer" data-cs-veil>
   <div class="footer-top">
     <div class="footer-brand reveal">
       <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
