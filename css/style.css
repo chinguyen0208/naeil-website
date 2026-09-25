@@ -4139,24 +4139,14 @@ body.modal-open { overflow: hidden; }
 }
 
 /* =====================================================
-   NAIL MENU PAGE (nail-menu.html) — additive only.
-   Reuses the Nail hero (.hero.nail-hero + .nail-hero-*),
-   the Nail intro heading (.nail-eyebrow / .services-subheading),
-   the Naeil Standard two-column split rhythm, and About's
-   final CTA (.about-final-cta*). Everything new is scoped to
-   .nm-* so no other page is affected. Prices are real HTML
-   text (never images) so they stay readable on mobile.
+   NAIL PAGE — Nail Menu (nail.html #menu) — additive only.
+   Sits between "What Goes On Your Nail" and "The Naeil
+   Standard". Reuses the Nail intro heading (.nail-eyebrow /
+   .services-subheading) and the Naeil Standard two-column
+   split rhythm. Everything new is scoped to .nm-* so no other
+   section or page is affected. Prices are real HTML text
+   (never images) so they stay readable on mobile.
    ===================================================== */
-
-/* ---- Hero: the menu-card flat-lay photo is light, so the
-   overlay is deepened toward the bottom-left where the copy
-   sits, keeping the blue title and white copy legible. ---- */
-.nm-hero .hero-media img { object-position: center 55%; }
-.nm-hero .hero-overlay {
-  background:
-    linear-gradient(90deg, rgba(40,32,26,0.42) 0%, rgba(40,32,26,0.18) 55%, rgba(40,32,26,0) 100%),
-    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.34) 100%);
-}
 
 /* ---- Intro + section index ---- */
 .nm-intro {
@@ -4165,8 +4155,10 @@ body.modal-open { overflow: hidden; }
   align-items: center;
   gap: 32px;
   padding: clamp(56px, 8vw, 110px) var(--gutter) clamp(48px, 6vw, 80px);
-  background: rgba(240, 231, 224, 0.44);
+  background: var(--cream);
+  border-top: 1px solid var(--line);
   text-align: center;
+  scroll-margin-top: 90px;
 }
 .nm-intro-sub { max-width: 880px; line-height: 1.6; }
 .nm-index {
@@ -4385,9 +4377,6 @@ html[data-locale="zh"] .nm-from { order: 2; }
   text-align: center;
 }
 
-/* ---- Final CTA (reuses About's; small spacing tune only) ---- */
-.nm-final-cta .about-final-cta-copy { max-width: 520px; }
-
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
   .nm-split, .nm-split--reverse { grid-template-columns: 1fr; }
@@ -4407,17 +4396,4 @@ html[data-locale="zh"] .nm-from { order: 2; }
   .nm-gallery { gap: 10px; }
   .nm-photo figcaption { font-size: 16px; }
   .nm-unit { font-size: 16px; }
-}
-@media (max-width: 720px) {
-  /* keep the card's printed logo clear of the hero copy on phones */
-  .nm-hero .hero-media img { object-position: 12% 55%; }
-}
-
-/* Adding the "Menu" link made the desktop nav one item longer. Vietnamese
-   labels (Montserrat, wider than Britanica) are the tightest case at the
-   low end of the desktop tier, so only there the link size steps down
-   slightly to keep clear space before the language switcher. EN/ZH and
-   every width >=1200px are unchanged. */
-@media (min-width: 1024px) and (max-width: 1199px) {
-  html[data-locale="vi"] .nav-links a { font-size: 19px; }
 }

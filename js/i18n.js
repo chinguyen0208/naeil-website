@@ -190,15 +190,7 @@
       'visit.finalcta.title': "We can't wait to welcome you.",
       'visit.finalcta.copy': 'Your moment of care awaits.',
       'visit.finalcta.btn': 'Book your appointment',
-      // ---- Nail Menu page (nail-menu.html) ----
-      'nav.menu': 'Menu',
-      'footer.menu': 'Nail Menu',
-      'megamenu.menu.title': 'Nail Menu',
-      'megamenu.menu.desc': 'Services & prices',
-      'menu.hero.title': 'Nail Menu',
-      'menu.hero.sub': 'A curated beauty spot.',
-      'menu.hero.desc': 'Manicure, BIAB, design, extensions and removal — every service and price in one place.',
-      'menu.hero.cta': 'Book your appointment',
+      // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': 'Our Nail Menu',
       'menu.intro.sub': 'Choose your base, add the details you love. Prices marked “from” may vary with your nails and the design you choose.',
       'menu.unit': 'All prices are in thousand Vietnamese dong (e.g. 150 = 150,000 VND).',
@@ -247,9 +239,6 @@
       'menu.rem.builder': 'Builder gel removal',
       'menu.rem.ext': 'Extension removal',
       'menu.rem.note': 'These prices apply to work done at another salon. Removal is free when you redo your service at NAEIL.',
-      'menu.cta.title': 'Found your favourite?',
-      'menu.cta.copy': 'Message us to book, or ask which service suits your nails best.',
-      'menu.cta.btn': 'Book your appointment'
     },
 
     vi: {
@@ -464,15 +453,7 @@
       'visit.finalcta.title': 'NAEIL mong sớm được đón bạn',
       'visit.finalcta.copy': 'Đến lúc dành một chút thời gian cho mình.',
       'visit.finalcta.btn': 'Đặt lịch dịch vụ',
-      // ---- Nail Menu page (nail-menu.html) ----
-      'nav.menu': 'Menu',
-      'footer.menu': 'Menu Nail',
-      'megamenu.menu.title': 'Menu Nail',
-      'megamenu.menu.desc': 'Dịch vụ & bảng giá',
-      'menu.hero.title': 'Menu Nail',
-      'menu.hero.sub': 'A curated beauty spot.',
-      'menu.hero.desc': 'Manicure, BIAB, trang trí, nối móng và tháo móng — toàn bộ dịch vụ và mức giá trong một trang.',
-      'menu.hero.cta': 'Đặt lịch dịch vụ',
+      // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': 'Menu dịch vụ',
       'menu.intro.sub': 'Chọn dịch vụ nền, thêm những chi tiết bạn yêu thích. Mức giá có chữ “từ” có thể thay đổi tùy tình trạng móng và thiết kế bạn chọn.',
       'menu.unit': 'Giá toàn bộ dịch vụ được tính theo đơn vị 1.000 Việt Nam đồng.',
@@ -521,9 +502,6 @@
       'menu.rem.builder': 'Tháo builder',
       'menu.rem.ext': 'Tháo móng nối',
       'menu.rem.note': 'Mức giá trên áp dụng cho sản phẩm được thực hiện tại salon khác. Miễn phí tháo khi thực hiện lại dịch vụ tại NAEIL.',
-      'menu.cta.title': 'Đã chọn được dịch vụ yêu thích?',
-      'menu.cta.copy': 'Nhắn cho NAEIL để đặt lịch, hoặc để được tư vấn dịch vụ phù hợp nhất với móng của bạn.',
-      'menu.cta.btn': 'Đặt lịch dịch vụ'
     },
 
     zh: {
@@ -681,15 +659,7 @@
       'visit.finalcta.title': '我们迫不及待想欢迎您的到来。',
       'visit.finalcta.copy': '属于您的呵护时光，即将开始。',
       'visit.finalcta.btn': '立即预约',
-      // ---- Nail Menu page (nail-menu.html) ----
-      'nav.menu': '价目',
-      'footer.menu': '美甲价目',
-      'megamenu.menu.title': '美甲价目',
-      'megamenu.menu.desc': '服务项目与价格',
-      'menu.hero.title': '美甲价目',
-      'menu.hero.sub': '精心打造的美甲空间。',
-      'menu.hero.desc': '手部护理、BIAB、装饰设计、延长与卸甲——所有服务与价格，一目了然。',
-      'menu.hero.cta': '立即预约',
+      // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': '美甲服务',
       'menu.intro.sub': '先选择基础服务，再添加您喜爱的细节。标注“起”的价格会因甲况与所选设计而有所不同。',
       'menu.unit': '所有价格均以千越南盾为单位（例如 150 = 150,000 越南盾）。',
@@ -738,9 +708,6 @@
       'menu.rem.builder': '卸建构凝胶',
       'menu.rem.ext': '卸延长甲',
       'menu.rem.note': '以上价格适用于在其他沙龙完成的美甲。在 NAEIL 重新做服务即可免费卸甲。',
-      'menu.cta.title': '找到心仪的服务了吗？',
-      'menu.cta.copy': '联系我们预约，或咨询最适合您指甲的服务。',
-      'menu.cta.btn': '立即预约'
     }
   };
 
