@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naeil — Self care, redefined</title>
+<title>Nail Menu — Naeil Nail Bar</title>
+<meta name="description" content="NAEIL Nail Bar nail menu — manicure, pedicure, BIAB builder gel, design add-ons, extensions and removal, with prices. 52 Nguyen Thai Hoc, Ba Dinh, Hanoi.">
 <link rel="icon" type="image/png" href="images/icons/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="preload" as="image" href="images/hero.png" fetchpriority="high">
+<link rel="preload" as="image" href="images/philosophy.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body>
@@ -25,20 +26,20 @@
 
 <!-- ============ PRELOADER ============ -->
 <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
-  <div class="preloader-bg" style="background-image:url('images/hero.png')"></div>
+  <div class="preloader-bg" style="background-image:url('images/philosophy.png')"></div>
   <div class="preloader-content">
     <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
   </div>
 </div>
 <script>
   window.__preloadHero = new Image();
-  window.__preloadHero.src = 'images/hero.png';
+  window.__preloadHero.src = 'images/philosophy.png';
 </script>
 
 <!-- ============ HEADER / HERO ============ -->
-<header class="hero">
+<header class="hero nail-hero nm-hero">
   <div class="hero-media">
-    <img src="images/hero.png" alt="Close-up beauty portrait — Naeil self care" fetchpriority="high">
+    <img src="images/philosophy.png" alt="NAEIL menu card resting on soft linen beside a glass" fetchpriority="high">
   </div>
   <div class="hero-overlay"></div>
 
@@ -106,13 +107,12 @@
     </div>
   </nav>
 
-  <div class="hero-content">
-    <h1 class="hero-title" data-i18n="home.hero.title">Self care, redefined</h1>
-    <div class="hero-bottom-row">
-      <p class="hero-sub" data-i18n="home.hero.sub">Where effortless beauty meets thoughtful care.</p>
-    </div>
+  <div class="nail-hero-content">
+    <h1 class="nail-hero-title" data-i18n="menu.hero.title">Nail Menu</h1>
+    <p class="nail-hero-sub" data-i18n="menu.hero.sub">A curated beauty spot.</p>
+    <p class="nail-hero-desc" data-i18n="menu.hero.desc">Manicure, BIAB, design, extensions and removal — every service and price in one place.</p>
     <button type="button" class="btn btn-light" data-book-trigger aria-label="Open booking options">
-      <span data-i18n="home.hero.cta">Book your rituals</span>
+      <span data-i18n="menu.hero.cta">Book your appointment</span>
       <span class="btn-arrow" aria-hidden="true">&rarr;</span>
     </button>
   </div>
@@ -120,68 +120,225 @@
   <div class="scroll-hint" data-i18n="home.hero.scroll">scroll to discover</div>
 </header>
 
-<!-- ============ OUR SERVICES ============ -->
-<section class="services" id="services">
-  <h2 class="eyebrow center reveal" data-i18n="home.services.eyebrow">Our Services</h2>
+<!-- ============ INTRO + INDEX ============ -->
+<section class="nm-intro">
+  <h2 class="nail-eyebrow reveal" data-i18n="menu.intro.eyebrow">Our Nail Menu</h2>
+  <p class="services-subheading nm-intro-sub" data-i18n="menu.intro.sub">Choose your base, add the details you love. Prices marked “from” may vary with your nails and the design you choose.</p>
+  <nav class="nm-index reveal" aria-label="Menu sections">
+    <a href="#manicure"><span class="nm-index-num">01</span><span data-i18n="menu.idx.s1">Manicure / Pedicure</span></a>
+    <a href="#biab"><span class="nm-index-num">02</span><span data-i18n="menu.idx.s2">BIAB – Builder Gel</span></a>
+    <a href="#design"><span class="nm-index-num">03</span><span data-i18n="menu.idx.s3">Add-on Design</span></a>
+    <a href="#extension"><span class="nm-index-num">04</span><span data-i18n="menu.idx.ext">Extension</span></a>
+    <a href="#removal"><span class="nm-index-num">05</span><span data-i18n="menu.idx.rem">Removal</span></a>
+  </nav>
+  <p class="nm-unit" data-i18n="menu.unit">All prices are in thousand Vietnamese dong (e.g. 150 = 150,000 VND).</p>
+</section>
 
-  <div class="carousel-wrap">
-    <button class="carousel-arrow prev" aria-label="Previous services"><img src="images/icons/arrow.svg" alt=""></button>
-    <button class="carousel-arrow next" aria-label="Next services"><img src="images/icons/arrow.svg" alt=""></button>
-    <div class="services-grid reveal-stagger" id="services-grid">
-    <article class="service-card" id="services-nail">
-      <a class="service-img" href="nail.html" aria-label="Explore Nail">
-        <img src="images/nail.png" alt="Nail gel application close-up" loading="lazy">
-      </a>
-      <h3 data-i18n="home.services.nail.title">Nail</h3>
-      <div class="card-body">
-        <p data-i18n="home.services.nail.copy">Precision nail artistry using only the finest gel and lacquer systems. From soft minimalist tones to bespoke nail art.</p>
-        <a href="nail.html" class="link-arrow"><span data-i18n="home.services.nail.link">explore nail</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
-      </div>
-    </article>
-
-    <article class="service-card" id="services-lash">
-      <a class="service-img" href="lash.html" aria-label="Explore Lash Lift">
-        <img src="images/lash-lift.png" alt="Lash lift close-up of eye" loading="lazy">
-      </a>
-      <h3 data-i18n="home.services.lash.title">Lash Lift</h3>
-      <div class="card-body">
-        <p data-i18n="home.services.lash.copy">Designed to enhance your natural lashes with soft curl, depth and definition, this treatment creates an awake, polished look that lasts beyond your daily routine.</p>
-        <a href="lash.html" class="link-arrow"><span data-i18n="home.services.lash.link">explore lash lift</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
-      </div>
-    </article>
-
-    <article class="service-card" id="services-hair">
-      <a class="service-img" href="head-spa.html" aria-label="Explore Head Spa">
-        <img src="images/head-spa.png" alt="Head spa neck massage close-up" loading="lazy">
-      </a>
-      <h3 data-i18n="home.services.spa.title">Head Spa</h3>
-      <div class="card-body">
-        <p data-i18n="home.services.spa.copy">Thoughtfully designed to nourish the scalp, ease physical tension and encourage deep relaxation through expert touch and personalised care.</p>
-        <a href="head-spa.html" class="link-arrow"><span data-i18n="home.services.spa.link">explore head spa</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
-      </div>
-    </article>
+<!-- ============ (01) MANICURE / PEDICURE ============ -->
+<section class="nm-split" id="manicure">
+  <div class="nm-split-content reveal">
+    <div class="nm-head">
+      <span class="nm-num">(01)</span>
+      <h2 class="nm-title" data-i18n="menu.s1.title">Manicure / Pedicure</h2>
+      <span class="nm-unit-tag" data-i18n="menu.unit.short">× 1,000 VND</span>
     </div>
+    <ul class="nm-list">
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s1.bare.name">Bare</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">150</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s1.bare.desc">Cuticle care, shaping and a buffed, natural shine — no colour.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s1.basic.name">Basic Gel</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">260</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s1.basic.desc">Cuticle care, shaping and a gel colour finish. Suited to healthy natural nails that need no structuring.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s1.sig.name">Signature Strength</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">310</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s1.sig.desc">Cuticle care, shaping, reinforcement and structure for natural nails. Gel colour included.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s1.add.name">Adds On</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">30</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s1.add.desc">Upgrade to premium gel colour lines (Cleto, Mayour, The Gel Bottle).</p>
+      </li>
+    </ul>
+  </div>
+  <div class="nm-split-img reveal">
+    <img src="images/nail-menu-page/basic-gel.jpg" alt="Soft butter-yellow gel manicure on short rounded nails" loading="lazy">
   </div>
 </section>
 
-<!-- ============ OUR PHILOSOPHY ============ -->
-<section class="philosophy">
-  <div class="philosophy-img reveal">
-    <img src="images/philosophy.png" alt="Naeil branded card flat-lay" loading="lazy">
+<!-- ============ (02) BIAB – BUILDER GEL ============ -->
+<section class="nm-split nm-split--reverse" id="biab">
+  <div class="nm-split-img reveal">
+    <img src="images/nail-menu-page/builder-gel.jpg" alt="Brush drawing through creamy builder gel" loading="lazy">
+  </div>
+  <div class="nm-split-content reveal">
+    <div class="nm-head">
+      <span class="nm-num">(02)</span>
+      <h2 class="nm-title" data-i18n="menu.s2.title">BIAB – Builder Gel</h2>
+      <span class="nm-unit-tag" data-i18n="menu.unit.short">× 1,000 VND</span>
+    </div>
+    <ul class="nm-list">
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s2.mani.name">Builder Gel Manicure</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">360</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s2.mani.desc">Cuticle care, shaping and a nail structure built with clear BIAB™ by The GelBottle. Gel colour not included.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s2.infill.name">Builder Gel Infill</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">360</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s2.infill.desc">Cuticle care, shaping, infill of new growth and a rebalanced BIAB™ structure by The GelBottle. Gel colour not included.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s2.add.name">Adds On</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">50</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s2.add.desc">Add gel colour from our premium lines.</p>
+      </li>
+      <li class="nm-item">
+        <div class="nm-item-row">
+          <h3 class="nm-item-name" data-i18n="menu.s2.color.name">Coloured Builder Gel</h3>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">310</span></span>
+        </div>
+        <p class="nm-item-desc" data-i18n="menu.s2.color.desc">Cuticle care, shaping and a nail structure built with coloured BIAB.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ (03) ADD-ON DESIGN · EXTENSION · REMOVAL ============ -->
+<section class="nm-extras" id="design">
+  <div class="nm-extras-head reveal">
+    <span class="nm-num">(03)</span>
+    <h2 class="nm-title" data-i18n="menu.s3.title">Add-on Design Menu</h2>
+    <span class="nm-unit-tag" data-i18n="menu.unit.short">× 1,000 VND</span>
   </div>
 
-  <div class="philosophy-content reveal">
-    <span class="eyebrow philosophy-eyebrow" data-i18n="home.philosophy.eyebrow">Our Philosophy</span>
-    <h2 class="philosophy-title">
-      <span data-i18n="home.philosophy.title1">Refined Beauty</span><br data-i18n-br="home.philosophy.title2">
-      <em class="consious" data-i18n="home.philosophy.title2">Consious</em> <span class="care-word" data-i18n="home.philosophy.title3">care</span>
-    </h2>
-    <p data-i18n="home.philosophy.copy">
-      At Naeil, we believe beauty is more than appearance—it's the way you care for yourself.
-      Using non-toxic products, maintaining the highest hygiene standards, and creating a
-      space to truly slow down, every detail is designed to help you feel your best.
-    </p>
-    <a href="about.html" class="btn btn-outline" data-i18n="home.philosophy.btn">About Naeil</a>
+  <div class="nm-gallery reveal-stagger">
+    <figure class="nm-photo reveal-item">
+      <img src="images/nail-menu-page/playful.jpg" alt="Nail tips and The Made Collection cards being arranged" loading="lazy">
+      <figcaption data-i18n="menu.s3.cap1">playful</figcaption>
+    </figure>
+    <figure class="nm-photo reveal-item">
+      <img src="images/nail-menu-page/new-in.jpg" alt="Hand-painted sample nails from The Made Collection" loading="lazy">
+      <figcaption data-i18n="menu.s3.cap2">new in</figcaption>
+    </figure>
+    <figure class="nm-photo reveal-item">
+      <img src="images/nail-menu-page/curated.jpg" alt="Stacked boxes of curated gel products" loading="lazy">
+      <figcaption data-i18n="menu.s3.cap3">curated</figcaption>
+    </figure>
+  </div>
+
+  <div class="nm-columns">
+    <div class="nm-col reveal">
+      <h3 class="nm-col-title" data-i18n="menu.idx.s3">Add-on Design</h3>
+      <ul class="nm-list nm-list--compact">
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.s3.art">Hand-painted art</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">10–200</span></span>
+        </div></li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.s3.blend">Blooming effect</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">40–100</span></span>
+        </div></li>
+        <li class="nm-note" data-i18n="menu.s3.note1">Design prices depend on the complexity of the design.</li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.s3.magnet">Magnet / Cat-eye</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">120–180</span></span>
+        </div></li>
+        <li class="nm-note" data-i18n="menu.s3.note2">Priced per set, depending on the gel line chosen.</li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.s3.chrome">Chrome / Mirror</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">150</span></span>
+        </div></li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.s3.french">French</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">150</span></span>
+        </div></li>
+      </ul>
+    </div>
+
+    <div class="nm-col reveal" id="extension">
+      <h3 class="nm-col-title" data-i18n="menu.ext.title">Extension</h3>
+      <ul class="nm-list nm-list--compact">
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.ext.tips">Soft gel tip extensions</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">200</span></span>
+        </div></li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.ext.sculpt">Sculpted gel extensions</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-from" data-i18n="menu.from">from</span><span class="nm-amount">250</span></span>
+        </div></li>
+        <li class="nm-note" data-i18n="menu.ext.note">Priced per set; sculpted gel extension prices vary with length.</li>
+      </ul>
+    </div>
+
+    <div class="nm-col reveal" id="removal">
+      <h3 class="nm-col-title" data-i18n="menu.rem.title">Removal</h3>
+      <ul class="nm-list nm-list--compact">
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.rem.gel">Gel removal</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">80</span></span>
+        </div></li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.rem.builder">Builder gel removal</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">120</span></span>
+        </div></li>
+        <li class="nm-item"><div class="nm-item-row">
+          <span class="nm-item-name" data-i18n="menu.rem.ext">Extension removal</span>
+          <span class="nm-leader" aria-hidden="true"></span>
+          <span class="nm-price"><span class="nm-amount">150</span></span>
+        </div></li>
+        <li class="nm-note" data-i18n="menu.rem.note">These prices apply to work done at another salon. Removal is free when you redo your service at NAEIL.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="nm-unit nm-unit--foot" data-i18n="menu.unit">All prices are in thousand Vietnamese dong (e.g. 150 = 150,000 VND).</p>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="about-final-cta nm-final-cta">
+  <div class="about-final-cta-inner reveal">
+    <h2 class="about-final-cta-title" data-i18n="menu.cta.title">Found your favourite?</h2>
+    <p class="about-final-cta-copy" data-i18n="menu.cta.copy">Message us to book, or ask which service suits your nails best.</p>
+    <button type="button" class="btn btn-outline about-final-cta-btn" data-book-trigger>
+      <span data-i18n="menu.cta.btn">Book your appointment</span>
+      <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+    </button>
   </div>
 </section>
 
@@ -190,7 +347,7 @@
   <div class="footer-top">
     <div class="footer-brand reveal">
       <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
-     <div class="social-icons">
+      <div class="social-icons">
         <a href="#" aria-label="Facebook"><img src="images/icons/facebook.svg" alt=""></a>
         <a href="#" aria-label="TikTok"><img src="images/icons/tiktok.svg" alt=""></a>
         <a href="#" aria-label="Instagram"><img src="images/icons/instagram.svg" alt=""></a>
@@ -254,7 +411,7 @@
             </span>
             <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
           </a>
-          <a href="nail-menu.html" class="mega-menu-item">
+          <a href="nail-menu.html" class="mega-menu-item active">
             <span class="mega-menu-item-img"><img src="images/nail-menu-page/basic-gel.jpg" alt="" loading="lazy"></span>
             <span class="mega-menu-item-text">
               <span class="mega-menu-item-title" data-i18n="megamenu.menu.title">Nail Menu</span>
