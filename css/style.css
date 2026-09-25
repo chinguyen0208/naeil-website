@@ -4396,3 +4396,134 @@ html[data-locale="zh"] .nm-from { order: 2; }
   .nm-photo figcaption { font-size: 16px; }
   .nm-unit { font-size: 16px; }
 }
+
+/* =====================================================
+   COMING SOON — Lash Lift + Head Spa (additive only)
+   Home: .service-card.is-coming-soon gets a light veil
+   over its photo and a centred "COMING SOON" pill; the
+   card and its link still open the service page.
+   Service pages (body.cs-page): the whole preview stays
+   visible under a light cream veil; a floating notice
+   sits in the hero. The navbar (z 50) stays above every
+   veil and all veils ignore pointer events, so nav, the
+   language switcher, footer links and the Instagram
+   link keep working.
+   ===================================================== */
+.cs-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 244, 241, 0.42);
+  pointer-events: none;
+}
+
+/* ---- Home cards ---- */
+.service-card.is-coming-soon .service-img { position: relative; }
+.service-card.is-coming-soon .service-img .cs-veil { z-index: 1; }
+.cs-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 26px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: var(--white);
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .cs-badge { height: 38px; padding: 0 20px; font-size: 14px; letter-spacing: 2.5px; }
+}
+
+/* ---- Service pages: veil over hero + content sections ---- */
+.cs-hero .cs-veil--hero { z-index: 4; background: rgba(248, 244, 241, 0.5); }
+/* The hero copy stays as a soft preview behind the notice, so the
+   notice never competes with it (Head Spa's copy is centred). */
+.cs-hero .hero-content,
+.cs-hero .spa-hero-content { opacity: 0.45; }
+.cs-page [data-cs-veil] { position: relative; }
+.cs-page [data-cs-veil]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: rgba(248, 244, 241, 0.4);
+  pointer-events: none;
+}
+
+/* ---- Floating notice (hero) ---- */
+.cs-notice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 40;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100% - 48px));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: clamp(32px, 4vw, 48px) clamp(24px, 4vw, 48px);
+  border-radius: 10px;
+  background: rgba(248, 244, 241, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  color: var(--ink);
+}
+.cs-notice-title {
+  margin: 0;
+  font-family: 'Cormorant Garamond', 'Britanica', serif;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+}
+.cs-notice-rule { width: 40px; height: 1px; background: rgba(0, 0, 0, 0.3); }
+.cs-notice-copy {
+  margin: 0;
+  font-family: 'Cormorant Garamond', 'Britanica', serif;
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.4;
+  color: var(--ink-mid);
+}
+.cs-notice-link {
+  margin-top: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-family: 'Cormorant Garamond', 'Britanica', serif;
+  font-size: clamp(17px, 1.5vw, 20px);
+  color: var(--ink);
+  transition: opacity .25s ease;
+}
+.cs-notice-link:hover { opacity: .65; }
+
+/* ---- Disabled booking CTAs ---- */
+.btn.cs-btn,
+.btn.cs-btn:hover {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--icon-gray);
+  cursor: not-allowed;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.cs-price { cursor: default; }
+.cs-price:hover { border-bottom-color: transparent; }

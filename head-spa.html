@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="images/head-spa-page/hero-headspa.png" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
-<body>
+<body class="cs-page">
 <script>
 (function(){
   try {
@@ -36,7 +36,7 @@
 </script>
 
 <!-- ============ HEADER / HERO ============ -->
-<header class="hero spa-hero">
+<header class="hero spa-hero cs-hero">
   <div class="hero-media">
     <img src="images/head-spa-page/hero-headspa.png" alt="Close-up of head spa massage with traditional comb" fetchpriority="high">
   </div>
@@ -109,17 +109,25 @@
     <h1 class="spa-title" data-i18n="spa.hero.title">Head Spa</h1>
     <p class="spa-sub" data-i18n="spa.hero.sub">Scalp care. Hair nourishment.</p>
     <p class="spa-hero-desc" data-i18n="spa.hero.desc">A restorative head spa ritual designed to cleanse, nourish and rebalance your scalp. Relieve tension, improve circulation and restore healthy, radiant hair from the roots.</p>
-    <button type="button" class="btn btn-light" data-book-trigger aria-label="Open booking options">
-      <span data-i18n="spa.hero.cta">Book your service</span>
-      <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+    <button type="button" class="btn btn-light cs-btn" disabled aria-disabled="true">
+      <span data-i18n="cs.btn">Coming soon</span>
     </button>
   </div>
 
   <div class="scroll-hint" data-i18n="home.hero.scroll">scroll to discover</div>
+
+  <!-- Coming-soon state: a light veil over the preview + a floating notice -->
+  <div class="cs-veil cs-veil--hero" aria-hidden="true"></div>
+  <div class="cs-notice" role="status">
+    <p class="cs-notice-title" data-i18n="cs.notice.title">A new ritual is coming soon.</p>
+    <span class="cs-notice-rule" aria-hidden="true"></span>
+    <p class="cs-notice-copy" data-i18n="cs.notice.spa">Head Spa is being prepared by NAEIL to welcome you.</p>
+    <a class="cs-notice-link" href="https://www.instagram.com/naeilnailbar/" target="_blank" rel="noopener noreferrer" data-i18n="cs.notice.follow">Follow @naeilnailbar for updates</a>
+  </div>
 </header>
 
 <!-- ============ OUR HEADSPA SERVICES ============ -->
-<section class="spa-services">
+<section class="spa-services" data-cs-veil>
   <div style="text-align:center;">
     <h2 class="eyebrow center reveal" data-i18n="spa.services.eyebrow">Our Headspa Services</h2>
     <p class="services-subheading" data-i18n="spa.services.sub">Rituals designed to meet every need — from gentle cleansing to intensive scalp and hair care.</p>
@@ -137,7 +145,7 @@
       <p class="service-subdesc" data-i18n="spa.services.essential.subdesc">Quick Wash · Basic Cleansing</p>
       <div class="card-body">
         <p data-i18n="spa.services.essential.copy">A simple yet elevated cleansing ritual for everyday scalp care. Includes a gentle shampoo, relaxing scalp massage, and a professional blow-dry.</p>
-        <a href="/#footer" class="link-arrow" data-book-trigger><span data-i18n="spa.services.essential.price">from 250,000 VND</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
+        <span class="link-arrow cs-price"><span data-i18n="spa.services.essential.price">from 250,000 VND</span></span>
       </div>
     </article>
 
@@ -149,7 +157,7 @@
       <p class="service-subdesc" data-i18n="spa.services.restore.subdesc">Hair Wash · Neck &amp; Shoulder Massage</p>
       <div class="card-body">
         <p data-i18n="spa.services.restore.copy">A calming head spa experience combining a hair wash with scalp, neck and shoulder massage. Designed to ease tension and leave you feeling relaxed after a long day.</p>
-        <a href="/#footer" class="link-arrow" data-book-trigger><span data-i18n="spa.services.restore.price">from 375,000</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
+        <span class="link-arrow cs-price"><span data-i18n="spa.services.restore.price">from 375,000</span></span>
       </div>
     </article>
 
@@ -161,7 +169,7 @@
       <p class="service-subdesc" data-i18n="spa.services.scalpreset.subdesc">Scalp Cleansing</p>
       <div class="card-body">
         <p data-i18n="spa.services.scalpreset.copy">A personalised scalp treatment for oily, sensitive or congested scalps. Following a scalp analysis, this ritual includes deep cleansing, scalp exfoliation, intensive purification and customised treatment to restore long-term scalp health.</p>
-        <a href="/#footer" class="link-arrow" data-book-trigger><span data-i18n="spa.services.scalpreset.price">from 690,000</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
+        <span class="link-arrow cs-price"><span data-i18n="spa.services.scalpreset.price">from 690,000</span></span>
       </div>
     </article>
 
@@ -173,7 +181,7 @@
       <p class="service-subdesc" data-i18n="spa.services.hairreplenish.subdesc">Restore &amp; Nourish Hair</p>
       <div class="card-body">
         <p data-i18n="spa.services.hairreplenish.copy">An intensive hair treatment designed to repair, strengthen, and deeply nourish dry or chemically damaged hair. Personalised to your hair condition, this ritual restores softness, shine, elasticity, and long-lasting moisture.</p>
-        <a href="/#footer" class="link-arrow" data-book-trigger><span data-i18n="spa.services.hairreplenish.price">from 790,000</span> <img src="images/icons/arrow.svg" alt="" class="arrow-icon"></a>
+        <span class="link-arrow cs-price"><span data-i18n="spa.services.hairreplenish.price">from 790,000</span></span>
       </div>
     </article>
     </div>
@@ -183,7 +191,7 @@
 </section>
 
 <!-- ============ WHAT TO EXPECT ============ -->
-<section class="spa-expect">
+<section class="spa-expect" data-cs-veil>
   <div class="spa-expect-content reveal">
     <span class="spa-expect-label" data-i18n="spa.expect.label">The Naeil Experience</span>
     <h2 class="spa-expect-title" data-i18n="spa.expect.title">Personalised care, from scalp to hair</h2>
@@ -259,7 +267,7 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="site-footer" id="footer">
+<footer class="site-footer" id="footer" data-cs-veil>
   <div class="footer-top">
     <div class="footer-brand reveal">
       <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
