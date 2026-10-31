@@ -4527,3 +4527,32 @@ html[data-locale="zh"] .nm-from { order: 2; }
 }
 .cs-price { cursor: default; }
 .cs-price:hover { border-bottom-color: transparent; }
+
+/* ---- Nail Menu (03): per-nail / full-set price columns ----
+   Used by Magnetic, Chrome, French and both Extension rows. Two
+   fixed-width, right-aligned price cells so every amount lines up
+   under its column label; the service name may wrap on narrow
+   screens instead of shrinking the type. */
+.nm-cols-head {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: 6px;
+  color: var(--icon-gray);
+  font-family: var(--font-display);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.nm-cols-head-label { text-align: right; white-space: pre-line; }
+.nm-price--nail { flex: 0 0 64px; justify-content: flex-end; }
+.nm-price--set { flex: 0 0 92px; justify-content: flex-end; }
+.nm-item-row--dual { gap: 14px; }
+.nm-item-row--dual .nm-item-name { flex: 0 1 auto; min-width: 0; }
+.nm-note--addon {
+  margin: clamp(32px, 4vw, 48px) auto 0;
+  max-width: 640px;
+  text-align: center;
+}
