@@ -511,7 +511,7 @@
       'menu.s3.chrome': 'Tráng gương',
       'menu.s3.french': 'French',
       'menu.col.nail': 'Lẻ',
-      'menu.col.set': 'Full set\n(10 móng)',
+      'menu.col.set': 'Full set',
       'menu.s3.addonnote': 'Phí trang trí và nối móng được cộng vào giá dịch vụ móng đã chọn.',
       'menu.ext.title': 'Extension',
       'menu.ext.tips': 'Nối móng úp',
