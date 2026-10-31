@@ -199,7 +199,7 @@
       'cs.notice.follow': 'Follow @naeilnailbar for updates',
       // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': 'Our Nail Menu',
-      'menu.intro.sub': 'Choose your base, add the details you love. Prices marked “from” may vary with your nails and the design you choose.',
+      'menu.intro.sub': 'Choose the service, colour or design you love. Your final price will be confirmed after a consultation on your nail condition and choices.',
       'menu.unit': 'All prices are in thousand Vietnamese dong (e.g. 150 = 150,000 VND).',
       'menu.unit.short': '× 1,000 VND',
       'menu.from': 'from',
@@ -469,7 +469,7 @@
       'cs.notice.follow': 'Theo dõi @naeilnailbar để cập nhật',
       // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': 'Menu dịch vụ',
-      'menu.intro.sub': 'Chọn dịch vụ nền, thêm những chi tiết bạn yêu thích. Mức giá có chữ “từ” có thể thay đổi tùy tình trạng móng và thiết kế bạn chọn.',
+      'menu.intro.sub': 'Chọn dịch vụ phù hợp, màu sắc hoặc thiết kế yêu thích. Giá cuối cùng sẽ được tư vấn dựa trên tình trạng móng và lựa chọn của bạn.',
       'menu.unit': 'Giá toàn bộ dịch vụ được tính theo đơn vị 1.000 Việt Nam đồng.',
       'menu.unit.short': 'Đơn vị: 1.000 VNĐ',
       'menu.from': 'từ',
@@ -682,7 +682,7 @@
       'cs.notice.follow': '关注 @naeilnailbar 获取最新消息',
       // ---- Nail page: Nail Menu section (nail.html #menu) ----
       'menu.intro.eyebrow': '美甲服务',
-      'menu.intro.sub': '先选择基础服务，再添加您喜爱的细节。标注“起”的价格会因甲况与所选设计而有所不同。',
+      'menu.intro.sub': '选择适合您的服务、喜爱的颜色或设计。最终价格将根据您的甲况与选择进行咨询后确定。',
       'menu.unit': '所有价格均以千越南盾为单位（例如 150 = 150,000 越南盾）。',
       'menu.unit.short': '单位：千越南盾',
       'menu.from': '起',

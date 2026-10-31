@@ -196,7 +196,8 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
   function updateState() {
     const overflowing = track.scrollWidth > track.clientWidth + 20;
     wrap.classList.toggle('has-overflow', overflowing);
-    const atStart = track.scrollLeft <= 4;
+    // Snapping to the first card leaves scrollLeft at the track's left padding.
+    const atStart = track.scrollLeft <= (parseFloat(getComputedStyle(track).paddingLeft) || 0) + 4;
     const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
     prevBtn.classList.toggle('is-disabled', atStart);
     nextBtn.classList.toggle('is-disabled', atEnd);
@@ -210,12 +211,29 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
     track.scrollBy({ left: direction * amount, behavior: 'smooth' });
   }
 
-  prevBtn.addEventListener('click', () => scrollStep(-1));
-  nextBtn.addEventListener('click', () => scrollStep(1));
+  // Always open on the FIRST card. The row is centred (justify-content:
+  // center) until it overflows; when .has-overflow switches it to
+  // flex-start, scroll-snap keeps whichever card was centred (e.g. Lash
+  // Lift on phones) instead of the first one. Jump back to the start,
+  // without the smooth-scroll animation, until the visitor scrolls.
+  let userScrolled = false;
+  function resetToStart() {
+    if (userScrolled) return;
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft = 0;
+    track.style.scrollBehavior = '';
+    updateState();
+  }
+  ['pointerdown', 'touchstart', 'wheel'].forEach(evt =>
+    track.addEventListener(evt, () => { userScrolled = true; }, { passive: true }));
+
+  prevBtn.addEventListener('click', () => { userScrolled = true; scrollStep(-1); });
+  nextBtn.addEventListener('click', () => { userScrolled = true; scrollStep(1); });
   track.addEventListener('scroll', updateState);
   window.addEventListener('resize', updateState);
-  window.addEventListener('load', updateState);
+  window.addEventListener('load', () => { updateState(); resetToStart(); });
   updateState();
+  requestAnimationFrame(resetToStart);
 });
 
 // Sticky nav + "Book →" fade-in, triggered once the hero has scrolled
