@@ -484,7 +484,7 @@
       'menu.s1.basic.name': 'Basic Gel',
       'menu.s1.basic.desc': 'Chăm sóc da, dũa form và hoàn thiện với màu gel. Phù hợp với nền móng khỏe k cần định hình.',
       'menu.s1.sig.name': 'Signature Strength',
-      'menu.s1.sig.desc': 'Xử lý da, dũa form, gia cố và tạo cấu cho móng tự nhiên. Bao gồm sơn màu gel.',
+      'menu.s1.sig.desc': 'Xử lý da, dũa form, gia cố và tạo cầu cho móng tự nhiên. Bao gồm sơn màu gel.',
       'menu.s1.add.name': 'Adds On',
       'menu.s1.add.desc': 'Nâng cấp với các dòng màu gel cao cấp (Cleto, Mayour, The Gel Bottle).',
       'menu.s2.title': 'BIAB – Builder Gel',
