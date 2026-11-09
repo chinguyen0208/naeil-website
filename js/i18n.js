@@ -41,7 +41,7 @@
       // ---- Shared: Booking modal ----
       'booking.eyebrow': 'Get in touch', 'booking.title': 'Book your appointment',
       'booking.sub': "Choose how you'd like to reach us.",
-      'booking.whatsapp': 'WhatsApp', 'booking.zalo': 'Zalo', 'booking.phone': 'Phone',
+      'booking.whatsapp': 'WhatsApp', 'booking.phone': 'Phone',
       'booking.instagram': 'Instagram', 'booking.facebook': 'Facebook',
       // ---- Shared: Footer ----
       'footer.brand': 'naeil nail bar',
@@ -344,7 +344,7 @@
       'booking.title': 'Đặt lịch dịch vụ',
       'booking.sub': 'Chọn cách bạn muốn liên hệ với chúng tôi.',
       'booking.whatsapp': 'WhatsApp',
-      'booking.zalo': 'Zalo',
+     
       'booking.phone': 'Điện thoại',
       'booking.instagram': 'Instagram',
       'booking.facebook': 'Facebook',
@@ -665,7 +665,7 @@
       'megamenu.book': '立即预约',
       'booking.eyebrow': '联系我们', 'booking.title': '预约您的服务',
       'booking.sub': '请选择您方便的联系方式。',
-      'booking.whatsapp': 'WhatsApp', 'booking.zalo': 'Zalo', 'booking.phone': '电话',
+      'booking.whatsapp': 'WhatsApp', 'booking.phone': '电话',
       'booking.instagram': 'Instagram', 'booking.facebook': 'Facebook',
       'footer.brand': 'naeil nail bar',
       'footer.services': '服务项目', 'footer.nail': '美甲', 'footer.lash': '睫毛',
