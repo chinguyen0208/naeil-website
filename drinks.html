@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drinks Menu — Naeil Nail Bar</title>
+<meta name="description" content="The NAEIL drinks menu — café, Japanese tea and cold brew, plus complimentary tea for every guest and coffee with services from 260,000 VND.">
+<link rel="icon" type="image/png" href="images/icons/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" type="image/webp" href="images/drinks-page/cafe-menu-1000.webp" imagesrcset="images/drinks-page/cafe-menu-640.webp 640w, images/drinks-page/cafe-menu-1000.webp 1000w, images/drinks-page/cafe-menu-1640.webp 1640w" imagesizes="(max-width: 720px) calc(100vw - 32px), 680px" fetchpriority="high">
+<script src="js/i18n.js"></script>
+</head>
+<body class="page-drinks">
+<script>
+(function(){
+  try {
+    if (sessionStorage.getItem('naeilPreloaderShown') === '1') {
+      document.documentElement.classList.add('preload-skip');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="preloader-bg"></div>
+  <div class="preloader-content">
+    <img src="images/icons/logo.svg" alt="" class="preloader-logo" aria-hidden="true">
+  </div>
+</div>
+<script>
+  window.__preloadHero = new Image();
+  window.__preloadHero.src = 'images/drinks-page/cafe-menu-640.webp';
+</script>
+
+<!-- ============ HEADER — no photo hero on this page: the posters are the
+     focus, so the navbar starts in the site's cream "is-fixed" state. ============ -->
+<header class="drinks-header">
+  <nav class="navbar is-fixed">
+    <a href="/" class="logo">
+      <img src="images/icons/logo.svg" alt="Maeil" class="logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" data-i18n="nav.home">Home</a></li>
+      <li><a href="nail.html" data-i18n="nav.nail">Nail</a></li>
+      <li><a href="head-spa.html" data-i18n="nav.hair">Hair</a></li>
+      <li><a href="lash.html" data-i18n="nav.lash">Lash</a></li>
+      <li><a href="drinks.html" data-i18n="nav.drinks">Drinks</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About</a></li>
+      <li><a href="visit.html" data-i18n="nav.visit">Visit</a></li>
+    </ul>
+    <div class="navbar-right">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <span class="lang-switcher-label">EN</span>
+          <span class="lang-switcher-chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="lang-dropdown" role="listbox" aria-label="Select language">
+          <button type="button" class="lang-dropdown-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="lang-dropdown-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
+      <button type="button" class="nav-book-btn" data-book-trigger aria-label="Open booking options">
+        <span data-i18n="nav.book">Book an appointment</span>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      </button>
+      <div class="mobile-lang-switcher">
+        <button type="button" class="mobile-lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <span class="lang-switcher-label">EN</span>
+          <span class="mobile-lang-chevron" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="mobile-lang-dropdown" role="listbox" aria-label="Select language">
+          <button type="button" class="mobile-lang-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span class="mobile-lang-code">EN</span>
+            <span class="mobile-lang-name" data-i18n="lang.en">English</span>
+          </button>
+          <button type="button" class="mobile-lang-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span class="mobile-lang-code">VI</span>
+            <span class="mobile-lang-name" data-i18n="lang.vi">Tiếng Việt</span>
+          </button>
+          <button type="button" class="mobile-lang-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span class="mobile-lang-code">中文</span>
+            <span class="mobile-lang-name" data-i18n="lang.zh">中文</span>
+          </button>
+        </div>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="megaMenuOverlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="drinks-menu">
+<!-- ============ PAGE HEADING ============ -->
+<section class="dm-page-head">
+  <h1 class="nail-eyebrow" data-i18n="drinks.hero.title">Drinks Menu</h1>
+  <p class="dm-page-sub" data-i18n="drinks.hero.sub">Made for slow moments.</p>
+</section>
+
+<!-- ============ MENU POSTERS — shown exactly as designed ============ -->
+<section aria-labelledby="dm-gallery-title">
+  <h2 class="dm-visually-hidden" id="dm-gallery-title" data-i18n="drinks.gallery.title">Menu posters</h2>
+  <ul class="dm-gallery">
+    <li class="dm-poster reveal">
+      <button type="button" class="dm-poster-btn" data-lb-index="0" data-lb-src="images/drinks-page/cafe-menu-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-cafe">
+        <picture>
+          <source type="image/webp" srcset="images/drinks-page/cafe-menu-640.webp 640w, images/drinks-page/cafe-menu-1000.webp 1000w, images/drinks-page/cafe-menu-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
+          <img src="images/drinks-page/original/cafe-menu.png" width="1640" height="2360" alt="Café menu poster: espresso, cappuccino, latte and iced cloud coffee, with prices" data-i18n-alt="drinks.alt.cafe" fetchpriority="high" decoding="async">
+        </picture>
+        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
+      </button>
+    </li>
+    <li class="dm-poster reveal">
+      <button type="button" class="dm-poster-btn" data-lb-index="1" data-lb-src="images/drinks-page/japanese-tea-menu-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-tea">
+        <picture>
+          <source type="image/webp" srcset="images/drinks-page/japanese-tea-menu-640.webp 640w, images/drinks-page/japanese-tea-menu-1000.webp 1000w, images/drinks-page/japanese-tea-menu-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
+          <img src="images/drinks-page/original/japanese-tea-menu.png" width="1640" height="2360" alt="Japanese tea menu poster: hojicha latte, matcha latte in three grades and add-ons, with prices" data-i18n-alt="drinks.alt.tea" decoding="async">
+        </picture>
+        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
+      </button>
+    </li>
+    <li class="dm-poster reveal">
+      <button type="button" class="dm-poster-btn" data-lb-index="2" data-lb-src="images/drinks-page/cold-brew-menu-1080.webp" data-lb-w="1080" data-lb-h="1350" aria-describedby="dm-tx-coldbrew">
+        <picture>
+          <source type="image/webp" srcset="images/drinks-page/cold-brew-menu-640.webp 640w, images/drinks-page/cold-brew-menu-1000.webp 1000w, images/drinks-page/cold-brew-menu-1080.webp 1080w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
+          <img src="images/drinks-page/original/cold-brew-menu.png" width="1080" height="1350" alt="Cold brew menu poster: original and pineapple cold brew, with prices" data-i18n-alt="drinks.alt.coldbrew" loading="lazy" decoding="async">
+        </picture>
+        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
+      </button>
+    </li>
+    <li class="dm-poster reveal">
+      <button type="button" class="dm-poster-btn" data-lb-index="3" data-lb-src="images/drinks-page/complimentary-drinks-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-comp">
+        <picture>
+          <source type="image/webp" srcset="images/drinks-page/complimentary-drinks-640.webp 640w, images/drinks-page/complimentary-drinks-1000.webp 1000w, images/drinks-page/complimentary-drinks-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
+          <img src="images/drinks-page/original/complimentary-drinks.png" width="1640" height="2360" alt="Complimentary drinks poster: daily tea for all guests, and freshly brewed coffee with services from 260,000 VND" data-i18n-alt="drinks.alt.comp" loading="lazy" decoding="async">
+        </picture>
+        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
+      </button>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ TEXT VERSION — for screen readers & search engines.
+     Mirrors the posters; visually hidden so the posters stay the only
+     visual content. Follows the language selector like the rest of the
+     site. Prices are in thousands of VND. ============ -->
+<section class="dm-visually-hidden" aria-labelledby="dm-tx-title">
+  <h2 id="dm-tx-title" data-i18n="drinks.tx.title">Drinks menu (text version)</h2>
+  <p data-i18n="drinks.unit">All drink prices are listed in thousands of VND.</p>
+
+  <div id="dm-tx-cafe">
+    <h3 data-i18n="drinks.cafe.title">Café</h3>
+    <ul>
+      <li><span data-i18n="drinks.cafe.espresso">Espresso</span> — 40 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
+      <li><span data-i18n="drinks.cafe.cappuccino">Cappuccino</span> — 65 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
+      <li><span data-i18n="drinks.cafe.latte">Latte</span> — 65 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
+      <li><span data-i18n="drinks.cafe.cloud">Iced Cloud Coffee</span> — 75</li>
+    </ul>
+  </div>
+
+  <div id="dm-tx-tea">
+    <h3 data-i18n="drinks.tea.title">Japanese Tea</h3>
+    <ul>
+      <li><span data-i18n="drinks.tea.hojicha.name">Hojicha Latte</span> — 60. <span data-i18n="drinks.tea.hojicha.desc">Roasted Japanese green tea with milk.</span></li>
+      <li><span data-i18n="drinks.tea.matcha.name">Matcha Latte</span>:
+        <ul>
+          <li><span data-i18n="drinks.tea.p1.name">Premium 1</span> — 105. <span data-i18n="drinks.tea.p1.desc">Rich, smooth &amp; umami.</span></li>
+          <li><span data-i18n="drinks.tea.p2.name">Premium 2</span> — 125. <span data-i18n="drinks.tea.p2.desc">Balanced, aromatic &amp; smooth.</span></li>
+          <li><span data-i18n="drinks.tea.std.name">Standard</span> — 60. <span data-i18n="drinks.tea.std.desc">Our everyday matcha.</span></li>
+        </ul>
+      </li>
+    </ul>
+    <h4 data-i18n="drinks.tea.addons">Add-ons</h4>
+    <ul>
+      <li><span data-i18n="drinks.tea.whisk.name">Cold Whisk</span> — +5. <span data-i18n="drinks.tea.whisk.desc">Cold-whisked for a smoother, creamier texture.</span></li>
+      <li><span data-i18n="drinks.tea.oat.name">Oat Milk</span> — +10. <span data-i18n="drinks.tea.oat.desc">Swap to oat milk.</span></li>
+    </ul>
+  </div>
+
+  <div id="dm-tx-coldbrew">
+    <h3 data-i18n="drinks.cb.title">Cold Brew</h3>
+    <ul>
+      <li><span data-i18n="drinks.cb.original.name">Original Cold Brew</span> — 60. <span data-i18n="drinks.cb.original.desc">Slow-steeped, smooth &amp; naturally refreshing.</span></li>
+      <li><span data-i18n="drinks.cb.pineapple.name">Pineapple Cold Brew</span> — 75. <span data-i18n="drinks.cb.pineapple.desc">Bold coffee meets tropical sweetness.</span></li>
+    </ul>
+  </div>
+
+  <div id="dm-tx-comp">
+    <h3 data-i18n="drinks.comp.title">Complimentary Drinks</h3>
+    <ul>
+      <li><span data-i18n="drinks.comp.tea.name">Daily Tea Selection</span>. <span data-i18n="drinks.comp.tea.desc">Complimentary for all guests.</span></li>
+      <li><span data-i18n="drinks.comp.coffee.name">Freshly Brewed Coffee</span> (<span data-i18n="drinks.comp.coffee.list">Espresso · Latte · Cappuccino</span>). <span data-i18n="drinks.comp.coffee.desc">Enjoy a complimentary coffee with services from 260,000 VND.</span></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- ============ POSTER VIEWER (full screen) ============ -->
+<div class="dm-lb" id="dmLightbox" role="dialog" aria-modal="true" aria-label="Drinks menu poster viewer" data-i18n-aria="drinks.lb.label" aria-hidden="true">
+  <div class="dm-lb-stage" id="dmLbStage">
+    <img class="dm-lb-img" id="dmLbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+  </div>
+  <button type="button" class="dm-lb-btn dm-lb-close" id="dmLbClose" aria-label="Close" data-i18n-aria="drinks.lb.close">&times;</button>
+  <button type="button" class="dm-lb-btn dm-lb-prev" id="dmLbPrev" aria-label="Previous poster" data-i18n-aria="drinks.lb.prev">&lsaquo;</button>
+  <button type="button" class="dm-lb-btn dm-lb-next" id="dmLbNext" aria-label="Next poster" data-i18n-aria="drinks.lb.next">&rsaquo;</button>
+  <p class="dm-lb-meta"><span id="dmLbCount" aria-live="polite">1 / 4</span><span class="dm-lb-hint" data-i18n="drinks.lb.hint">Pinch, double-tap or scroll to zoom</span></p>
+</div>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="footer">
+  <div class="footer-top">
+    <div class="footer-brand reveal">
+      <p class="brand-script" data-i18n="footer.brand">naeil nail bar</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><img src="images/icons/facebook.svg" alt=""></a>
+        <a href="#" aria-label="TikTok"><img src="images/icons/tiktok.svg" alt=""></a>
+        <a href="#" aria-label="Instagram"><img src="images/icons/instagram.svg" alt=""></a>
+        <a href="#" aria-label="WhatsApp"><img src="images/icons/whatsapp.svg" alt=""></a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+    <div class="footer-col">
+      <h4 data-i18n="footer.services">Services</h4>
+      <ul>
+        <li><a href="nail.html" data-i18n="footer.nail">Nail</a></li>
+        <li><a href="lash.html" data-i18n="footer.lash">Lash</a></li>
+        <li><a href="head-spa.html" data-i18n="footer.headspa">Head Spa</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.connect">Connect</h4>
+      <ul>
+        <li><a href="about.html" data-i18n="footer.aboutlink2">About</a></li>
+        <li><a href="#" data-i18n="footer.getintouch">Get in Touch</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.visit">Visit</h4>
+      <ul class="visit-list">
+        <li data-i18n="footer.address">52 Nguyen Thai Hoc, Ba Dinh, Hanoi</li>
+        <li>+84 888 104 166</li>
+        <li data-i18n="footer.hours">Open daily, 10am – 8pm</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p data-i18n="footer.copyright">© 2026 NAEIL. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ MEGA MENU ============ -->
+<div class="mega-menu-overlay" id="megaMenuOverlay" aria-hidden="true">
+  <div class="mega-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="mega-menu-top">
+      <a href="/" class="mega-menu-logo">
+        <img src="images/icons/logo.svg" alt="Maeil" class="logo-img">
+      </a>
+      <button type="button" class="mega-menu-close" id="megaMenuClose" aria-label="Close menu">&times;</button>
+    </div>
+    <nav class="mega-menu-list">
+      <div class="mega-menu-group">
+        <span class="mega-menu-group-label" data-i18n="megamenu.services">Services</span>
+        <div class="mega-menu-rows">
+          <a href="nail.html" class="mega-menu-item">
+            <span class="mega-menu-item-img"><img src="images/nail.png" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.nail.title">Nail</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.nail.desc">Precision gel &amp; lacquer artistry</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="head-spa.html" class="mega-menu-item">
+            <span class="mega-menu-item-img"><img src="images/head-spa.png" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.hair.title">Hair</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.hair.desc">Restorative head spa rituals</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="lash.html" class="mega-menu-item">
+            <span class="mega-menu-item-img"><img src="images/lash-lift.png" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.lash.title">Lash</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.lash.desc">Korean lash lift &amp; tint</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+      <div class="mega-menu-group">
+        <span class="mega-menu-group-label" data-i18n="megamenu.explore">Explore</span>
+        <div class="mega-menu-rows">
+          <a href="drinks.html" class="mega-menu-item active">
+            <span class="mega-menu-item-img"><img src="images/drinks-page/drinks-thumb.jpg" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.drinks.title">Drinks</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.drinks.desc">Café, Japanese tea &amp; cold brew</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="about.html" class="mega-menu-item">
+            <span class="mega-menu-item-img"><img src="images/about-page/hero-about.jpg" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.about.title">About</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.about.desc">Our philosophy &amp; ritual</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="visit.html" class="mega-menu-item">
+            <span class="mega-menu-item-img"><img src="images/visit-page/exterior-visit.jpg" alt="" loading="lazy"></span>
+            <span class="mega-menu-item-text">
+              <span class="mega-menu-item-title" data-i18n="megamenu.visit.title">Visit</span>
+              <span class="mega-menu-item-desc" data-i18n="megamenu.visit.desc">Location &amp; opening hours</span>
+            </span>
+            <span class="mega-menu-item-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+      <div class="mega-menu-group mega-menu-lang">
+        <span class="mega-menu-group-label" data-i18n="lang.label">Language</span>
+        <div class="mega-menu-lang-options">
+          <button type="button" class="mega-menu-lang-option is-selected" data-lang-option="en" role="option" aria-checked="true">
+            <span data-i18n="lang.en">English</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="vi" role="option" aria-checked="false">
+            <span data-i18n="lang.vi">Tiếng Việt</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+          <button type="button" class="mega-menu-lang-option" data-lang-option="zh" role="option" aria-checked="false">
+            <span data-i18n="lang.zh">中文</span>
+            <span class="lang-check" aria-hidden="true">&#10003;</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="mega-menu-bottom">
+      <button type="button" class="mega-menu-book-btn" data-book-trigger>
+        <span data-i18n="megamenu.book">Book your appointment</span>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="booking-modal-overlay" id="bookingModalOverlay" aria-hidden="true">
+  <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+    <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+    <span class="booking-modal-eyebrow" data-i18n="booking.eyebrow">Get in touch</span>
+    <h3 id="bookingModalTitle" class="booking-modal-title" data-i18n="booking.title">Book your appointment</h3>
+    <p class="booking-modal-sub" data-i18n="booking.sub">Choose how you'd like to reach us.</p>
+    <div class="booking-modal-options">
+      <a class="booking-option" href="https://wa.me/84888104166" target="_blank" rel="noopener noreferrer">
+        <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/whatsapp.svg" alt=""></span>
+        <span class="booking-option-text"><strong data-i18n="booking.whatsapp">WhatsApp</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="booking-option" href="https://zalo.me/0888104166" target="_blank" rel="noopener noreferrer">
+        <span class="booking-option-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.7 1.5 5.1 3.9 6.7-.2.9-.7 2.4-1 3.2-.1.3.2.6.5.5 1.5-.6 3-1.4 3.6-1.8.9.2 2 .3 3 .3 5.5 0 10-3.8 10-8.5S17.5 3 12 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="booking-option-text"><strong data-i18n="booking.zalo">Zalo</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="booking-option" href="tel:+84888104166">
+        <span class="booking-option-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h3.5l1.5 4.5-2 1.5a11 11 0 0 0 6 6l1.5-2L19 15.5V19a1 1 0 0 1-1 1C10.5 20 4 13.5 4 6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="booking-option-text"><strong data-i18n="booking.phone">Phone</strong><small>+84 888 104 166</small></span>
+        <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="booking-option" href="https://www.instagram.com/naeilnailbar/" target="_blank" rel="noopener noreferrer">
+        <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/instagram.svg" alt=""></span>
+        <span class="booking-option-text"><strong data-i18n="booking.instagram">Instagram</strong><small>@naeilnailbar</small></span>
+        <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="booking-option" href="https://www.facebook.com/profile.php?id=61591534436233" target="_blank" rel="noopener noreferrer">
+        <span class="booking-option-icon" aria-hidden="true"><img src="images/icons/facebook.svg" alt=""></span>
+        <span class="booking-option-text"><strong data-i18n="booking.facebook">Facebook</strong><small>NAEIL Nail Bar</small></span>
+        <span class="booking-option-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+// Drinks Menu — full-screen poster viewer. Page-specific (like Visit's
+// inline parallax script). Shows the original poster unaltered: fit to
+// screen at its own ratio; pinch / double-tap / wheel / +/- to zoom,
+// drag to pan when zoomed, swipe or arrow keys between posters,
+// Escape or the close button to exit.
+(function () {
+  var lb = document.getElementById('dmLightbox');
+  if (!lb) return;
+  var stage = document.getElementById('dmLbStage');
+  var img = document.getElementById('dmLbImg');
+  var btnClose = document.getElementById('dmLbClose');
+  var btnPrev = document.getElementById('dmLbPrev');
+  var btnNext = document.getElementById('dmLbNext');
+  var counter = document.getElementById('dmLbCount');
+  var triggers = Array.prototype.slice.call(document.querySelectorAll('.dm-poster-btn'));
+  var items = triggers.map(function (t) {
+    return { src: t.getAttribute('data-lb-src'), w: +t.getAttribute('data-lb-w'), h: +t.getAttribute('data-lb-h'), alt: t.querySelector('img') };
+  });
+
+  var MAX = 4, index = 0, lastFocus = null;
+  var s = 1, tx = 0, ty = 0, baseW = 0, baseH = 0;
+
+  function fit() {
+    var it = items[index];
+    var pad = window.innerWidth <= 720 ? 12 : 72;
+    var availW = window.innerWidth - pad * 2, availH = window.innerHeight - pad * 2;
+    var k = Math.min(availW / it.w, availH / it.h);
+    baseW = Math.round(it.w * k); baseH = Math.round(it.h * k);
+    img.style.width = baseW + 'px'; img.style.height = baseH + 'px';
+  }
+  function clamp() {
+    var mx = Math.max(0, (baseW * s - window.innerWidth) / 2);
+    var my = Math.max(0, (baseH * s - window.innerHeight) / 2);
+    tx = Math.min(mx, Math.max(-mx, tx)); ty = Math.min(my, Math.max(-my, ty));
+  }
+  function render() {
+    clamp();
+    img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+    lb.classList.toggle('is-zoomed', s > 1.01);
+  }
+  // Zoom to scale `ns`, keeping the screen point (px, py) fixed.
+  function zoomAt(ns, px, py) {
+    ns = Math.min(MAX, Math.max(1, ns));
+    var cx = px - window.innerWidth / 2, cy = py - window.innerHeight / 2;
+    tx = cx - (cx - tx) * (ns / s); ty = cy - (cy - ty) * (ns / s);
+    s = ns;
+    if (s === 1) { tx = 0; ty = 0; }
+    render();
+  }
+  function reset() { s = 1; tx = 0; ty = 0; render(); }
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var it = items[index];
+    img.src = it.src;
+    img.alt = it.alt ? it.alt.alt : '';
+    counter.textContent = (index + 1) + ' / ' + items.length;
+    fit(); reset();
+    // warm the neighbours so swiping feels instant
+    [index + 1, index - 1].forEach(function (n) { new Image().src = items[(n + items.length) % items.length].src; });
+  }
+  function open(i, trigger) {
+    lastFocus = trigger || document.activeElement;
+    show(i);
+    lb.classList.add('is-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    btnClose.focus();
+  }
+  function close() {
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  triggers.forEach(function (t, i) { t.addEventListener('click', function () { open(i, t); }); });
+  btnClose.addEventListener('click', close);
+  btnPrev.addEventListener('click', function () { show(index - 1); });
+  btnNext.addEventListener('click', function () { show(index + 1); });
+  window.addEventListener('resize', function () { if (lb.classList.contains('is-open')) { fit(); render(); } });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+    else if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomAt(s * 1.5, innerWidth / 2, innerHeight / 2); }
+    else if (e.key === '-' || e.key === '_') { e.preventDefault(); zoomAt(s / 1.5, innerWidth / 2, innerHeight / 2); }
+    else if (e.key === '0') { e.preventDefault(); reset(); }
+    else if (e.key === 'Tab') { // keep focus inside the viewer
+      var f = [btnClose, btnPrev, btnNext].filter(function (b) { return b.offsetParent !== null; });
+      var at = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(at + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+
+  stage.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    zoomAt(s * Math.exp(-e.deltaY * 0.0022), e.clientX, e.clientY);
+  }, { passive: false });
+
+  // Pointer gestures: one finger/mouse = pan (zoomed) or swipe (not
+  // zoomed); two fingers = pinch; quick double tap/click = zoom toggle.
+  var pts = new Map(), start = null, pinch = null, lastTap = 0, lastTapX = 0, lastTapY = 0;
+  stage.addEventListener('pointerdown', function (e) {
+    stage.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) {
+      start = { x: e.clientX, y: e.clientY, tx: tx, ty: ty, t: Date.now() };
+      if (s > 1.01) lb.classList.add('is-dragging');
+    } else if (pts.size === 2) {
+      var p = Array.from(pts.values());
+      pinch = { d: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y), s: s };
+      start = null;
+    }
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 2 && pinch) {
+      var p = Array.from(pts.values());
+      var d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      zoomAt(pinch.s * d / pinch.d, (p[0].x + p[1].x) / 2, (p[0].y + p[1].y) / 2);
+    } else if (pts.size === 1 && start && s > 1.01) {
+      tx = start.tx + (e.clientX - start.x); ty = start.ty + (e.clientY - start.y);
+      render();
+    }
+  });
+  function end(e) {
+    if (!pts.has(e.pointerId)) return;
+    pts.delete(e.pointerId);
+    lb.classList.remove('is-dragging');
+    if (pts.size < 2) pinch = null;
+    if (!start || pts.size) return;
+    var dx = e.clientX - start.x, dy = e.clientY - start.y, dt = Date.now() - start.t;
+    var moved = Math.hypot(dx, dy);
+    if (s <= 1.01 && moved > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      show(index + (dx < 0 ? 1 : -1));               // swipe
+    } else if (moved < 10 && dt < 300) {
+      var now = Date.now();
+      if (now - lastTap < 320 && Math.hypot(e.clientX - lastTapX, e.clientY - lastTapY) < 30) {
+        if (s > 1.01) reset(); else zoomAt(2.5, e.clientX, e.clientY);   // double tap
+        lastTap = 0;
+      } else {
+        lastTap = now; lastTapX = e.clientX; lastTapY = e.clientY;
+      }
+    }
+    start = null;
+  }
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
+})();
+</script>
+</body>
+</html>

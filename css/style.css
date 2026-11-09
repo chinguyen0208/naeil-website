@@ -4567,3 +4567,179 @@ html[data-locale="zh"] .nm-from { order: 2; }
 }
 .nm-col-head .nm-col-title { margin: 0; }
 .nm-col-head .nm-cols-head { margin-top: 0; }
+
+/* =====================================================
+   DRINKS MENU (drinks.html) — additive only.
+   The four approved menu posters are shown exactly as
+   supplied: never cropped, recoloured or overlaid. The page
+   has no photo hero, so its <header> holds the navbar in the
+   site's existing cream "is-fixed" state from the start.
+   Everything here is scoped to .dm-* / .drinks-header /
+   html[data-locale="vi"] .nav-links, so no other page changes.
+   ===================================================== */
+
+/* Nav now holds 7 links: Vietnamese labels are the longest, so on
+   desktop trim the spacing between links (never the font size) to
+   keep clear air before the language switcher. */
+@media (min-width: 1024px) {
+  html[data-locale="vi"] .nav-links { gap: clamp(8px, 1.6vw - 6px, 22px); }
+  html[data-locale="vi"] .nav-links a { padding-inline: clamp(2px, 0.6vw - 4px, 6px); }
+}
+
+.page-drinks { background: var(--cream); }
+
+/* ---- Page heading ---- */
+.dm-page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: calc(129px + clamp(40px, 6vw, 88px)) var(--gutter) clamp(40px, 5vw, 72px);
+  text-align: center;
+}
+.dm-page-sub {
+  margin: 0;
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  font-size: clamp(19px, 1.7vw, 23px);
+  letter-spacing: 0.3px;
+  color: var(--ink-soft);
+}
+html[data-locale="zh"] .dm-page-sub { font-family: var(--font-display); font-style: normal; font-size: 17px; letter-spacing: 1px; }
+html[data-locale="vi"] .dm-page-sub { font-family: var(--font-body); }
+
+/* ---- Poster gallery — one centred column, read like turning the
+   pages of a printed menu. Posters keep their own ratio, so mixed
+   heights (Cold Brew is 4:5) never misalign anything. ---- */
+.dm-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(56px, 7vw, 104px);
+  max-width: calc(680px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter) clamp(80px, 10vw, 140px);
+  list-style: none;
+}
+.dm-poster { width: 100%; margin: 0; min-width: 0; }
+.dm-poster-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.dm-poster-btn:focus-visible { outline: 1px solid var(--ink-mid); outline-offset: 6px; }
+.dm-poster picture, .dm-poster img {
+  display: block;
+  width: 100%;
+  height: auto; /* intrinsic ratio from width/height attrs: never cropped, no layout shift */
+}
+
+/* ---- Screen-reader / search transcription (not shown on screen) ---- */
+.dm-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Full-screen viewer ---- */
+.dm-lb {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 17, 14, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility 0s linear .3s;
+}
+.dm-lb.is-open { opacity: 1; visibility: visible; transition: opacity .3s ease; }
+.dm-lb-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+  cursor: zoom-in;
+}
+.dm-lb.is-zoomed .dm-lb-stage { cursor: grab; }
+.dm-lb.is-dragging .dm-lb-stage { cursor: grabbing; }
+.dm-lb-img {
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  will-change: transform;
+}
+.dm-lb-btn {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(20, 17, 14, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.dm-lb-btn:hover { background: rgba(255, 255, 255, 0.14); color: #FFF; border-color: rgba(255, 255, 255, 0.5); }
+.dm-lb-btn:focus-visible { outline: 1px solid #FFF; outline-offset: 3px; }
+.dm-lb-close { top: 18px; right: 18px; font-size: 26px; }
+.dm-lb-prev { left: 18px; top: 50%; transform: translateY(-50%); }
+.dm-lb-next { right: 18px; top: 50%; transform: translateY(-50%); }
+.dm-lb-meta {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.dm-lb.is-zoomed .dm-lb-hint { opacity: 0; }
+.dm-lb-hint { transition: opacity .25s ease; }
+
+/* ---- Responsive ---- */
+@media (max-width: 720px) {
+  .dm-page-head { padding-top: calc(129px + 28px); padding-bottom: 32px; gap: 10px; }
+  .dm-gallery { gap: 36px; padding: 0 16px 72px; }
+  .dm-lb-close { top: 12px; right: 12px; }
+}
+/* Touch screens navigate by swiping, so the arrows step aside. */
+@media (hover: none) and (pointer: coarse) {
+  .dm-lb-prev, .dm-lb-next { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dm-lb, .dm-lb.is-open { transition: none; }
+}
