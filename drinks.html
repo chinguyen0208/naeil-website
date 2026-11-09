@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Drinks Menu — Naeil Nail Bar</title>
-<meta name="description" content="The NAEIL drinks menu — café, Japanese tea and cold brew, plus complimentary tea for every guest and coffee with services from 260,000 VND.">
+<meta name="description" content="The NAEIL drinks menu: espresso, cappuccino, latte, iced cloud coffee, hojicha and matcha lattes, cold brew — plus complimentary tea for every guest and coffee with services from 260,000 VND.">
 <link rel="icon" type="image/png" href="images/icons/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Crimson+Text:ital@1&family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Drinks Menu only: hand-lettered section titles (closest open font to the Canva menus' lettering) -->
+<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="preload" as="image" type="image/webp" href="images/drinks-page/cafe-menu-1000.webp" imagesrcset="images/drinks-page/cafe-menu-640.webp 640w, images/drinks-page/cafe-menu-1000.webp 1000w, images/drinks-page/cafe-menu-1640.webp 1640w" imagesizes="(max-width: 720px) calc(100vw - 32px), 680px" fetchpriority="high">
 <script src="js/i18n.js"></script>
 </head>
 <body class="page-drinks">
@@ -33,7 +34,7 @@
 </div>
 <script>
   window.__preloadHero = new Image();
-  window.__preloadHero.src = 'images/drinks-page/cafe-menu-640.webp';
+  window.__preloadHero.src = 'images/drinks-page/espresso.webp';
 </script>
 
 <!-- ============ HEADER — no photo hero on this page: the posters are the
@@ -104,121 +105,167 @@
   </nav>
 </header>
 
-<main id="drinks-menu">
+<main id="drinks-menu" class="dm">
 <!-- ============ PAGE HEADING ============ -->
 <section class="dm-page-head">
   <h1 class="nail-eyebrow" data-i18n="drinks.hero.title">Drinks Menu</h1>
   <p class="dm-page-sub" data-i18n="drinks.hero.sub">Made for slow moments.</p>
 </section>
 
-<!-- ============ MENU POSTERS — shown exactly as designed ============ -->
-<section aria-labelledby="dm-gallery-title">
-  <h2 class="dm-visually-hidden" id="dm-gallery-title" data-i18n="drinks.gallery.title">Menu posters</h2>
-  <ul class="dm-gallery">
-    <li class="dm-poster reveal">
-      <button type="button" class="dm-poster-btn" data-lb-index="0" data-lb-src="images/drinks-page/cafe-menu-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-cafe">
-        <picture>
-          <source type="image/webp" srcset="images/drinks-page/cafe-menu-640.webp 640w, images/drinks-page/cafe-menu-1000.webp 1000w, images/drinks-page/cafe-menu-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
-          <img src="images/drinks-page/original/cafe-menu.png" width="1640" height="2360" alt="Café menu poster: espresso, cappuccino, latte and iced cloud coffee, with prices" data-i18n-alt="drinks.alt.cafe" fetchpriority="high" decoding="async">
-        </picture>
-        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
-      </button>
-    </li>
-    <li class="dm-poster reveal">
-      <button type="button" class="dm-poster-btn" data-lb-index="1" data-lb-src="images/drinks-page/japanese-tea-menu-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-tea">
-        <picture>
-          <source type="image/webp" srcset="images/drinks-page/japanese-tea-menu-640.webp 640w, images/drinks-page/japanese-tea-menu-1000.webp 1000w, images/drinks-page/japanese-tea-menu-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
-          <img src="images/drinks-page/original/japanese-tea-menu.png" width="1640" height="2360" alt="Japanese tea menu poster: hojicha latte, matcha latte in three grades and add-ons, with prices" data-i18n-alt="drinks.alt.tea" decoding="async">
-        </picture>
-        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
-      </button>
-    </li>
-    <li class="dm-poster reveal">
-      <button type="button" class="dm-poster-btn" data-lb-index="2" data-lb-src="images/drinks-page/cold-brew-menu-1080.webp" data-lb-w="1080" data-lb-h="1350" aria-describedby="dm-tx-coldbrew">
-        <picture>
-          <source type="image/webp" srcset="images/drinks-page/cold-brew-menu-640.webp 640w, images/drinks-page/cold-brew-menu-1000.webp 1000w, images/drinks-page/cold-brew-menu-1080.webp 1080w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
-          <img src="images/drinks-page/original/cold-brew-menu.png" width="1080" height="1350" alt="Cold brew menu poster: original and pineapple cold brew, with prices" data-i18n-alt="drinks.alt.coldbrew" loading="lazy" decoding="async">
-        </picture>
-        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
-      </button>
-    </li>
-    <li class="dm-poster reveal">
-      <button type="button" class="dm-poster-btn" data-lb-index="3" data-lb-src="images/drinks-page/complimentary-drinks-1640.webp" data-lb-w="1640" data-lb-h="2360" aria-describedby="dm-tx-comp">
-        <picture>
-          <source type="image/webp" srcset="images/drinks-page/complimentary-drinks-640.webp 640w, images/drinks-page/complimentary-drinks-1000.webp 1000w, images/drinks-page/complimentary-drinks-1640.webp 1640w" sizes="(max-width: 720px) calc(100vw - 32px), 680px">
-          <img src="images/drinks-page/original/complimentary-drinks.png" width="1640" height="2360" alt="Complimentary drinks poster: daily tea for all guests, and freshly brewed coffee with services from 260,000 VND" data-i18n-alt="drinks.alt.comp" loading="lazy" decoding="async">
-        </picture>
-        <span class="dm-visually-hidden" data-i18n="drinks.poster.open">Open full screen</span>
-      </button>
-    </li>
+<!-- ============ CATEGORY NAVIGATION ============ -->
+<nav class="dm-cats" aria-label="Drinks menu categories" data-i18n-aria="drinks.idx.aria">
+  <ul>
+    <li><a href="#cafe" data-i18n="drinks.idx.cafe">Café</a></li>
+    <li><a href="#japanese-tea" data-i18n="drinks.idx.tea">Japanese Tea</a></li>
+    <li><a href="#cold-brew" data-i18n="drinks.idx.coldbrew">Cold Brew</a></li>
+    <li><a href="#complimentary" data-i18n="drinks.idx.comp">Complimentary</a></li>
   </ul>
+</nav>
+
+<!-- ============ 01 — CAFÉ MENU ============ -->
+<section class="dm-sec dm-sec--cafe" id="cafe" aria-labelledby="dm-cafe-h">
+  <div class="dm-panel">
+    <header class="dm-panel-head">
+      <h2 class="dm-title" id="dm-cafe-h"><span class="dm-title-art">Café<br>Menu</span><span class="dm-title-local" data-i18n="drinks.cafe.local"></span></h2>
+      <svg class="dm-icon dm-icon--cup" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 22h56v6c0 16-12 28-28 28S28 44 28 28z"/><path d="M84 28c8 0 12 4 12 9s-5 9-13 9"/><ellipse cx="58" cy="64" rx="44" ry="8"/><ellipse cx="58" cy="62" rx="20" ry="3"/><path d="M34 24c8 3 36 3 44 0"/></svg>
+    </header>
+    <ul class="dm-grid dm-grid--cafe">
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/espresso.webp" width="399" height="400" alt="Espresso in a small glass" data-i18n-alt="drinks.alt.espresso" fetchpriority="high" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Espresso<span class="dm-zh" data-i18n="drinks.zh.espresso"></span></h3><span class="dm-price">40</span></div>
+          <p class="dm-tag" data-i18n="drinks.hoticed">hot/iced</p>
+        </li>
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/cappuccino.webp" width="401" height="400" alt="Cappuccino with cocoa dusting in a speckled cup" data-i18n-alt="drinks.alt.cappuccino" fetchpriority="high" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Cappuccino<span class="dm-zh" data-i18n="drinks.zh.cappuccino"></span></h3><span class="dm-price">65</span></div>
+          <p class="dm-tag" data-i18n="drinks.hoticed">hot/iced</p>
+        </li>
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/latte.webp" width="400" height="413" alt="Iced latte with milk swirling under the coffee" data-i18n-alt="drinks.alt.latte" loading="lazy" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Latte<span class="dm-zh" data-i18n="drinks.zh.latte"></span></h3><span class="dm-price">65</span></div>
+          <p class="dm-tag" data-i18n="drinks.hoticed">hot/iced</p>
+        </li>
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/iced-cloud-coffee.webp" width="401" height="413" alt="Iced cloud coffee in a NAEIL cup with a creamy top" data-i18n-alt="drinks.alt.cloud" loading="lazy" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Iced Cloud Coffee<span class="dm-zh" data-i18n="drinks.zh.cloud"></span></h3><span class="dm-price">75</span></div>
+        </li>
+    </ul>
+    <p class="dm-sign" aria-hidden="true">naeil nail bar</p>
+  </div>
+  <p class="dm-note"><span data-i18n="drinks.d.note.l1">Giá đồ uống được tính theo đơn vị 1.000 VNĐ.</span><span data-i18n="drinks.d.note.en">All drink prices are listed in thousands of VND.</span></p>
 </section>
 
-<!-- ============ TEXT VERSION — for screen readers & search engines.
-     Mirrors the posters; visually hidden so the posters stay the only
-     visual content. Follows the language selector like the rest of the
-     site. Prices are in thousands of VND. ============ -->
-<section class="dm-visually-hidden" aria-labelledby="dm-tx-title">
-  <h2 id="dm-tx-title" data-i18n="drinks.tx.title">Drinks menu (text version)</h2>
-  <p data-i18n="drinks.unit">All drink prices are listed in thousands of VND.</p>
-
-  <div id="dm-tx-cafe">
-    <h3 data-i18n="drinks.cafe.title">Café</h3>
-    <ul>
-      <li><span data-i18n="drinks.cafe.espresso">Espresso</span> — 40 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
-      <li><span data-i18n="drinks.cafe.cappuccino">Cappuccino</span> — 65 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
-      <li><span data-i18n="drinks.cafe.latte">Latte</span> — 65 (<span data-i18n="drinks.hoticed">Hot / Iced</span>)</li>
-      <li><span data-i18n="drinks.cafe.cloud">Iced Cloud Coffee</span> — 75</li>
+<!-- ============ 02 — JAPANESE TEA ============ -->
+<section class="dm-sec dm-sec--tea" id="japanese-tea" aria-labelledby="dm-tea-h">
+  <div class="dm-panel">
+    <header class="dm-panel-head">
+      <h2 class="dm-title" id="dm-tea-h"><span class="dm-title-art">Japanese<br>Tea</span><span class="dm-title-local" data-i18n="drinks.tea.local"></span></h2>
+      <svg class="dm-icon dm-icon--bowl" viewBox="0 0 140 110" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 52h70c0 20-14 34-35 34S8 72 8 52z"/><path d="M8 52c10-6 60-6 70 0"/><path d="M30 86l2 8h22l2-8"/><path d="M104 64h20v38h-20z"/><path d="M106 64l-8-40M110 64l-5-44M114 64V18M118 64l5-44M122 64l8-40"/><path d="M98 24c8-8 24-8 32 0"/><path d="M104 72h20"/></svg>
+    </header>
+    <div class="dm-tea-grid">
+      <div class="dm-tea-col">
+        <article class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/hojicha-latte.webp" width="451" height="432" alt="Iced hojicha latte" data-i18n-alt="drinks.alt.hojicha" loading="lazy" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Hojicha Latte<span class="dm-zh" data-i18n="drinks.zh.hojicha"></span></h3><span class="dm-price">60</span></div>
+          <p class="dm-desc"><span class="dm-desc-l1" data-i18n="drinks.d.hoji.l1">Trà xanh Nhật Bản rang thơm, kết hợp cùng sữa.</span><span class="dm-desc-en" data-i18n="drinks.d.hoji.en">Roasted Japanese green tea with milk.</span></p>
+        </article>
+        <div class="dm-photo dm-photo--prep"><img src="images/drinks-page/matcha-preparation.webp" width="455" height="386" alt="Matcha in a ceramic bowl beside a bamboo whisk" data-i18n-alt="drinks.alt.prep" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="dm-tea-col">
+        <article class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/matcha-latte.webp" width="454" height="440" alt="Iced matcha latte" data-i18n-alt="drinks.alt.matcha" loading="lazy" decoding="async"></div>
+          <h3 class="dm-name dm-name--group">Matcha Latte<span class="dm-zh" data-i18n="drinks.zh.matcha"></span></h3>
+          <ul class="dm-grades">
+            <li class="dm-grade">
+              <div class="dm-row"><h4 class="dm-name dm-name--grade">Premium 1<span class="dm-zh" data-i18n="drinks.zh.p1"></span></h4><span class="dm-price">105</span></div>
+              <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.p1.l1">Vị trà đậm đà, hậu vị umami, kết cấu mượt mà.</span><span class="dm-desc-en" data-i18n="drinks.d.p1.en">Rich, smooth &amp; umami.</span></p>
+            </li>
+            <li class="dm-grade">
+              <div class="dm-row"><h4 class="dm-name dm-name--grade">Premium 2<span class="dm-zh" data-i18n="drinks.zh.p2"></span></h4><span class="dm-price">125</span></div>
+              <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.p2.l1">Hương trà thanh, vị cân bằng và mềm mại.</span><span class="dm-desc-en" data-i18n="drinks.d.p2.en">Balanced, aromatic &amp; smooth.</span></p>
+            </li>
+            <li class="dm-grade">
+              <div class="dm-row"><h4 class="dm-name dm-name--grade">Standard<span class="dm-zh" data-i18n="drinks.zh.std"></span></h4><span class="dm-price">60</span></div>
+              <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.std.l1">Matcha dịu nhẹ, dễ thưởng thức mỗi ngày.</span><span class="dm-desc-en" data-i18n="drinks.d.std.en">Our everyday matcha.</span></p>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+    <ul class="dm-addons">
+          <li class="dm-addon">
+            <svg class="dm-icon dm-icon--snow" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M24 4v40M6.7 14l34.6 20M6.7 34l34.6-20"/><path d="M18 8l6 5 6-5M18 40l6-5 6 5M7 21l8-1-3-8M41 27l-8 1 3 8M7 27l8 1-3 8M41 21l-8-1 3-8"/></svg>
+            <div class="dm-addon-body">
+              <div class="dm-row"><h4 class="dm-name dm-name--addon"><span class="dm-addon-label" data-i18n="drinks.addon">add-on</span>Cold Whisk<span class="dm-zh" data-i18n="drinks.zh.whisk"></span></h4><span class="dm-price">+5</span></div>
+              <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.whisk.l1">Đánh matcha lạnh cho kết cấu mịn và béo hơn.</span><span class="dm-desc-en" data-i18n="drinks.d.whisk.en">Cold-whisked for a smoother, creamier texture.</span></p>
+            </div>
+          </li>
+          <li class="dm-addon">
+            <svg class="dm-icon dm-icon--leaf" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 42c4-14 12-24 28-32"/><path d="M14 30c-6-6-4-14 2-18 4 6 4 12-2 18zM20 22c2-8 10-12 16-10-2 8-8 12-16 10zM24 32c8-2 14 2 16 8-8 2-14-2-16-8z"/></svg>
+            <div class="dm-addon-body">
+              <div class="dm-row"><h4 class="dm-name dm-name--addon"><span class="dm-addon-label" data-i18n="drinks.addon">add-on</span>Oat Milk<span class="dm-zh" data-i18n="drinks.zh.oat"></span></h4><span class="dm-price">+10</span></div>
+              <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.oat.l1">Thay thế bằng sữa yến mạch.</span><span class="dm-desc-en" data-i18n="drinks.d.oat.en">Swap to oat milk.</span></p>
+            </div>
+          </li>
     </ul>
+    <p class="dm-sign" aria-hidden="true">naeil nail bar</p>
   </div>
+  <p class="dm-note"><span data-i18n="drinks.d.note.l1">Giá đồ uống được tính theo đơn vị 1.000 VNĐ.</span><span data-i18n="drinks.d.note.en">All drink prices are listed in thousands of VND.</span></p>
+</section>
 
-  <div id="dm-tx-tea">
-    <h3 data-i18n="drinks.tea.title">Japanese Tea</h3>
-    <ul>
-      <li><span data-i18n="drinks.tea.hojicha.name">Hojicha Latte</span> — 60. <span data-i18n="drinks.tea.hojicha.desc">Roasted Japanese green tea with milk.</span></li>
-      <li><span data-i18n="drinks.tea.matcha.name">Matcha Latte</span>:
-        <ul>
-          <li><span data-i18n="drinks.tea.p1.name">Premium 1</span> — 105. <span data-i18n="drinks.tea.p1.desc">Rich, smooth &amp; umami.</span></li>
-          <li><span data-i18n="drinks.tea.p2.name">Premium 2</span> — 125. <span data-i18n="drinks.tea.p2.desc">Balanced, aromatic &amp; smooth.</span></li>
-          <li><span data-i18n="drinks.tea.std.name">Standard</span> — 60. <span data-i18n="drinks.tea.std.desc">Our everyday matcha.</span></li>
-        </ul>
-      </li>
+<!-- ============ 03 — COLD BREW ============ -->
+<section class="dm-sec dm-sec--coldbrew" id="cold-brew" aria-labelledby="dm-cb-h">
+  <div class="dm-panel">
+    <header class="dm-panel-head">
+      <h2 class="dm-title" id="dm-cb-h"><span class="dm-title-art">Cold<br>Brew</span><span class="dm-title-local" data-i18n="drinks.cb.local"></span></h2>
+      <svg class="dm-icon dm-icon--glass" viewBox="0 0 90 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 10h66l-6 98c0 4-4 6-8 6H26c-4 0-8-2-8-6z"/><path d="M16 46h58"/><circle cx="34" cy="58" r="9"/><circle cx="54" cy="58" r="9"/><circle cx="44" cy="44" r="9"/><path d="M16 22h58"/></svg>
+    </header>
+    <ul class="dm-grid dm-grid--coldbrew">
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/cold-brew-original.webp" width="367" height="336" alt="Original cold brew over ice" data-i18n-alt="drinks.alt.cbo" loading="lazy" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Original Cold Brew<span class="dm-zh" data-i18n="drinks.zh.cbo"></span></h3><span class="dm-price">60</span></div>
+          <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.cbo.l1">Cà phê ủ lạnh nguyên bản.</span><span class="dm-desc-en" data-i18n="drinks.d.cbo.en">Slow-steeped, smooth &amp; naturally refreshing.</span></p>
+        </li>
+        <li class="dm-item">
+          <div class="dm-photo"><img src="images/drinks-page/cold-brew-pineapple.webp" width="367" height="336" alt="Pineapple cold brew layered over pineapple juice, with a pineapple wedge" data-i18n-alt="drinks.alt.cbp" loading="lazy" decoding="async"></div>
+          <div class="dm-row"><h3 class="dm-name">Pineapple Cold Brew<span class="dm-zh" data-i18n="drinks.zh.cbp"></span></h3><span class="dm-price">75</span></div>
+          <p class="dm-desc dm-desc--italic"><span class="dm-desc-l1" data-i18n="drinks.d.cbp.l1">Cà phê ủ lạnh hòa cùng vị dứa nhiệt đới.</span><span class="dm-desc-en" data-i18n="drinks.d.cbp.en">Bold coffee meets tropical sweetness.</span></p>
+        </li>
     </ul>
-    <h4 data-i18n="drinks.tea.addons">Add-ons</h4>
-    <ul>
-      <li><span data-i18n="drinks.tea.whisk.name">Cold Whisk</span> — +5. <span data-i18n="drinks.tea.whisk.desc">Cold-whisked for a smoother, creamier texture.</span></li>
-      <li><span data-i18n="drinks.tea.oat.name">Oat Milk</span> — +10. <span data-i18n="drinks.tea.oat.desc">Swap to oat milk.</span></li>
-    </ul>
+    <hr class="dm-rule">
+    <p class="dm-sign" aria-hidden="true">naeil nail bar</p>
   </div>
+  <p class="dm-note"><span data-i18n="drinks.d.note.l1">Giá đồ uống được tính theo đơn vị 1.000 VNĐ.</span><span data-i18n="drinks.d.note.en">All drink prices are listed in thousands of VND.</span></p>
+</section>
 
-  <div id="dm-tx-coldbrew">
-    <h3 data-i18n="drinks.cb.title">Cold Brew</h3>
-    <ul>
-      <li><span data-i18n="drinks.cb.original.name">Original Cold Brew</span> — 60. <span data-i18n="drinks.cb.original.desc">Slow-steeped, smooth &amp; naturally refreshing.</span></li>
-      <li><span data-i18n="drinks.cb.pineapple.name">Pineapple Cold Brew</span> — 75. <span data-i18n="drinks.cb.pineapple.desc">Bold coffee meets tropical sweetness.</span></li>
-    </ul>
-  </div>
-
-  <div id="dm-tx-comp">
-    <h3 data-i18n="drinks.comp.title">Complimentary Drinks</h3>
-    <ul>
-      <li><span data-i18n="drinks.comp.tea.name">Daily Tea Selection</span>. <span data-i18n="drinks.comp.tea.desc">Complimentary for all guests.</span></li>
-      <li><span data-i18n="drinks.comp.coffee.name">Freshly Brewed Coffee</span> (<span data-i18n="drinks.comp.coffee.list">Espresso · Latte · Cappuccino</span>). <span data-i18n="drinks.comp.coffee.desc">Enjoy a complimentary coffee with services from 260,000 VND.</span></li>
-    </ul>
+<!-- ============ 04 — COMPLIMENTARY DRINKS ============
+     Split screen, as in the poster. The two supplied photos carry their
+     own printed text, so nothing is laid over them; the same content is
+     below as real text for screen readers, search and translation.
+     When text-free versions of these photos are supplied, swap the files
+     and remove data-photo-text="true" to show the HTML text instead. -->
+<section class="dm-sec dm-sec--comp" id="complimentary" aria-labelledby="dm-comp-h" data-photo-text="true">
+  <h2 class="dm-sr" id="dm-comp-h" data-i18n="drinks.comp.title">Complimentary Drinks</h2>
+  <div class="dm-split">
+    <article class="dm-split-half dm-split-half--tea" aria-labelledby="dm-comp-tea">
+      <img src="images/drinks-page/complimentary-tea.webp" srcset="images/drinks-page/complimentary-tea-480.webp 480w, images/drinks-page/complimentary-tea.webp 712w" sizes="(max-width: 767px) calc(100vw - 32px), 440px" width="712" height="1768" alt="A double-walled glass mug of tea on a wooden table" data-i18n-alt="drinks.alt.comptea" loading="lazy" decoding="async">
+      <div class="dm-split-text">
+        <h3 id="dm-comp-tea" data-i18n="drinks.comp.tea.name">Daily Tea Selection</h3>
+        <p class="dm-split-cond dm-split-cond--all" data-i18n="drinks.comp.tea.desc">Complimentary for all guests.</p>
+      </div>
+    </article>
+    <article class="dm-split-half dm-split-half--coffee" aria-labelledby="dm-comp-coffee">
+      <img src="images/drinks-page/complimentary-coffee.webp" srcset="images/drinks-page/complimentary-coffee-480.webp 480w, images/drinks-page/complimentary-coffee.webp 711w" sizes="(max-width: 767px) calc(100vw - 32px), 440px" width="711" height="1768" alt="Espresso pouring from the machine into a grey cup" data-i18n-alt="drinks.alt.compcoffee" loading="lazy" decoding="async">
+      <div class="dm-split-text">
+        <h3 id="dm-comp-coffee" data-i18n="drinks.comp.coffee.name">Freshly Brewed Coffee</h3>
+        <p data-i18n="drinks.comp.coffee.list">Espresso · Latte · Cappuccino</p>
+        <p class="dm-split-cond dm-split-cond--services" data-i18n="drinks.comp.coffee.desc">Enjoy a complimentary coffee with services from 260,000 VND.</p>
+      </div>
+    </article>
   </div>
 </section>
 </main>
 
-<!-- ============ POSTER VIEWER (full screen) ============ -->
-<div class="dm-lb" id="dmLightbox" role="dialog" aria-modal="true" aria-label="Drinks menu poster viewer" data-i18n-aria="drinks.lb.label" aria-hidden="true">
-  <div class="dm-lb-stage" id="dmLbStage">
-    <img class="dm-lb-img" id="dmLbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-  </div>
-  <button type="button" class="dm-lb-btn dm-lb-close" id="dmLbClose" aria-label="Close" data-i18n-aria="drinks.lb.close">&times;</button>
-  <button type="button" class="dm-lb-btn dm-lb-prev" id="dmLbPrev" aria-label="Previous poster" data-i18n-aria="drinks.lb.prev">&lsaquo;</button>
-  <button type="button" class="dm-lb-btn dm-lb-next" id="dmLbNext" aria-label="Next poster" data-i18n-aria="drinks.lb.next">&rsaquo;</button>
-  <p class="dm-lb-meta"><span id="dmLbCount" aria-live="polite">1 / 4</span><span class="dm-lb-hint" data-i18n="drinks.lb.hint">Pinch, double-tap or scroll to zoom</span></p>
-</div>
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer" id="footer">
   <div class="footer-top">
@@ -404,159 +451,25 @@
 
 <script src="js/script.js"></script>
 <script>
-// Drinks Menu — full-screen poster viewer. Page-specific (like Visit's
-// inline parallax script). Shows the original poster unaltered: fit to
-// screen at its own ratio; pinch / double-tap / wheel / +/- to zoom,
-// drag to pan when zoomed, swipe or arrow keys between posters,
-// Escape or the close button to exit.
+// Drinks Menu — category navigation: smooth scroll (CSS) and an active
+// state that follows the section in view. Page-specific, like Visit's
+// inline parallax script. Respects reduced-motion via CSS.
 (function () {
-  var lb = document.getElementById('dmLightbox');
-  if (!lb) return;
-  var stage = document.getElementById('dmLbStage');
-  var img = document.getElementById('dmLbImg');
-  var btnClose = document.getElementById('dmLbClose');
-  var btnPrev = document.getElementById('dmLbPrev');
-  var btnNext = document.getElementById('dmLbNext');
-  var counter = document.getElementById('dmLbCount');
-  var triggers = Array.prototype.slice.call(document.querySelectorAll('.dm-poster-btn'));
-  var items = triggers.map(function (t) {
-    return { src: t.getAttribute('data-lb-src'), w: +t.getAttribute('data-lb-w'), h: +t.getAttribute('data-lb-h'), alt: t.querySelector('img') };
-  });
-
-  var MAX = 4, index = 0, lastFocus = null;
-  var s = 1, tx = 0, ty = 0, baseW = 0, baseH = 0;
-
-  function fit() {
-    var it = items[index];
-    var pad = window.innerWidth <= 720 ? 12 : 72;
-    var availW = window.innerWidth - pad * 2, availH = window.innerHeight - pad * 2;
-    var k = Math.min(availW / it.w, availH / it.h);
-    baseW = Math.round(it.w * k); baseH = Math.round(it.h * k);
-    img.style.width = baseW + 'px'; img.style.height = baseH + 'px';
+  var links = Array.prototype.slice.call(document.querySelectorAll('.dm-cats a'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  function setActive(id) {
+    links.forEach(function (a) {
+      var on = a === byId[id];
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
   }
-  function clamp() {
-    var mx = Math.max(0, (baseW * s - window.innerWidth) / 2);
-    var my = Math.max(0, (baseH * s - window.innerHeight) / 2);
-    tx = Math.min(mx, Math.max(-mx, tx)); ty = Math.min(my, Math.max(-my, ty));
-  }
-  function render() {
-    clamp();
-    img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
-    lb.classList.toggle('is-zoomed', s > 1.01);
-  }
-  // Zoom to scale `ns`, keeping the screen point (px, py) fixed.
-  function zoomAt(ns, px, py) {
-    ns = Math.min(MAX, Math.max(1, ns));
-    var cx = px - window.innerWidth / 2, cy = py - window.innerHeight / 2;
-    tx = cx - (cx - tx) * (ns / s); ty = cy - (cy - ty) * (ns / s);
-    s = ns;
-    if (s === 1) { tx = 0; ty = 0; }
-    render();
-  }
-  function reset() { s = 1; tx = 0; ty = 0; render(); }
-
-  function show(i) {
-    index = (i + items.length) % items.length;
-    var it = items[index];
-    img.src = it.src;
-    img.alt = it.alt ? it.alt.alt : '';
-    counter.textContent = (index + 1) + ' / ' + items.length;
-    fit(); reset();
-    // warm the neighbours so swiping feels instant
-    [index + 1, index - 1].forEach(function (n) { new Image().src = items[(n + items.length) % items.length].src; });
-  }
-  function open(i, trigger) {
-    lastFocus = trigger || document.activeElement;
-    show(i);
-    lb.classList.add('is-open');
-    lb.setAttribute('aria-hidden', 'false');
-    document.documentElement.style.overflow = 'hidden';
-    btnClose.focus();
-  }
-  function close() {
-    lb.classList.remove('is-open');
-    lb.setAttribute('aria-hidden', 'true');
-    document.documentElement.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  triggers.forEach(function (t, i) { t.addEventListener('click', function () { open(i, t); }); });
-  btnClose.addEventListener('click', close);
-  btnPrev.addEventListener('click', function () { show(index - 1); });
-  btnNext.addEventListener('click', function () { show(index + 1); });
-  window.addEventListener('resize', function () { if (lb.classList.contains('is-open')) { fit(); render(); } });
-
-  document.addEventListener('keydown', function (e) {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') { e.preventDefault(); close(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
-    else if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomAt(s * 1.5, innerWidth / 2, innerHeight / 2); }
-    else if (e.key === '-' || e.key === '_') { e.preventDefault(); zoomAt(s / 1.5, innerWidth / 2, innerHeight / 2); }
-    else if (e.key === '0') { e.preventDefault(); reset(); }
-    else if (e.key === 'Tab') { // keep focus inside the viewer
-      var f = [btnClose, btnPrev, btnNext].filter(function (b) { return b.offsetParent !== null; });
-      var at = f.indexOf(document.activeElement);
-      e.preventDefault();
-      f[(at + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
-    }
-  });
-
-  stage.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    zoomAt(s * Math.exp(-e.deltaY * 0.0022), e.clientX, e.clientY);
-  }, { passive: false });
-
-  // Pointer gestures: one finger/mouse = pan (zoomed) or swipe (not
-  // zoomed); two fingers = pinch; quick double tap/click = zoom toggle.
-  var pts = new Map(), start = null, pinch = null, lastTap = 0, lastTapX = 0, lastTapY = 0;
-  stage.addEventListener('pointerdown', function (e) {
-    stage.setPointerCapture(e.pointerId);
-    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (pts.size === 1) {
-      start = { x: e.clientX, y: e.clientY, tx: tx, ty: ty, t: Date.now() };
-      if (s > 1.01) lb.classList.add('is-dragging');
-    } else if (pts.size === 2) {
-      var p = Array.from(pts.values());
-      pinch = { d: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y), s: s };
-      start = null;
-    }
-  });
-  stage.addEventListener('pointermove', function (e) {
-    if (!pts.has(e.pointerId)) return;
-    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (pts.size === 2 && pinch) {
-      var p = Array.from(pts.values());
-      var d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
-      zoomAt(pinch.s * d / pinch.d, (p[0].x + p[1].x) / 2, (p[0].y + p[1].y) / 2);
-    } else if (pts.size === 1 && start && s > 1.01) {
-      tx = start.tx + (e.clientX - start.x); ty = start.ty + (e.clientY - start.y);
-      render();
-    }
-  });
-  function end(e) {
-    if (!pts.has(e.pointerId)) return;
-    pts.delete(e.pointerId);
-    lb.classList.remove('is-dragging');
-    if (pts.size < 2) pinch = null;
-    if (!start || pts.size) return;
-    var dx = e.clientX - start.x, dy = e.clientY - start.y, dt = Date.now() - start.t;
-    var moved = Math.hypot(dx, dy);
-    if (s <= 1.01 && moved > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
-      show(index + (dx < 0 ? 1 : -1));               // swipe
-    } else if (moved < 10 && dt < 300) {
-      var now = Date.now();
-      if (now - lastTap < 320 && Math.hypot(e.clientX - lastTapX, e.clientY - lastTapY) < 30) {
-        if (s > 1.01) reset(); else zoomAt(2.5, e.clientX, e.clientY);   // double tap
-        lastTap = 0;
-      } else {
-        lastTap = now; lastTapX = e.clientX; lastTapY = e.clientY;
-      }
-    }
-    start = null;
-  }
-  stage.addEventListener('pointerup', end);
-  stage.addEventListener('pointercancel', end);
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) obs.observe(s); });
 })();
 </script>
 </body>
